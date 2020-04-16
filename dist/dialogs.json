@@ -1,0 +1,30 @@
+{
+    "Dialogs": [
+        {
+            "name": "Jeff",
+            "QA":[
+                {
+                    "question": "Yes",
+                    "answer": "I am fine"
+                },
+                {
+                    "question": "Hello",
+                    "answer": "Yes, fu*k you too"
+                }
+            ]
+        },
+		{
+            "name": "Mei",
+            "QA":[
+                {
+                    "question": "Yes",
+                    "answer": "No"
+                },
+                {
+                    "question": "Hello",
+                    "answer": "Hhhhhh, you crazy."
+                }
+            ]
+        }
+    ]
+}
