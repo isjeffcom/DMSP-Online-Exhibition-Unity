@@ -18,6 +18,8 @@ public class DialogController : MonoBehaviour
     // Get Dialog container
     private GameObject dialogCont;
     private GameObject dialogAns;
+    // Get Tip Text
+    private Text tip;
 
     private string api = "https://playground.eca.ed.ac.uk/~s1888009/dmsp/dialogs.json";
 
@@ -29,6 +31,8 @@ public class DialogController : MonoBehaviour
         // Find container
         dialogCont =  GameObject.Find("UI_Dialog_Cont");
         dialogAns = GameObject.Find("UI_Dialog_Answer");
+        // Find tip
+        tip = GameObject.Find("UI_Tip").GetComponent<Text>();
 
         // Start to get data
         StartCoroutine(GetData());
@@ -85,7 +89,7 @@ public class DialogController : MonoBehaviour
         }
 
         // Display dialog container
-        dialogCont.SetActive(true);
+        //dialogCont.SetActive(true);
         
         // Set Text to dialog
         dialogAns.GetComponent<Text>().text = answer;
@@ -96,8 +100,14 @@ public class DialogController : MonoBehaviour
     // Close dialog, fire when player left a NPC's collider
     public void CloseDialog()
     {
-        dialogCont.SetActive(false);
-        dialogAns.GetComponent<Text>().text = "";
+      
+        tip.text = "";
+
+        if (dialogCont.activeSelf)
+        {
+            dialogCont.SetActive(false);
+            dialogAns.GetComponent<Text>().text = "";
+        }
     }
 }
 
