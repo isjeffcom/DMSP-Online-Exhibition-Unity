@@ -15,6 +15,9 @@ public class NPC : MonoBehaviour
     private GameObject dialogAns;
     private Text textAns;
 
+    // Flag for if dialog window opened
+    private bool dialogEnabled = false;
+
     private void Awake()
     {
         // Find tip
@@ -27,30 +30,34 @@ public class NPC : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-             
+        tip.text = "E to chat";
 
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        tip.text = "E to chat";
-
-        if (Input.GetKeyUp(KeyCode.E))
+        // Check if dialog has already enabled
+        if (Input.GetKey(KeyCode.E) && !dialogEnabled)
         {
-            Debug.Log("e");
+            Debug.Log("e pressed");
             //clear tip
+            
             tip.text = "";
+
+            
             // Display dialog container
             dialogCont.SetActive(true);
-            dialogAns.GetComponent<Text>().text = "Hello";
-         
-
+            showDialogAnswer();
+            //dialogAns.GetComponent<Text>().text = "Hello";
+            dialogEnabled = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         DialogController._ins.CloseDialog();
+        dialogEnabled = false;
+        tip.text = "";
     }
 
     // Creates a textbox showing the the line of text
@@ -63,6 +70,6 @@ public class NPC : MonoBehaviour
 
     public void showDialogAnswer()
     {
-        DialogController._ins.ShowDialog(this.name, textAns.text);
+        DialogController._ins.ShowDialog(this.name, 0);
     }
 }

@@ -4,5 +4,6 @@
 public class Dialogs
 {
     public string name;
-    public List<QA> QA = new List<QA>();
+    public List<DialogsTime> time = new List<DialogsTime>();
+    public List<DialogsConvs> convs = new List<DialogsConvs>();
 }
