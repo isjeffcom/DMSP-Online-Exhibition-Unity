@@ -8,7 +8,7 @@ public class beginnWords : MonoBehaviour
 {
     //text control
     Text _beginnWords;
-    float _duration = 0.5f;
+    float _duration = 5f;
     string[] words = new string[10];
     [SerializeField] GameObject startButton;
     [SerializeField] Image startBG;
