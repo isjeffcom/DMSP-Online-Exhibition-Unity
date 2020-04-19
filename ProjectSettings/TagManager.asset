@@ -14,7 +14,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - NPC
   - 
   - 
   - 
@@ -41,4 +41,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2220735599
+    locked: 0
+  - name: Player
+    uniqueID: 4024339967
+    locked: 0
+  - name: Audio
+    uniqueID: 205081847
     locked: 0

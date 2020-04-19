@@ -88,7 +88,7 @@ public class DialogController : MonoBehaviour
     public void ShowDialog(string character, int toId)
     {
         
-        // If to Id is -1 than close
+        // If to Id is -1 then close
         if(toId == -1)
         {
             CloseDialog();
@@ -100,7 +100,7 @@ public class DialogController : MonoBehaviour
         // Display line
         string question = "";
 
-        // Define what to do next, if has options than ignore
+        // Define what to do next, if has options then ignore
         int to = -1;
 
         // Save Options if have any
@@ -119,7 +119,7 @@ public class DialogController : MonoBehaviour
                     {
                         question = convs.question;
 
-                        // If have options than save options, if no than ready to go next.
+                        // If have options then save options, if no then ready to go next.
                         if(convs.options.Count == 0)
                         {
                             to = convs.to;

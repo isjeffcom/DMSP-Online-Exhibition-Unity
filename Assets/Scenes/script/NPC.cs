@@ -3,10 +3,6 @@ using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
-    // UI Prefabs
-    [SerializeField]
-    private Text textPrefab = null;
-
     // Get Tip Text
     private Text tip;
 
@@ -37,13 +33,12 @@ public class NPC : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         // Check if dialog has already enabled
-        if (Input.GetKey(KeyCode.E) && !dialogEnabled)
+        if (Input.GetKeyDown(KeyCode.E) && !dialogEnabled)
         {
             Debug.Log("e pressed");
             //clear tip
             
             tip.text = "";
-
             
             // Display dialog container
             dialogCont.SetActive(true);
@@ -59,14 +54,6 @@ public class NPC : MonoBehaviour
         dialogEnabled = false;
         tip.text = "";
     }
-
-    // Creates a textbox showing the the line of text
-    //void CreateContentView(string text)
-    //{
-    //    myText = Instantiate(textPrefab) as Text;
-    //    myText.text = text;
-    //    myText.transform.SetParent(dialogCont.transform, false);
-    //}
 
     public void showDialogAnswer()
     {
