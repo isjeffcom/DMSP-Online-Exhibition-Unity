@@ -73,6 +73,7 @@ public class DialogController : MonoBehaviour
         {
             DialogList = JsonUtility.FromJson<DialogList>(request.downloadHandler.text);
         }
+        Debug.Log("diaDone");
     }
 
     void Start()

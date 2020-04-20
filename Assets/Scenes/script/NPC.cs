@@ -28,6 +28,8 @@ public class NPC : MonoBehaviour
     {
         tip.text = "E to chat";
 
+        //Play audio automatically
+        PlayAudio();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -46,6 +48,8 @@ public class NPC : MonoBehaviour
             //dialogAns.GetComponent<Text>().text = "Hello";
             dialogEnabled = true;
         }
+
+        
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -58,5 +62,10 @@ public class NPC : MonoBehaviour
     public void showDialogAnswer()
     {
         DialogController._ins.ShowDialog(this.name, 0);
+    }
+
+    public void PlayAudio()
+    {
+        AudioController._audioIns.LoadAudio(this.name, 100);
     }
 }

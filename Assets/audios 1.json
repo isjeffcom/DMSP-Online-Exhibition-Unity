@@ -1,0 +1,90 @@
+{
+    "Audios": [
+        {
+            "name": "Act01",
+            "acts":[
+			
+				{
+					"id": 0,
+					"audioName": "00-A.ogg",
+					"nextPlayer": "Shawn",
+					"to":1
+				},
+				{
+					"id": 1,
+					"audioName": "01-D.ogg",
+					"nextPlayer": "Blake",
+					"to":2
+				},
+				{
+					"id": 2,
+					"audioName": "02-C.ogg",
+					"nextPlayer": "Joe",
+					"to":3
+				},
+			
+				{
+					"id": 3,
+					"audioName": "03-A.ogg",
+					"nextPlayer": "Shawn",
+					"to":4
+				},
+				{
+					"id": 4,
+					"audioName": "04-D.ogg",
+					"nextPlayer": "Tom",
+					"to":5
+				},
+				{
+					"id": 5,
+					"audioName": "05-B.ogg",
+					"nextPlayer": "Joe",
+					"to":6
+				},
+				{
+					"id": 6,
+					"audioName": "06-A.ogg",
+					"nextPlayer": "",
+					"to":-1
+				}
+			]
+        },
+		{
+            "name": "Tom",
+            "acts":[
+			
+				{
+					"id": 100,
+					"audioName": "B-100.ogg",
+					"to":101
+				},
+				{
+					"id": 101,
+					"audioName": "B-101.ogg",
+					"to":102
+				},
+				{
+					"id": 102,
+					"audioName": "B-102.ogg",
+					"to":-1
+				},
+			
+				{
+					"id": 200,
+					"audioName": "B-200.ogg",
+					"to":201
+				},
+				{
+					"id": 201,
+					"audioName": "B-201.ogg",
+					"to":202
+				},
+				{
+					"id": 202,
+					"audioName": "B-202.ogg",
+					"to":-1
+				}
+			]
+        }
+    ]
+}
