@@ -7,9 +7,4 @@ public class Buttons : MonoBehaviour
     {
         UIController._ins.switchUIView(name, true);
     }
-
-    public void CloseItemWindow()
-    {
-        ItemController._ins.CloseItemDetail();
-    }
 }
