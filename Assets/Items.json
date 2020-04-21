@@ -1,0 +1,22 @@
+{
+    "Items": [
+        {
+            "name": "notebook",
+            "type": "image",
+            "fileType": "png",
+            "src": "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/notebook.png"
+        },
+        {
+            "name": "computer",
+            "type": "image",
+            "fileType": "png",
+            "src": "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/computer.png"
+        },
+        {
+            "name": "voice message",
+            "type": "sound",
+            "fileType": "wav",
+            "src": "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/computer.wav"
+        }
+    ]
+}

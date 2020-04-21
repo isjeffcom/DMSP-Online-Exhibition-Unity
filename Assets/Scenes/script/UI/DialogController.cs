@@ -11,7 +11,7 @@ public class DialogController : MonoBehaviour
     // Instance for cross cs access
     public static DialogController _ins;
 
-    // All UI Array Container
+    // Json plain text container
     private string dialogsJson;
 
     //private GameObject[] All_Dialogs;
@@ -68,12 +68,12 @@ public class DialogController : MonoBehaviour
         {
             Debug.Log(request.error);
             dialogsJson = File.ReadAllText(Application.dataPath + "/dialogs.json");
+            DialogList = JsonUtility.FromJson<DialogList>(dialogsJson);
         }
         else
         {
             DialogList = JsonUtility.FromJson<DialogList>(request.downloadHandler.text);
         }
-        Debug.Log("diaDone");
     }
 
     void Start()
@@ -89,7 +89,7 @@ public class DialogController : MonoBehaviour
     public void ShowDialog(string character, int toId)
     {
         
-        // If to Id is -1 then close
+        // If to Id is -1 than close
         if(toId == -1)
         {
             CloseDialog();
@@ -101,7 +101,7 @@ public class DialogController : MonoBehaviour
         // Display line
         string question = "";
 
-        // Define what to do next, if has options then ignore
+        // Define what to do next, if has options than ignore
         int to = -1;
 
         // Save Options if have any
@@ -120,7 +120,7 @@ public class DialogController : MonoBehaviour
                     {
                         question = convs.question;
 
-                        // If have options then save options, if no then ready to go next.
+                        // If have options than save options, if no than ready to go next.
                         if(convs.options.Count == 0)
                         {
                             to = convs.to;

@@ -3,6 +3,10 @@ using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
+    // UI Prefabs
+    [SerializeField]
+    private Text textPrefab = null;
+
     // Get Tip Text
     private Text tip;
 
@@ -26,29 +30,30 @@ public class NPC : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        tip.text = "E to chat";
-
-        //Play audio automatically
-        PlayAudio();
+        if(collision.name == "player")
+        {
+            tip.text = "E to chat";
+        }
+        
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        // Check if dialog has already enabled
-        if (Input.GetKeyDown(KeyCode.E) && !dialogEnabled)
+        if(collision.name == "player")
         {
-            Debug.Log("e pressed");
-            //clear tip
-            
-            tip.text = "";
-            
-            // Display dialog container
-            dialogCont.SetActive(true);
-            showDialogAnswer();
-            //dialogAns.GetComponent<Text>().text = "Hello";
-            dialogEnabled = true;
-        }
+            // Check if dialog has already enabled
+            if (Input.GetKey(KeyCode.E) && !dialogEnabled)
+            {
+                //clear tip
+                tip.text = "";
 
+
+                // Display dialog container
+                showDialogAnswer();
+                //dialogAns.GetComponent<Text>().text = "Hello";
+                dialogEnabled = true;
+            }
+        }
         
     }
 
@@ -59,13 +64,16 @@ public class NPC : MonoBehaviour
         tip.text = "";
     }
 
+    // Creates a textbox showing the the line of text
+    //void CreateContentView(string text)
+    //{
+    //    myText = Instantiate(textPrefab) as Text;
+    //    myText.text = text;
+    //    myText.transform.SetParent(dialogCont.transform, false);
+    //}
+
     public void showDialogAnswer()
     {
         DialogController._ins.ShowDialog(this.name, 0);
-    }
-
-    public void PlayAudio()
-    {
-        AudioController._audioIns.LoadAudio(this.name, 100);
     }
 }
