@@ -30,27 +30,31 @@ public class NPC : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        tip.text = "E to chat";
-
+        if(collision.name == "player")
+        {
+            tip.text = "E to chat";
+        }
+        
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        // Check if dialog has already enabled
-        if (Input.GetKey(KeyCode.E) && !dialogEnabled)
+        if(collision.name == "player")
         {
-            Debug.Log("e pressed");
-            //clear tip
-            
-            tip.text = "";
+            // Check if dialog has already enabled
+            if (Input.GetKey(KeyCode.E) && !dialogEnabled)
+            {
+                //clear tip
+                tip.text = "";
 
-            
-            // Display dialog container
-            dialogCont.SetActive(true);
-            showDialogAnswer();
-            //dialogAns.GetComponent<Text>().text = "Hello";
-            dialogEnabled = true;
+
+                // Display dialog container
+                showDialogAnswer();
+                //dialogAns.GetComponent<Text>().text = "Hello";
+                dialogEnabled = true;
+            }
         }
+        
     }
 
     private void OnTriggerExit2D(Collider2D other)

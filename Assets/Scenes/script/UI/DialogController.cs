@@ -11,7 +11,7 @@ public class DialogController : MonoBehaviour
     // Instance for cross cs access
     public static DialogController _ins;
 
-    // All UI Array Container
+    // Json plain text container
     private string dialogsJson;
 
     //private GameObject[] All_Dialogs;
@@ -68,6 +68,7 @@ public class DialogController : MonoBehaviour
         {
             Debug.Log(request.error);
             dialogsJson = File.ReadAllText(Application.dataPath + "/dialogs.json");
+            DialogList = JsonUtility.FromJson<DialogList>(dialogsJson);
         }
         else
         {
