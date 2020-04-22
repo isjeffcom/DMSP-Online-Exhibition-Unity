@@ -10,7 +10,7 @@ public class ItemController : MonoBehaviour
     public static ItemController _ins;
 
     // json API
-    private string api = "https://playground.eca.ed.ac.uk/~s1888009/dmsp/Items.json";
+    private string api = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/data/";
 
     // UI Container
     private GameObject itemCont;
@@ -33,7 +33,7 @@ public class ItemController : MonoBehaviour
 
     IEnumerator GetData()
     {
-        UnityWebRequest request = UnityWebRequest.Get(api);
+        UnityWebRequest request = UnityWebRequest.Get(api + "act" + MainController._act + "/items.json");
 
         yield return request.SendWebRequest();
 
@@ -55,15 +55,23 @@ public class ItemController : MonoBehaviour
 
     public void ShowItemDetail(string itemName)
     {
-        itemCont.SetActive(true);
+        
 
         foreach (Item item in itemsList.Items)
         {
             if(item.name == itemName)
             {
+
+                
                 if(item.type == "image")
                 {
                     StartCoroutine(DownloadImage(item.src));
+                    itemCont.SetActive(true);
+                }
+
+                if(item.type == "sound")
+                {
+                    AudioController._ins.InvItemAudioPlay(item.src, itemName, -1, false);
                 }
                 
             }
@@ -91,9 +99,7 @@ public class ItemController : MonoBehaviour
             Texture2D texture = ((DownloadHandlerTexture)www.downloadHandler).texture as Texture2D;
             SetDetailImg(texture);
         }
-
-
-            
+     
     }
 
     void SetDetailImg(Texture2D texture)

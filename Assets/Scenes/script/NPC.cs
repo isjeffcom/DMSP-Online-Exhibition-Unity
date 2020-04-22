@@ -9,6 +9,7 @@ public class NPC : MonoBehaviour
 
     // Get Tip Text
     private Text tip;
+    private Text audioTip;
 
     // Get Dialog container
     private GameObject dialogCont;
@@ -20,8 +21,10 @@ public class NPC : MonoBehaviour
 
     private void Awake()
     {
-        // Find tip
+        // Find tips
         tip = GameObject.Find("UI_Tip").GetComponent<Text>();
+        audioTip = GameObject.Find("UI_Tip_Audio").GetComponent<Text>();
+
         // Find container
         dialogCont = GameObject.Find("UI_Dialog_Cont");
         dialogAns = GameObject.Find("UI_Dialog_Answer");
@@ -33,6 +36,7 @@ public class NPC : MonoBehaviour
         if(collision.name == "player")
         {
             tip.text = "E to chat";
+            audioTip.text = AudioController._isPlaying ? "Audio is playing..." : "A to listen";
         }
         
     }
@@ -44,14 +48,19 @@ public class NPC : MonoBehaviour
             // Check if dialog has already enabled
             if (Input.GetKey(KeyCode.E) && !dialogEnabled)
             {
-                //clear tip
-                tip.text = "";
-
+                clearTip();
 
                 // Display dialog container
                 showDialogAnswer();
                 //dialogAns.GetComponent<Text>().text = "Hello";
                 dialogEnabled = true;
+            }
+
+            // Check if dialog has already enabled
+            if (Input.GetKey(KeyCode.A) && !AudioController._isPlaying)
+            {
+                AudioController._ins.PlayNPCAudio(this.name);
+                clearTip();
             }
         }
         
@@ -61,7 +70,8 @@ public class NPC : MonoBehaviour
     {
         DialogController._ins.CloseDialog();
         dialogEnabled = false;
-        tip.text = "";
+
+        clearTip();
     }
 
     // Creates a textbox showing the the line of text
@@ -71,6 +81,13 @@ public class NPC : MonoBehaviour
     //    myText.text = text;
     //    myText.transform.SetParent(dialogCont.transform, false);
     //}
+
+    private void clearTip()
+    {
+        //clear tip
+        tip.text = "";
+        audioTip.text = "";
+    }
 
     public void showDialogAnswer()
     {

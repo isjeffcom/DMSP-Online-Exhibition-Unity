@@ -3,6 +3,8 @@
 [System.Serializable]
 public class Audios
 {
-    public string actNumber;
+    public bool playOnStart;
+    public int start;
     public List<AudiosActs> acts = new List<AudiosActs>();
+
 }

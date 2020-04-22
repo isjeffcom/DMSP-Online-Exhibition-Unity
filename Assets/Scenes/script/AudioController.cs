@@ -6,19 +6,15 @@ using System.IO;
 
 public class AudioController : MonoBehaviour
 {
-    public static AudioController _audioIns;
+    public static AudioController _ins;
 
-    AudioSource audioSource_A;
-    AudioSource audioSource_B;
-    AudioSource audioSource_C;
-    AudioSource audioSource_D;
-    //media one
+    // Current audio
     AudioSource audioSource;
-    
-    string filePath;
-    int currentPlayer;
-    string audioName;
-    int nextPlayer;
+
+    private string currentObject;
+
+    // Status
+    public static bool _isPlaying = false;
 
     // All Audios array container
     private string audiosJson;
@@ -27,29 +23,23 @@ public class AudioController : MonoBehaviour
     private AudiosList AudiosList = new AudiosList();
 
     // json API
-    private string api = "https://playground.eca.ed.ac.uk/~s1925755/DMSP/audios.json";
+    private string api = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/data/";
+    private string baseUrl = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/audios/";
 
     void Awake()
     {
         // For global access
-        _audioIns = this;
+        _ins = this;
 
-        //Get AudioSource of each NPC
-        audioSource_A = GameObject.Find("Joe").GetComponentInChildren<AudioSource>();
-        audioSource_B = GameObject.Find("Tom").GetComponentInChildren<AudioSource>();
-        audioSource_C = GameObject.Find("Blake").GetComponentInChildren<AudioSource>();
-        audioSource_D = GameObject.Find("Shawn").GetComponentInChildren<AudioSource>();
         audioSource = null;
 
-        filePath = "file://" + Application.streamingAssetsPath + "/Sound/";
         StartCoroutine(GetData());
-        //getDataByFile();
     }
 
     // Get audios data file (.json format)
     IEnumerator GetData()
     {
-        UnityWebRequest request = UnityWebRequest.Get(api);
+        UnityWebRequest request = UnityWebRequest.Get(api + "act" + MainController._act + "/audios.json");
 
         yield return request.SendWebRequest();
 
@@ -57,109 +47,135 @@ public class AudioController : MonoBehaviour
         {
             Debug.Log(request.error);
             audiosJson = File.ReadAllText(Application.dataPath + "/audios.json");
+            AudiosList = JsonUtility.FromJson<AudiosList>(audiosJson);
         }
         else
         {
             AudiosList = JsonUtility.FromJson<AudiosList>(request.downloadHandler.text);
+            
+            LoadAudio("", -1, true, true);
         }
-        Debug.Log("audioDone");
 
     }
 
-    //void getDataByFile()
-    //{
-    //    audiosJson = File.ReadAllText(Application.dataPath + "/audios.json");
-    //    AudiosList = JsonUtility.FromJson<AudiosList>(audiosJson);
-    //    Debug.Log("audioDone");
-    //}
+    public void PlayNPCAudio(string name)
+    {
+        LoadAudio(name, -1, false, false);
+    }
+
 
     //Load and play audio clips
     //Differ audios by acts number
-    public void LoadAudio(string actNumber, int toId)
+    public void LoadAudio(string objectName, int toId, bool init, bool hasNext)
     {
-        StopCoroutine(nextAudio(audioSource.clip.length, toId,  actNumber));
-
-        // Define what to do next
-        int to = -1;
-
-        // Find audio by NPC name
-        foreach (Audios audios in AudiosList.Audios)
+        // End
+        if (objectName == "" && toId == -1 && !init)
         {
-            if (actNumber == audios.actNumber)
-            {
-                // Get audio name
-                foreach (AudiosActs acts in audios.acts)
-                {
+            _isPlaying = false;
+            return;
+        }
 
-                    if (toId == acts.id)
-                    {
-                        currentPlayer = acts.currentPlayer;
-                        audioName = acts.audioName;
-                        nextPlayer = acts.nextPlayer;
-                        to = acts.to;
-                    }
+        if (init)
+        {
+            toId = AudiosList.audios.start;
+        }
+
+        // Get audio name
+        foreach (AudiosActs acts in AudiosList.audios.acts)
+        {
+
+            
+            if (toId == -1)
+            {
+                if(objectName == acts.objectName)
+                {
+                    StartCoroutine(DownloadAudio(baseUrl + "act" + MainController._act + "/" + acts.audioName, acts.objectName, acts.to, hasNext));
+                }
+            } 
+            else
+            {
+                
+                if (toId == acts.id)
+                {
+                    
+                    StartCoroutine(DownloadAudio(baseUrl + "act" + MainController._act + "/" + acts.audioName, acts.objectName, acts.to, hasNext));
                 }
             }
+
+
+            currentObject = acts.objectName;
+
         }
-
-        //Could be replaced by audioName, if audioName save the audio path
-        //But now I have problems connecting campus server, can only use the dataPath
-        string soundPath = filePath + actNumber + "/";
-        WWW request = GetAudioFromFile(soundPath, audioName);
-
-        
-        switch (currentPlayer)
-        {
-            case 1:
-                audioSource = audioSource_A;
-                break;
-            case 2:
-                audioSource = audioSource_B;
-                break;
-            case 3:
-                audioSource = audioSource_C;
-                break;
-            case 4:
-                audioSource = audioSource_D;
-                break;
-            case 0:
-                audioSource = null;
-                break;
-        }
-        
-        audioSource.clip = request.GetAudioClip();
-        audioSource.clip.name = audioName;
-
-        PlayAudio();
-        StartCoroutine(nextAudio(audioSource.clip.length, to, actNumber));
+            
     }
 
-    
-    IEnumerator nextAudio(float time, int to, string actNumber)
+
+
+    IEnumerator DownloadAudio(string url, string npc, int next, bool hasNext)
     {
-        //Stop play audio after it finish
-        yield return new WaitForSeconds(time);
-        audioSource.Stop();
-        if (to == -1)
+        
+
+        UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.OGGVORBIS);
+
+        yield return www.SendWebRequest();
+
+        if (www.isNetworkError || www.isHttpError)
         {
-            yield return null;
+            Debug.Log(www.error);
         }
         else
         {
-            LoadAudio(actNumber, to);
+
+            // Download Music File
+            AudioClip audioClip = DownloadHandlerAudioClip.GetContent(www);
+
+            // Send to play
+            PlayAudio(audioClip, npc, next, hasNext);
         }
+
     }
 
-    public void PlayAudio()
+    public void PlayAudio(AudioClip audio, string npc, int nextId, bool hasNext)
     {
-        audioSource.Play();
+        // Get Audio Player
+        AudioSource audioPlayer = GameObject.Find(npc).GetComponent<AudioSource>();
+
+        Debug.Log(npc);
+
+        // If audio player found, and is not playing
+        if (audioPlayer && !_isPlaying)
+        {
+            audioPlayer.clip = audio;
+            audioPlayer.Play();
+
+            _isPlaying = true;
+
+            if (hasNext)
+            {
+                // Wait and play next
+                StartCoroutine(NextAudio(audio.length, nextId));
+            } else
+            {
+                // If no next, wait and set audio isPlaying to false
+                StartCoroutine(NextAudio(audio.length, -1));
+            }
+            
+        }
+        
     }
 
-    WWW GetAudioFromFile (string path, string fielname)
+    IEnumerator NextAudio(float delay, int next)
     {
-        string audioToLoad = string.Format(path + fielname);
-        WWW request = new WWW(audioToLoad);
-        return request;
+        yield return new WaitForSeconds(delay);
+        LoadAudio("", next, false, true);
+        _isPlaying = false;
+
     }
+
+    public void InvItemAudioPlay(string url, string npc, int next, bool hasNext)
+    {
+        StartCoroutine(DownloadAudio(url, npc, next, hasNext));
+    }
+
 
 }

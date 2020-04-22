@@ -18,7 +18,14 @@ public class InvItem : MonoBehaviour
     {
         if(collision.name == "player")
         {
-            tip.text = "E to check " + gameObject.name;
+            if (!AudioController._isPlaying)
+            {
+                tip.text = "E to check " + gameObject.name;
+            } else
+            {
+                tip.text = "Wait for audio to finished...";
+            }
+            
             gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.5f);
         }
         

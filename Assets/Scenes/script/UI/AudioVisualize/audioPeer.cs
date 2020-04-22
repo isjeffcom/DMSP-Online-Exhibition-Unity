@@ -6,9 +6,15 @@ using UnityEngine;
 public class audioPeer : MonoBehaviour
 {
     AudioSource _audioSource;
+    Transform audioVFX;
     public static float[] _samples = new float[512];
-    public  float[] _freqBand = new float[8];
+    public float[] _freqBand = new float[8];
 
+
+    private void Awake()
+    {
+        audioVFX = gameObject.transform.Find("NPC_Sound_VFX");
+    }
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -70,6 +76,13 @@ public class audioPeer : MonoBehaviour
 
             _freqBand[i] = average * 10;
         }
+
+        
+        if (audioVFX)
+        {
+            audioVFX.localScale = new Vector3(_freqBand[0] * 30, _freqBand[0] * 30, _freqBand[0] * 30);
+        }
+        //Debug.Log(_freqBand[0]);
 
     }
 

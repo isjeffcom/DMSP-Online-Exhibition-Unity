@@ -13,10 +13,10 @@
             "src": "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/computer.png"
         },
         {
-            "name": "voice message",
+            "name": "phone",
             "type": "sound",
             "fileType": "wav",
-            "src": "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/computer.wav"
+            "src": "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/voiceMessage.ogg"
         }
     ]
 }

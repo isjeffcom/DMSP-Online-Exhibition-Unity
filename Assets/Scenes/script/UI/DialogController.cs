@@ -34,7 +34,7 @@ public class DialogController : MonoBehaviour
     public static int _DialogNext = -1; // Save Next ID
 
     // json API
-    private string api = "https://playground.eca.ed.ac.uk/~s1888009/dmsp/dialogs.json";
+    private string api = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/data/";
 
     private void Awake()
     {
@@ -60,7 +60,7 @@ public class DialogController : MonoBehaviour
     // Get dialogs data file (.json format)
     IEnumerator GetData()
     {
-        UnityWebRequest request = UnityWebRequest.Get(api);
+        UnityWebRequest request = UnityWebRequest.Get(api + "act" + MainController._act + "/dialogs.json");
 
         yield return request.SendWebRequest();
 

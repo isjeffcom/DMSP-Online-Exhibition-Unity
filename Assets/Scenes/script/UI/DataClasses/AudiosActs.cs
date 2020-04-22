@@ -4,8 +4,7 @@
 public class AudiosActs
 {
     public int id;
-    public int currentPlayer;
+    public string objectName;
     public string audioName;
-    public int nextPlayer;
     public int to;
 }

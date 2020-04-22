@@ -1,80 +1,51 @@
 {
-    "Audios": [
-        {
-            "actNumber": "Act01",
-            "acts":[
+    "audios": {
+		"playOnStart": true,
+        "start": 0,
+        "acts":[
+			{
+				"id": 0,
+				"objectName":"Joe",
+				"audioName": "00-A.ogg",
+				"to":1
+			},
+			{
+				"id": 1,
+				"objectName":"Jeff",
+				"audioName": "01-D.ogg",
+				"to":2
+			},
+			{
+				"id": 2,
+				"objectName":"Mei",
+				"audioName": "02-C.ogg",
+				"to":3
+			},
 			
-				{
-					"id": 0,
-					"currentPlayer":"1",
-					"audioName": "00-A.ogg",
-					"nextPlayer": "4",
-					"to":1
-				},
-				{
-					"id": 1,
-					"currentPlayer":"4",
-					"audioName": "01-D.ogg",
-					"nextPlayer": "3",
-					"to":2
-				},
-				{
-					"id": 2,
-					"currentPlayer":"3",
-					"audioName": "02-C.ogg",
-					"nextPlayer": "1",
-					"to":3
-				},
-			
-				{
-					"id": 3,
-					"currentPlayer":"1",
-					"audioName": "03-A.ogg",
-					"nextPlayer": "4",
-					"to":4
-				},
-				{
-					"id": 4,
-					"currentPlayer":"4",
-					"audioName": "04-D.ogg",
-					"nextPlayer": "2",
-					"to":5
-				},
-				{
-					"id": 5,
-					"currentPlayer":"2",
-					"audioName": "05-B.ogg",
-					"nextPlayer": "1",
-					"to":6
-				},
-				{
-					"id": 6,
-					"currentPlayer":"1",
-					"audioName": "06-A.ogg",
-					"nextPlayer": "0",
-					"to":-1
-				}
-			]
-        },
-		{
-            "actNumber": "Act03-01",
-            "acts":[
-			
-				{
-					"id": 0,
-					"currentPlayer":"A",
-					"audioName": "00-A.ogg",
-					"nextPlayer": "D",
-					"to":1
-				},
-				{
-					"id": 1,
-					"currentPlayer":"D",
-					"audioName": "01-D.ogg",
-					"nextPlayer": "C",
-					"to":2
-				}
-			]
-        }
-    ]
+			{
+				"id": 3,
+				"objectName":"Joe",
+				"audioName": "03-A.ogg",
+				"to":4
+			},
+			{
+				"id": 4,
+				"objectName":"Jeff",
+				"audioName": "04-D.ogg",
+				"to":5
+			},
+			{
+				"id": 5,
+				"objectName":"Jeff",
+				"audioName": "05-B.ogg",
+				"to":6
+			},
+			{
+				"id": 6,
+				"objectName":"Joe",
+				"audioName": "06-A.ogg",
+				"to":-1
+			}
+		]
+    }
 }
