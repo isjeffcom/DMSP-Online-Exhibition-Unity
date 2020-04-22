@@ -6,44 +6,44 @@
 			{
 				"id": 0,
 				"objectName":"Joe",
-				"audioName": "00-A.ogg",
+				"audioName": "00-A.wav",
 				"to":1
 			},
 			{
 				"id": 1,
 				"objectName":"Jeff",
-				"audioName": "01-D.ogg",
+				"audioName": "01-D.wav",
 				"to":2
 			},
 			{
 				"id": 2,
 				"objectName":"Mei",
-				"audioName": "02-C.ogg",
+				"audioName": "02-C.wav",
 				"to":3
 			},
 			
 			{
 				"id": 3,
 				"objectName":"Joe",
-				"audioName": "03-A.ogg",
+				"audioName": "03-A.wav",
 				"to":4
 			},
 			{
 				"id": 4,
 				"objectName":"Jeff",
-				"audioName": "04-D.ogg",
+				"audioName": "04-D.wav",
 				"to":5
 			},
 			{
 				"id": 5,
 				"objectName":"Jeff",
-				"audioName": "05-B.ogg",
+				"audioName": "05-B.wav",
 				"to":6
 			},
 			{
 				"id": 6,
 				"objectName":"Joe",
-				"audioName": "06-A.ogg",
+				"audioName": "06-A.wav",
 				"to":-1
 			}
 		]

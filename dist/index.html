@@ -9,17 +9,30 @@
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
     <script>
-      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/dist.json", {onProgress: UnityProgress});
+
+
+      start = function() {
+        document.getElementById("tohide").style.display = "none"
+        document.getElementById("main").style.display = "block"
+        var unityInstance = UnityLoader.instantiate("unityContainer", "Build/dist.json", {onProgress: UnityProgress});
+      }
+      
     </script>
   </head>
-  <body>
-    <div class="webgl-content">
+  <body style="background:rgba(0,0,0,1);">
+
+    <div id="tohide">
+      <audio src="./s.mp3"></audio>
+      <button onclick="start()">Start</button>
+    </div>
+
+    <div id="main" class="webgl-content" style="display:none">
       <div id="unityContainer" style="width: 960px; height: 600px"></div>
-      <div class="footer">
+      <!--div class="footer">
         <div class="webgl-logo"></div>
         <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
         <div class="title">DMSP</div>
-      </div>
+      </div-->
     </div>
   </body>
 </html>
