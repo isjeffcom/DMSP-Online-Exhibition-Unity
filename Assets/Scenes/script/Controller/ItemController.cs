@@ -12,9 +12,6 @@ public class ItemController : MonoBehaviour
     // json API
     private string api = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/data/";
 
-    // UI Container
-    private GameObject itemCont;
-    private GameObject itemImg;
 
     private ItemsList itemsList = new ItemsList();
     private string itemsJson;
@@ -22,10 +19,6 @@ public class ItemController : MonoBehaviour
     private void Awake()
     {
         _ins = this;
-
-        // Find UI Container for display item content
-        itemCont = GameObject.Find("UI_Item_Cont");
-        itemImg = GameObject.Find("UI_Item_Img_Cont");
 
         // Start to get data
         StartCoroutine(GetData());
@@ -48,10 +41,6 @@ public class ItemController : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        itemCont.SetActive(false);
-    }
 
     public void ShowItemDetail(string itemName)
     {
@@ -65,8 +54,7 @@ public class ItemController : MonoBehaviour
                 
                 if(item.type == "image")
                 {
-                    StartCoroutine(DownloadImage(item.src));
-                    itemCont.SetActive(true);
+                    ImageViewerController._ins.SingleImage(item.src);
                 }
 
                 if(item.type == "sound")
@@ -78,35 +66,5 @@ public class ItemController : MonoBehaviour
         }
     }
 
-    public void CloseItemDetail()
-    {
-        itemCont.SetActive(false);
-    }
-
-    IEnumerator DownloadImage(string url)
-    {
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
-
-        yield return www.SendWebRequest();
-
-        if (www.isNetworkError || www.isHttpError)
-        {
-            Debug.Log(www.error);
-        }
-        else
-        {
-  
-            Texture2D texture = ((DownloadHandlerTexture)www.downloadHandler).texture as Texture2D;
-            SetDetailImg(texture);
-        }
-     
-    }
-
-    void SetDetailImg(Texture2D texture)
-    {
-        Rect rec = new Rect(0, 0, texture.width, texture.height);
-        Sprite spriteToUse = Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), 100);
-        itemImg.GetComponent<Image>().sprite = spriteToUse;
-    }
 
 }

@@ -8,6 +8,10 @@ public class SelectController : MonoBehaviour
 
     public static SelectController _ins;
 
+    // Publish to global for act check
+    public static int _allNPCsLength = 0;
+    public static int _matchedCount = 0;
+
     public Vector3 OriginalScale = new Vector3(.8f, .8f, .8f);
     public Vector3 SelectedScale = new Vector3(1.6f, 1.6f, 1.6f);
 
@@ -40,18 +44,30 @@ public class SelectController : MonoBehaviour
             allNPCName.Add(child.gameObject.name);
         }
 
+        _allNPCsLength = allNPCName.Count;
+
         DisplayAllNPCs();
     }
 
     public void DisplayAllNPCs()
     {
         int i = 1;
+
         foreach(string item in allNPCName)
         {
-            Vector3 posi = new Vector3(306, 0 + (35 * i), 0);
+            // re positioning
+            Vector3 posi = new Vector3(Screen.width - 60, Screen.height - (35 * i), 0);
+
+            // Instantiate
             GameObject single = Instantiate(UI_NPCName_Sample, posi, Quaternion.identity);
+
+            // Set Text
             single.GetComponentInChildren<Text>().text = item;
-            single.transform.SetParent(UI_NPCName_Cont.transform); //Setting button parent
+
+            // Set button parent
+            single.transform.SetParent(UI_NPCName_Cont.transform);
+
+            // Counter
             i++;
         }
     }
@@ -62,7 +78,8 @@ public class SelectController : MonoBehaviour
         {
             if(name == MainController._selectedNPC)
             {
-                
+                _matchedCount++;
+                MainController._ins.CheckActStatus();
                 return true;
             } else
             {
@@ -95,6 +112,7 @@ public class SelectController : MonoBehaviour
         
     }
     
+    // Clear other selected NPC
     public void ClearOthers(string name)
     {
         foreach(Transform child in NPCs.transform)
@@ -106,6 +124,7 @@ public class SelectController : MonoBehaviour
         }
     }
 
+    // Enlarge Selected NPC
     public void RenderSelectedNPC(string name)
     {
         if(name != "")
@@ -115,6 +134,7 @@ public class SelectController : MonoBehaviour
         
     }
 
+    // Restore Selected NPC from enlarge
     public void RestoreSelectedNPC(string name)
     {
         if (name != "")

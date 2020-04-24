@@ -26,7 +26,7 @@ public class InvItem : MonoBehaviour
                 tip.text = "Wait for audio to finished...";
             }
             
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.5f);
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
         }
         
     }
@@ -54,7 +54,7 @@ public class InvItem : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         tip.text = "";
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 1f);
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         itemDetailEnabled = false;
     }
 }

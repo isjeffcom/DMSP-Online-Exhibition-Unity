@@ -10,6 +10,17 @@ public class Buttons : MonoBehaviour
 
     public void CloseItemWindow()
     {
-        ItemController._ins.CloseItemDetail();
+        ImageViewerController._ins.CloseImage();
+    }
+
+    public void LastImage()
+    {
+        Debug.Log("a");
+        ImageViewerController._ins.LastImage();
+    }
+
+    public void NextImage()
+    {
+        ImageViewerController._ins.NextImage();
     }
 }

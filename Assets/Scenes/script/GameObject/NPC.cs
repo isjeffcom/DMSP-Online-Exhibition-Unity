@@ -15,8 +15,6 @@ public class NPC : MonoBehaviour
     private GameObject dialogCont;
     private GameObject dialogAns;
 
-    private bool isSelected = false;
-
     // Flag for if dialog window opened
     private bool dialogEnabled = false;
 
@@ -52,7 +50,6 @@ public class NPC : MonoBehaviour
 
                 // Display dialog container
                 showDialogAnswer();
-                //dialogAns.GetComponent<Text>().text = "Hello";
                 dialogEnabled = true;
             }
 
@@ -74,14 +71,6 @@ public class NPC : MonoBehaviour
         clearTip();
     }
 
-    // Creates a textbox showing the the line of text
-    //void CreateContentView(string text)
-    //{
-    //    myText = Instantiate(textPrefab) as Text;
-    //    myText.text = text;
-    //    myText.transform.SetParent(dialogCont.transform, false);
-    //}
-
     private void clearTip()
     {
         //clear tip
@@ -96,17 +85,6 @@ public class NPC : MonoBehaviour
 
     private void OnMouseDown()
     {
-
         SelectController._ins.Select(this.name);
-
-        /*isSelected = !isSelected;
-
-        if (isSelected)
-        {
-            gameObject.transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
-        } else
-        {
-            gameObject.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        }*/
     }
 }

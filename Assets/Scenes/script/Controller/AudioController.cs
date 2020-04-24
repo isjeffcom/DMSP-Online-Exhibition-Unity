@@ -15,14 +15,21 @@ public class AudioController : MonoBehaviour
 
     public bool autoStart = true;
 
+    private Coroutine currentNext = null;
+
     // Status
     public static bool _isPlaying = false;
+    public static int _pausedNext = -1;
+    public static float _pausedRestTime = 0;
 
     // All Audios array container
     private string audiosJson;
 
     //private GameObject[] All_Audios;
     private AudiosList AudiosList = new AudiosList();
+
+    // Current AudioPlayer
+    private AudioSource audioPlayer = null;
 
     // json API
     private string api = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/data/";
@@ -78,6 +85,10 @@ public class AudioController : MonoBehaviour
         if (objectName == "" && toId == -1 && !init)
         {
             _isPlaying = false;
+            _pausedNext = -1;
+            _pausedRestTime = 0;
+            audioPlayer = null;
+            currentNext = null;
             return;
         }
 
@@ -144,7 +155,7 @@ public class AudioController : MonoBehaviour
     public void PlayAudio(AudioClip audio, string npc, int nextId, bool hasNext)
     {
         // Get Audio Player
-        AudioSource audioPlayer = GameObject.Find(npc).GetComponent<AudioSource>();
+        audioPlayer = GameObject.Find(npc).GetComponent<AudioSource>();
 
         // If audio player found, and is not playing
         if (audioPlayer && !_isPlaying)
@@ -157,20 +168,68 @@ public class AudioController : MonoBehaviour
             if (hasNext)
             {
                 // Wait and play next
-                StartCoroutine(NextAudio(audio.length, nextId));
+                currentNext = StartCoroutine(NextAudio(audioPlayer.clip.length, nextId));
             } else
             {
                 // If no next, wait and set audio isPlaying to false
-                StartCoroutine(NextAudio(audio.length, -1));
+                currentNext = StartCoroutine(NextAudio(audioPlayer.clip.length, -1));
             }
             
         }
         
     }
 
+    public void PauseAudio()
+    {
+        if (audioPlayer != null)
+        {
+            audioPlayer.Pause();
+            _isPlaying = false;
+
+            if (currentNext != null)
+            {
+                StopCoroutine(currentNext);
+            }
+        }
+        
+    }
+
+    public void StopAudio()
+    {
+        if (audioPlayer != null)
+        {
+            audioPlayer.Stop();
+            _isPlaying = false;
+
+            if (currentNext != null)
+            {
+                StopCoroutine(currentNext);
+            }
+        }
+    }
+
+    public void ContinueAudio()
+    {
+        if(audioPlayer != null)
+        {
+
+            audioPlayer.Play();
+
+            _isPlaying = true;
+
+            currentNext = StartCoroutine(NextAudio(_pausedRestTime, _pausedNext));
+        }
+        
+    }
+
     IEnumerator NextAudio(float delay, int next)
     {
-        yield return new WaitForSeconds(delay);
+
+        _pausedNext = next;
+        _pausedRestTime = delay;
+
+        yield return new WaitForSeconds(delay + 0.5f);
+
         LoadAudio("", next, false, true);
         _isPlaying = false;
 

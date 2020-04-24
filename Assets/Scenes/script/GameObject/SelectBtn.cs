@@ -18,16 +18,35 @@ public class SelectBtn : MonoBehaviour
         }
 
         string thisName = gameObject.GetComponentInChildren<Text>().text;
-        Debug.Log(thisName);
 
         if (SelectController._ins.TryMatch(thisName))
         {
-            gameObject.GetComponentInChildren<Text>().color = new Color(0.20f, 0.67f, 0.45f);
+            SelectController._ins.RestoreSelectedNPC(thisName);
+            gameObject.GetComponent<Image>().color = new Color(0.20f, 0.67f, 0.45f);
+            gameObject.GetComponentInChildren<Text>().color = new Color(1f, 1f, 1f);
             done = true;
+
+            RightAni();
         } 
         else 
         {
+            StartCoroutine(WrongAni());
             Debug.Log("Wrong or not selected");
         }
     }
+
+    IEnumerator WrongAni()
+    {
+        GetComponent<Animator>().SetBool("open", true);
+
+        yield return new WaitForSeconds(1);
+
+        GetComponent<Animator>().SetBool("open", false);
+    }
+
+    public void RightAni()
+    {
+        gameObject.transform.Find("UI_NPC_Name_Right").GetComponent<Animator>().SetBool("right", true);
+    }
+
 }

@@ -181,7 +181,7 @@ public class DialogController : MonoBehaviour
         {
             // Calculate x and y
             int x = Screen.width - 100;
-            int y = (Screen.height - 100) - (i*50);
+            int y = 20 + (i*50);
 
             // Create Buttons
             CreateButton(dialogOptionsCont, new Vector3(x, y, -1), opt.txt, opt.to);
@@ -227,7 +227,7 @@ public class DialogController : MonoBehaviour
     {
         // Create buttons
         GameObject button = Instantiate(UI_Opt_Button, posi, Quaternion.identity); // Instantiate
-        button.transform.SetParent(parent.transform); //Setting button parent
+        button.transform.SetParent(dialogOptionsCont.transform); //Setting button parent
         button.GetComponent<Button>().onClick.AddListener(delegate { DialogReactByOptions(to); }); //Setting actions
         button.transform.GetChild(0).GetComponent<Text>().text = txt; //Setting text
     }
