@@ -33,6 +33,7 @@ public class MainController : MonoBehaviour
         GameObject.Find("bg_base").GetComponent<Animator>().SetBool("night", true);
         GameObject.Find("bg").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bg_2_night");
         GameObject.Find("UI_Tip").GetComponent<Text>().color = new Color(1, 1, 1, 1);
+        GameObject.Find("UI_Floor_Cont").GetComponent<Image>().sprite = Resources.Load<Sprite>("floorinfo_main_night");
         NPCsController._ins.NPCVisualNight();
     }
 
@@ -41,6 +42,7 @@ public class MainController : MonoBehaviour
         GameObject.Find("bg_base").GetComponent<Animator>().SetBool("night", false);
         GameObject.Find("bg").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("floorplan_main_day");
         GameObject.Find("UI_Tip").GetComponent<Text>().color = new Color(0, 0, 0, 1);
+        GameObject.Find("UI_Floor_Cont").GetComponent<Image>().sprite = Resources.Load<Sprite>("floorinfo_main_night");
         NPCsController._ins.NPCVisualDay();
     }
 

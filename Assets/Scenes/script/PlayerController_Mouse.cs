@@ -17,10 +17,14 @@ public class PlayerController_Mouse : MonoBehaviour
     // Clicked Animate Object
     private Transform clickVFX;
 
+    //Walking simulation animation
+    private Animator ani;
+
     // Get VFX 
     private void Awake()
     {
         clickVFX = GameObject.Find("Nav-VFX").GetComponent<Transform>();
+        ani = GetComponent<Animator>();
     }
 
 
@@ -50,6 +54,9 @@ public class PlayerController_Mouse : MonoBehaviour
         
         // Define is Moving
         isMoving = true;
+
+        //Define animator bool
+        ani.SetBool("isWalking", true);
     }
 
     void Move()
@@ -68,6 +75,7 @@ public class PlayerController_Mouse : MonoBehaviour
     void EndMoving()
     {
         isMoving = false;
+        ani.SetBool("isWalking", false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
