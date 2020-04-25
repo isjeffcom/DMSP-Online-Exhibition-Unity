@@ -23,4 +23,9 @@ public class Buttons : MonoBehaviour
     {
         ImageViewerController._ins.NextImage();
     }
+
+    public void Complete()
+    {
+        MissionController._ins.CompleteClick();
+    }
 }

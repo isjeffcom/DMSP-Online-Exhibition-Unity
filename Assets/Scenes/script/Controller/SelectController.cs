@@ -15,7 +15,7 @@ public class SelectController : MonoBehaviour
     public Vector3 OriginalScale = new Vector3(.8f, .8f, .8f);
     public Vector3 SelectedScale = new Vector3(1.6f, 1.6f, 1.6f);
 
-    private GameObject NPCs;
+    private GameObject NPC_Act1;
     private GameObject UI_NPCName_Cont;
     private GameObject UI_NPCName_Sample;
 
@@ -25,7 +25,7 @@ public class SelectController : MonoBehaviour
     {
         _ins = this;
 
-        NPCs = GameObject.Find("NPCs");
+        NPC_Act1 = GameObject.Find("NPC_Act1");
 
         UI_NPCName_Cont = GameObject.Find("UI_NPC_Names_Cont");
         UI_NPCName_Sample = GameObject.Find("UI_NPC_Names");
@@ -39,7 +39,7 @@ public class SelectController : MonoBehaviour
     private void GetAllNPCs()
     {
         
-        foreach (Transform child in NPCs.transform)
+        foreach (Transform child in NPC_Act1.transform)
         {
             allNPCName.Add(child.gameObject.name);
         }
@@ -56,7 +56,7 @@ public class SelectController : MonoBehaviour
         foreach(string item in allNPCName)
         {
             // re positioning
-            Vector3 posi = new Vector3(Screen.width - 60, Screen.height - (35 * i), 0);
+            Vector3 posi = new Vector3(Screen.width - 220, Screen.height - (80 * i)-265, 0);
 
             // Instantiate
             GameObject single = Instantiate(UI_NPCName_Sample, posi, Quaternion.identity);
@@ -115,7 +115,7 @@ public class SelectController : MonoBehaviour
     // Clear other selected NPC
     public void ClearOthers(string name)
     {
-        foreach(Transform child in NPCs.transform)
+        foreach(Transform child in NPC_Act1.transform)
         {
             if(child.name != name)
             {

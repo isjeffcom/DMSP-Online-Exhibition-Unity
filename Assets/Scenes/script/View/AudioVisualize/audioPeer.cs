@@ -9,7 +9,7 @@ public class audioPeer : MonoBehaviour
     Transform audioVFX;
     public static float[] _samples = new float[512];
     public float[] _freqBand = new float[8];
-
+    public float scale;
 
     private void Awake()
     {
@@ -80,9 +80,8 @@ public class audioPeer : MonoBehaviour
         
         if (audioVFX)
         {
-            audioVFX.localScale = new Vector3(_freqBand[0] * 30, _freqBand[0] * 30, _freqBand[0] * 30);
+            audioVFX.localScale = new Vector3(_freqBand[0] * 30 * scale, _freqBand[0] * 30 * scale, _freqBand[0] * 30 * scale);
         }
-        //Debug.Log(_freqBand[0]);
 
     }
 

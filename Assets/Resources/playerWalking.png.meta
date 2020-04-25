@@ -120,12 +120,12 @@ TextureImporter:
       name: playerWalking_0
       rect:
         serializedVersion: 2
-        x: 446
-        y: 293
-        width: 523
-        height: 480
+        x: 158
+        y: 285
+        width: 520
+        height: 570
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -141,12 +141,12 @@ TextureImporter:
       name: playerWalking_1
       rect:
         serializedVersion: 2
-        x: 1023
-        y: 293
-        width: 522
-        height: 480
+        x: 1223
+        y: 285
+        width: 520
+        height: 570
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

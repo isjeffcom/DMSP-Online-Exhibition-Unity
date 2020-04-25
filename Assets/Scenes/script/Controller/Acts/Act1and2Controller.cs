@@ -33,10 +33,12 @@ public class Act1and2Controller : MonoBehaviour
                 AudioController._ins.StopAudio();
                 EnteringAct2();
                 realAll = true;
+                MissionController._ins.CompelteAvailable(true);
             }
             else
             {
                 EnterAct2();
+                MissionController._ins.CompelteAvailable(false);
             }
             
         }
@@ -45,6 +47,11 @@ public class Act1and2Controller : MonoBehaviour
     public void EnterAct1()
     {
         invesCont.SetActive(false);
+
+        MissionController._ins.MissionText(1);
+        MissionController._ins.MissionContent(1);
+
+        NPCsController._ins.NPCswitch(1);
     }
 
     public void EnteringAct2()
@@ -54,7 +61,13 @@ public class Act1and2Controller : MonoBehaviour
 
     public void EnterAct2()
     {
+        MainController._act = 2;
+        NPCsController._ins.NPCswitch(2);
         MainController._ins.MapToNight();
         invesCont.SetActive(true);
+
+        MissionController._ins.MissionText(2);
+        MissionController._ins.MissionContent(2);
+        
     }
 }

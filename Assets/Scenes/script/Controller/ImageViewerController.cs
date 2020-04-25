@@ -79,7 +79,7 @@ public class ImageViewerController : MonoBehaviour
         _currentImgsLength = 0;
         _currentImgIndex = 0;
 
-        MainController._ins.CheckActStatus();
+        //MainController._ins.CheckActStatus();
     }
 
     IEnumerator DownloadImage(string url, bool isEnd, int idx, bool multiple)

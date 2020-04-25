@@ -16,12 +16,22 @@ public class NPCsController : MonoBehaviour
     // json API
     private string api = "/data/";
 
+    private GameObject NPC_Act1;
+    private GameObject NPC_Act2;
+    private GameObject NPC_Act3;
+    private GameObject NPC_Act4;
+
     private void Awake()
     {
         _ins = this;
 
         // Start to get data
         StartCoroutine(GetData());
+
+        NPC_Act1 = GameObject.Find("NPC_Act1");
+        NPC_Act2 = GameObject.Find("NPC_Act2");
+        NPC_Act3 = GameObject.Find("NPC_Act3");
+        NPC_Act4 = GameObject.Find("NPC_Act4");
     }
 
     IEnumerator GetData()
@@ -77,7 +87,7 @@ public class NPCsController : MonoBehaviour
 
     public void NPCVisualNight()
     {
-        foreach (Transform child in GameObject.Find("NPCs").transform)
+        foreach (Transform child in GameObject.Find("NPC_Act1").transform)
         {
             child.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
@@ -85,11 +95,36 @@ public class NPCsController : MonoBehaviour
 
     public void NPCVisualDay()
     {
-        foreach (Transform child in GameObject.Find("NPCs").transform)
+        string npc_name = "NPC_Act" + MainController._act;
+        foreach (Transform child in GameObject.Find(npc_name).transform)
         {
             child.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
         }
     }
 
+    public void NPCswitch(int act)
+    {
+        foreach (Transform child in GameObject.Find("NPCs").transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+
+        switch (act)
+        {
+            case 1:
+                NPC_Act1.SetActive(true);
+                break;
+            case 2:
+                NPC_Act2.SetActive(true);
+                break;
+            case 3:
+                NPC_Act3.SetActive(true);
+                break;
+            case 4:
+                NPC_Act4.SetActive(true);
+                break;
+        }
+
+    }
 
 }
