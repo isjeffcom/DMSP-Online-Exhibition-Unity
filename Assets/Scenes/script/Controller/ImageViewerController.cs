@@ -25,26 +25,23 @@ public class ImageViewerController : MonoBehaviour
         _ins = this;
 
         // Find UI Container for display item content
-        itemCont = GameObject.Find("UI_Item_Cont");
-        itemImg = GameObject.Find("UI_Item_Img_Cont");
+        itemCont = GameObject.Find("UI_Items_Cont");
+        itemImg = GameObject.Find("UI_Image");
         imgLast = GameObject.Find("Img_Last");
         imgNext = GameObject.Find("Img_Next");
     }
     private void Start()
     {
         itemCont.SetActive(false);
-
-        /*List<string> srcs = new List<string>();
-        srcs.Add("https://api.isjeff.com/main/upload/imgs/1571410371_919.png");
-        srcs.Add("https://api.isjeff.com/main/upload/imgs/1570240752_838.png");
-        MultipleImage(srcs);*/
     }
 
 
     public void SingleImage(string src)
     {
         itemCont.SetActive(true);
+
         StartCoroutine(DownloadImage(src, false, -1, false));
+        
         DisableBothBtns();
     }
 
@@ -84,6 +81,7 @@ public class ImageViewerController : MonoBehaviour
 
     IEnumerator DownloadImage(string url, bool isEnd, int idx, bool multiple)
     {
+        
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
 
         yield return www.SendWebRequest();

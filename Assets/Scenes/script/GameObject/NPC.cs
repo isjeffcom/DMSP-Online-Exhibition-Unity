@@ -37,8 +37,13 @@ public class NPC : MonoBehaviour
             {
                 tip.text = "E to chat";
             }
+
+            if (AudioController._ins.CheckHasAudio(this.name))
+            {
+                audioTip.text = AudioController._isPlaying ? "Audio is playing..." : "A to listen";
+            }
             
-            audioTip.text = AudioController._isPlaying ? "Audio is playing..." : "A to listen";
+            
         }
         
     }
@@ -60,7 +65,8 @@ public class NPC : MonoBehaviour
             // Check if dialog has already enabled
             if (Input.GetKey(KeyCode.A) && !AudioController._isPlaying)
             {
-                AudioController._ins.PlayNPCAudio(this.name);
+                MainController._ins.AudioPlayByAct(this.name);
+                //AudioController._ins.PlayNPCAudio(this.name);
                 clearTip();
             }
         }

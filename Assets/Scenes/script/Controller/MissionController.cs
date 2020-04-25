@@ -80,6 +80,7 @@ public class MissionController : MonoBehaviour
     //Switch mission board for acts
     public void MissionContent(int act)
     {
+
         foreach (GameObject item in AllMissions)
         {
             item.SetActive(false);

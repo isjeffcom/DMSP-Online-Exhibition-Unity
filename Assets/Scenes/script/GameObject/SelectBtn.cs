@@ -22,10 +22,7 @@ public class SelectBtn : MonoBehaviour
         if (SelectController._ins.TryMatch(thisName))
         {
             SelectController._ins.RestoreSelectedNPC(thisName);
-            gameObject.GetComponent<Image>().color = new Color(0.20f, 0.67f, 0.45f);
-            gameObject.GetComponentInChildren<Text>().color = new Color(1f, 1f, 1f);
             done = true;
-
             RightAni();
         } 
         else 
@@ -39,7 +36,7 @@ public class SelectBtn : MonoBehaviour
     {
         GetComponent<Animator>().SetBool("open", true);
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
 
         GetComponent<Animator>().SetBool("open", false);
     }

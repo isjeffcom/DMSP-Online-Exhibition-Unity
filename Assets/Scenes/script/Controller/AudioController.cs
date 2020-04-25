@@ -76,6 +76,11 @@ public class AudioController : MonoBehaviour
         LoadAudio(name, -1, false, false);
     }
 
+    public void PlayAllNPCsAudio()
+    {
+        LoadAudio("", 0, true, true);
+    }
+
 
     //Load and play audio clips
     //Differ audios by acts number
@@ -106,7 +111,7 @@ public class AudioController : MonoBehaviour
             {
                 if(objectName == acts.objectName)
                 {
-                    StartCoroutine(DownloadAudio(MainController._rootAPI + api_audio + "act" + MainController._act + "/" + acts.audioName, acts.objectName, acts.to, hasNext));
+                    StartCoroutine(DownloadAudio(MainController._rootAPI + api_audio + "act" + MainController._act + "/" + acts.audioName, acts.objectName, acts.to, acts.length, hasNext));
                 }
             } 
             else
@@ -115,7 +120,7 @@ public class AudioController : MonoBehaviour
                 if (toId == acts.id)
                 {
                     
-                    StartCoroutine(DownloadAudio(MainController._rootAPI + api_audio + "act" + MainController._act + "/" + acts.audioName, acts.objectName, acts.to, hasNext));
+                    StartCoroutine(DownloadAudio(MainController._rootAPI + api_audio + "act" + MainController._act + "/" + acts.audioName, acts.objectName, acts.to, acts.length, hasNext));
                 }
             }
 
@@ -126,9 +131,24 @@ public class AudioController : MonoBehaviour
             
     }
 
+    public bool CheckHasAudio(string name)
+    {
 
+        bool res = false;
 
-    IEnumerator DownloadAudio(string url, string npc, int next, bool hasNext)
+        for (int i = 0; i < AudiosList.audios.acts.Count; i++)
+        {
+            AudiosActs acts = AudiosList.audios.acts[i];
+            if (name == acts.objectName)
+            {
+                res = true;
+            }
+        }
+
+        return res;
+    }
+
+    IEnumerator DownloadAudio(string url, string npc, int next, float nextLength, bool hasNext)
     {
         
 
@@ -147,12 +167,12 @@ public class AudioController : MonoBehaviour
             AudioClip audioClip = DownloadHandlerAudioClip.GetContent(www);
 
             // Send to play
-            PlayAudio(audioClip, npc, next, hasNext);
+            PlayAudio(audioClip, npc, next, nextLength, hasNext);
         }
 
     }
 
-    public void PlayAudio(AudioClip audio, string npc, int nextId, bool hasNext)
+    public void PlayAudio(AudioClip audio, string npc, int nextId, float nextLength, bool hasNext)
     {
         // Get Audio Player
         audioPlayer = GameObject.Find(npc).GetComponent<AudioSource>();
@@ -168,11 +188,11 @@ public class AudioController : MonoBehaviour
             if (hasNext)
             {
                 // Wait and play next
-                currentNext = StartCoroutine(NextAudio(audioPlayer.clip.length, nextId));
+                currentNext = StartCoroutine(NextAudio(nextLength, nextId));
             } else
             {
                 // If no next, wait and set audio isPlaying to false
-                currentNext = StartCoroutine(NextAudio(audioPlayer.clip.length, -1));
+                currentNext = StartCoroutine(NextAudio(nextLength, -1));
             }
             
         }
@@ -230,14 +250,15 @@ public class AudioController : MonoBehaviour
 
         yield return new WaitForSeconds(delay + 0.5f);
 
+        // Could be a problem if delay is 0
         LoadAudio("", next, false, true);
         _isPlaying = false;
 
     }
 
-    public void InvItemAudioPlay(string url, string npc, int next, bool hasNext)
+    public void InvItemAudioPlay(string url, string npc, int next, float nextLength, bool hasNext)
     {
-        StartCoroutine(DownloadAudio(url, npc, next, hasNext));
+        StartCoroutine(DownloadAudio(url, npc, next, nextLength, hasNext));
     }
 
 

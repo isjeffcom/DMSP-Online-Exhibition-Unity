@@ -48,7 +48,6 @@ public class InvItem : MonoBehaviour
                 itemDetailEnabled = true;
             }
         }
-        
     }
 
     private void OnTriggerExit2D(Collider2D collision)

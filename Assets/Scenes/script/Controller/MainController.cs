@@ -57,12 +57,24 @@ public class MainController : MonoBehaviour
         NPCsController._ins.NPCVisualDay();
     }
 
+    public void AudioPlayByAct(string name)
+    {
+        switch (_act)
+        {
+            case 1:
+                AudioController._ins.PlayAllNPCsAudio();
+                break;
+            case 2:
+                AudioController._ins.PlayNPCAudio(name);
+                break;
+        }
+    }
+
 
     public void CheckActStatus()
     {
         /*
-         1. Image Viewer Controler -> NextImage()
-         2. Select Controller -> TryMatch()
+         1. Select Controller -> TryMatch()
         */
 
 

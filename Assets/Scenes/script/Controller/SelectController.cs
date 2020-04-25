@@ -56,7 +56,10 @@ public class SelectController : MonoBehaviour
         foreach(string item in allNPCName)
         {
             // re positioning
-            Vector3 posi = new Vector3(Screen.width - 220, Screen.height - (80 * i)-265, 0);
+            Vector3 posi = new Vector3(Screen.width - 140, (Screen.height - 120) - (30 * i), 0);
+
+            Debug.Log(Screen.height);
+            Debug.Log(Screen.width);
 
             // Instantiate
             GameObject single = Instantiate(UI_NPCName_Sample, posi, Quaternion.identity);

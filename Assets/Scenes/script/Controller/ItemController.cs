@@ -44,13 +44,11 @@ public class ItemController : MonoBehaviour
 
     public void ShowItemDetail(string itemName)
     {
-        
 
         foreach (Item item in itemsList.Items)
         {
             if(item.name == itemName)
             {
-
                 
                 if(item.type == "image")
                 {
@@ -59,7 +57,7 @@ public class ItemController : MonoBehaviour
 
                 if(item.type == "sound")
                 {
-                    AudioController._ins.InvItemAudioPlay(item.src, itemName, -1, false);
+                    AudioController._ins.InvItemAudioPlay(item.src, itemName, -1, 0, false);
                 }
                 
             }
