@@ -1,0 +1,84 @@
+{
+    "Dialogs": [
+        {
+            "name": "Joe",
+			"time": [0, 3],
+            "convs":[
+				{
+					"id": 0,
+					"question": "Hello, my name is Jeff. How are you?",
+					"options": [
+						{"txt": "I am Fine", "to": 1},
+						{"txt": "Fuck off", "to": 2}
+					],
+					"to":-1
+				},
+				{
+					"id": 1,
+					"question": "Glad to hear that. How is your em...little spy game?",
+					"options": [
+						{"txt": "I have some progress. Thanks for asking.", "to": 3},
+						{"txt": "You shouldn't ask", "to": -1}
+					],
+					"to":-1
+				},
+				{
+					"id": 2,
+					"question": "Go fuck yourself.",
+					"options": [],
+					"to":-1
+				},
+				{
+					"id": 3,
+					"question": "You again, what can I help you?",
+					"options": [
+						{"txt": "How are you doing?", "to": 2},
+						{"txt": "Nothing...", "to": -1}
+					],
+					"to":-1
+				},
+				{
+					"id": 3,
+					"question": "Really? What is that?",
+					"options": [
+						{"txt": "I will tell you in our meeting.", "to": -1},
+						{"txt": "It's Mike...He is hidding something.", "to": 4}
+					],
+					"to":-1
+				},
+				{
+					"id": 4,
+					"question": "I known it! It's him.",
+					"to":-1
+				}
+			]
+        },
+		{
+            "name": "Shawn",
+			"time": [0],
+            "convs":[
+				{
+					"id": 0,
+					"question": "You think I like cleaning floor don't you?",
+					"options": [
+						{"txt": "Some job has to be done.", "to": 1},
+						{"txt": "You will get used to it.", "to": 2}
+					],
+					"to":-1
+				},
+				{
+					"id": 1,
+					"question": "Fine...",
+					"options": [],
+					"to":-1
+				},
+				{
+					"id": 2,
+					"question": "Why don't you do it?",
+					"options": [],
+					"to":-1
+				}
+			]
+        }
+    ]
+}
