@@ -1,7 +1,7 @@
 {
     "Dialogs": [
         {
-            "name": "Jeff",
+            "name": "Joe",
 			"time": [0, 3],
             "convs":[
 				{
@@ -54,7 +54,7 @@
 			]
         },
 		{
-            "name": "Mei",
+            "name": "Shawn",
 			"time": [0],
             "convs":[
 				{
