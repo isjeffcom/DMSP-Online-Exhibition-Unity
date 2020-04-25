@@ -14,7 +14,7 @@ public class NPCsController : MonoBehaviour
     private string itemsJson;
 
     // json API
-    private string api = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/data/";
+    private string api = "/data/";
 
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class NPCsController : MonoBehaviour
 
     IEnumerator GetData()
     {
-        UnityWebRequest request = UnityWebRequest.Get(api + "npcs.json");
+        UnityWebRequest request = UnityWebRequest.Get(MainController._rootAPI + api + "npcs.json");
 
         yield return request.SendWebRequest();
 
@@ -38,7 +38,6 @@ public class NPCsController : MonoBehaviour
         else
         {
             npcs = JsonUtility.FromJson<NpcList>(request.downloadHandler.text);
-            Debug.Log(api + "npcs.json");
         }
     }
 

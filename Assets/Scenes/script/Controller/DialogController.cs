@@ -34,7 +34,7 @@ public class DialogController : MonoBehaviour
     public static int _DialogNext = -1; // Save Next ID
 
     // json API
-    private string api = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/data/";
+    private string api = "/data/";
 
     private void Awake()
     {
@@ -60,7 +60,7 @@ public class DialogController : MonoBehaviour
     // Get dialogs data file (.json format)
     IEnumerator GetData()
     {
-        UnityWebRequest request = UnityWebRequest.Get(api + "act" + MainController._act + "/dialogs.json");
+        UnityWebRequest request = UnityWebRequest.Get(MainController._rootAPI + api + "act" + MainController._act + "/dialogs.json");
 
         yield return request.SendWebRequest();
 
@@ -175,13 +175,17 @@ public class DialogController : MonoBehaviour
     // Render all options into the interface
     public void RenderOptions(List<DialogsOptions> options)
     {
+        // Clear
+        ClearOptions();
+
+
         int i = 1; // Index
 
         foreach(DialogsOptions opt in options)
         {
             // Calculate x and y
             int x = Screen.width - 100;
-            int y = 20 + (i*50);
+            int y = 5 + (i*40);
 
             // Create Buttons
             CreateButton(dialogOptionsCont, new Vector3(x, y, -1), opt.txt, opt.to);
@@ -189,6 +193,22 @@ public class DialogController : MonoBehaviour
             // Add index
             i++;
         }
+    }
+
+    public bool CheckHasDialog(string character)
+    {
+        bool res = false;
+        for(int i = 0; i < DialogList.Dialogs.Count; i++)
+        {
+            Dialogs dialog = DialogList.Dialogs[i];
+            if (character == dialog.name)
+            {
+                res = true;
+            }
+        }
+
+        return res;
+
     }
 
     // Clean all options in options container
@@ -227,7 +247,8 @@ public class DialogController : MonoBehaviour
     {
         // Create buttons
         GameObject button = Instantiate(UI_Opt_Button, posi, Quaternion.identity); // Instantiate
-        button.transform.SetParent(dialogOptionsCont.transform); //Setting button parent
+        
+        button.transform.SetParent(parent.transform); //Setting button parent
         button.GetComponent<Button>().onClick.AddListener(delegate { DialogReactByOptions(to); }); //Setting actions
         button.transform.GetChild(0).GetComponent<Text>().text = txt; //Setting text
     }

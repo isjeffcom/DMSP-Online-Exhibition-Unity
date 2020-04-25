@@ -32,8 +32,8 @@ public class AudioController : MonoBehaviour
     private AudioSource audioPlayer = null;
 
     // json API
-    private string api = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/data/";
-    private string baseUrl = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/audios/";
+    private string api = "/data/";
+    private string api_audio = "/audios/";
 
     void Awake()
     {
@@ -48,7 +48,7 @@ public class AudioController : MonoBehaviour
     // Get audios data file (.json format)
     IEnumerator GetData()
     {
-        UnityWebRequest request = UnityWebRequest.Get(api + "act" + MainController._act + "/audios.json");
+        UnityWebRequest request = UnityWebRequest.Get(MainController._rootAPI + api + "act" + MainController._act + "/audios.json");
 
         yield return request.SendWebRequest();
 
@@ -106,7 +106,7 @@ public class AudioController : MonoBehaviour
             {
                 if(objectName == acts.objectName)
                 {
-                    StartCoroutine(DownloadAudio(baseUrl + "act" + MainController._act + "/" + acts.audioName, acts.objectName, acts.to, hasNext));
+                    StartCoroutine(DownloadAudio(MainController._rootAPI + api_audio + "act" + MainController._act + "/" + acts.audioName, acts.objectName, acts.to, hasNext));
                 }
             } 
             else
@@ -115,7 +115,7 @@ public class AudioController : MonoBehaviour
                 if (toId == acts.id)
                 {
                     
-                    StartCoroutine(DownloadAudio(baseUrl + "act" + MainController._act + "/" + acts.audioName, acts.objectName, acts.to, hasNext));
+                    StartCoroutine(DownloadAudio(MainController._rootAPI + api_audio + "act" + MainController._act + "/" + acts.audioName, acts.objectName, acts.to, hasNext));
                 }
             }
 

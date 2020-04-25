@@ -33,7 +33,11 @@ public class NPC : MonoBehaviour
     {
         if(collision.name == "player")
         {
-            tip.text = "E to chat";
+            if (DialogController._ins.CheckHasDialog(this.name))
+            {
+                tip.text = "E to chat";
+            }
+            
             audioTip.text = AudioController._isPlaying ? "Audio is playing..." : "A to listen";
         }
         

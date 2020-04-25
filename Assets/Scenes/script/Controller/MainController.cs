@@ -12,6 +12,8 @@ public class MainController : MonoBehaviour
     public static int _act = 1; 
     public static string _selectedNPC;
 
+    public static string _rootAPI = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets";
+
     private void Awake()
     {
         _ins = this;

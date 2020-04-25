@@ -98,7 +98,5 @@ public class PlayerController_Mouse : MonoBehaviour
         
         // Destroy after 0.5s
         Destroy(tmp.gameObject);
-
-
     }
 }

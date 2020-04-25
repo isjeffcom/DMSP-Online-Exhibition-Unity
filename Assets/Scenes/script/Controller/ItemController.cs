@@ -10,7 +10,7 @@ public class ItemController : MonoBehaviour
     public static ItemController _ins;
 
     // json API
-    private string api = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/data/";
+    private string api = "/data/";
 
 
     private ItemsList itemsList = new ItemsList();
@@ -26,7 +26,7 @@ public class ItemController : MonoBehaviour
 
     IEnumerator GetData()
     {
-        UnityWebRequest request = UnityWebRequest.Get(api + "act" + MainController._act + "/items.json");
+        UnityWebRequest request = UnityWebRequest.Get(MainController._rootAPI + api + "act" + MainController._act + "/items.json");
 
         yield return request.SendWebRequest();
 
