@@ -6,17 +6,20 @@ using UnityEngine.UI;
 public class MainController : MonoBehaviour
 {
     public static MainController _ins;
-
-
+    
     // Global Vars
     public static int _act = 1; 
     public static string _selectedNPC;
 
     public static string _rootAPI = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets";
 
+    private GameObject inves;
+
     private void Awake()
     {
         _ins = this;
+
+        inves = GameObject.Find("Inves");
     }
 
 
@@ -36,7 +39,7 @@ public class MainController : MonoBehaviour
         GameObject.Find("bg").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bg_act2_night");
         GameObject.Find("UI_Tip").GetComponent<Text>().color = new Color(1, 1, 1, 1);
         GameObject.Find("UI_Floor_Cont").GetComponent<Image>().sprite = Resources.Load<Sprite>("floorinfo_act2_night");
-        //NPCsController._ins.NPCVisualNight(); //There will be no npc in act2
+        PlayerController_Mouse._ins.playerVisualNight();
     }
 
     public void MapToDay()
@@ -46,6 +49,7 @@ public class MainController : MonoBehaviour
         GameObject.Find("UI_Tip").GetComponent<Text>().color = new Color(0, 0, 0, 1);
         GameObject.Find("UI_Floor_Cont").GetComponent<Image>().sprite = Resources.Load<Sprite>("floorinfo_act1_day");
         NPCsController._ins.NPCVisualDay();
+        PlayerController_Mouse._ins.playerVisualDay();
     }
 
     public void MapToAct3()
@@ -53,8 +57,20 @@ public class MainController : MonoBehaviour
         GameObject.Find("bg_base").GetComponent<Animator>().SetBool("night", false);
         GameObject.Find("bg").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bg_act3_day");
         GameObject.Find("UI_Tip").GetComponent<Text>().color = new Color(0, 0, 0, 1);
-        GameObject.Find("UI_Floor_Cont").GetComponent<Image>().sprite = Resources.Load<Sprite>("floorinfo_act3_night");
+        GameObject.Find("UI_Floor_Cont").GetComponent<Image>().sprite = Resources.Load<Sprite>("floorinfo_act3_day");
         NPCsController._ins.NPCVisualDay();
+        PlayerController_Mouse._ins.playerVisualDay();
+        inves.SetActive(false);
+    }
+
+    public void MapToAct4()
+    {
+        GameObject.Find("bg_base").GetComponent<Animator>().SetBool("night", false);
+        GameObject.Find("bg").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bg_act4_day");
+        GameObject.Find("UI_Tip").GetComponent<Text>().color = new Color(0, 0, 0, 1);
+        GameObject.Find("UI_Floor_Cont").GetComponent<Image>().sprite = Resources.Load<Sprite>("floorinfo_act4_day");
+        NPCsController._ins.NPCVisualDay();
+        PlayerController_Mouse._ins.playerVisualDay();
     }
 
     public void AudioPlayByAct(string name)
@@ -85,6 +101,9 @@ public class MainController : MonoBehaviour
                 break;
             case 2:
                 Act2and3Controller._ins.ActCheck();
+                break;
+            case 3:
+                Act3and4Controller._ins.ActCheck();
                 break;
         }
         

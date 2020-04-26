@@ -56,7 +56,7 @@ public class SelectController : MonoBehaviour
         foreach(string item in allNPCName)
         {
             // re positioning
-            Vector3 posi = new Vector3(Screen.width - 140, (Screen.height - 120) - (30 * i), 0);
+            Vector3 posi = new Vector3(Screen.width - 220, (Screen.height - 120) - (80 * i)-190, 0);
 
             Debug.Log(Screen.height);
             Debug.Log(Screen.width);

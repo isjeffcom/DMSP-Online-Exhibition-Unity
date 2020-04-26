@@ -8,10 +8,6 @@ public class SortingController : MonoBehaviour
 {
     public static SortingController _ins;
 
-    // Publish to global for act check
-    public static int _allNPCsLength = 0;
-    public static int _sortedCount = 0;
-
     private GameObject NPC_Act2;
     private GameObject Mission_Content_Act2;
     private GameObject Mission_Sorting_Block;
@@ -29,14 +25,14 @@ public class SortingController : MonoBehaviour
         Mission_Sorting_Block = GameObject.Find("Mission_Sorting_Block");
         Mission_Sorting_NameBlock = GameObject.Find("Mission_Sorting_NameBlock");
 
-        NPC_Act2 = GameObject.Find("NPC_Act1");
+        NPC_Act2 = GameObject.Find("NPC_Act2");
         
     }
 
     private void Start()
     {
         GetAllNPCs();
-        GetAllBlanks();
+        
     }
 
     private void GetAllNPCs()
@@ -47,16 +43,13 @@ public class SortingController : MonoBehaviour
             allNPCName.Add(child.gameObject.name);
         }
 
-        _allNPCsLength = allNPCName.Count;
-
         DisplayAll();
     }
 
-    private void GetAllBlanks()
+    public void GetAllBlanks()
     {
 
         allSortingBlank = GameObject.FindGameObjectsWithTag("SortingBlank");
-        
     }
 
     public void DisplayAll()
@@ -65,7 +58,7 @@ public class SortingController : MonoBehaviour
         for(int i = 1; i < 5; i++)
         {
             // re positioning
-            Vector3 posi = new Vector3(Screen.width - 420, Screen.height - (80 * i) - 300, 0);
+            Vector3 posi = new Vector3(Screen.width - 440, Screen.height - (80 * i) -340, 0);
 
             // Instantiate
             GameObject block = Instantiate(Mission_Sorting_Block, posi, Quaternion.identity);
@@ -84,7 +77,7 @@ public class SortingController : MonoBehaviour
         foreach (string item in allNPCName)
         {
             // re positioning
-            Vector3 posi = new Vector3(Screen.width - 220, Screen.height - (80 * j) - 300, 0);
+            Vector3 posi = new Vector3(Screen.width - 220, Screen.height - (80 * j) - 340, 0);
 
             // Instantiate
             GameObject name = Instantiate(Mission_Sorting_NameBlock, posi, Quaternion.identity);
@@ -105,6 +98,8 @@ public class SortingController : MonoBehaviour
 
     public bool SortOut()
     {
+        GetAllBlanks();
+
         int j = 0;
         for(int i = 0; i < allSortingBlank.Length; i++)
         {

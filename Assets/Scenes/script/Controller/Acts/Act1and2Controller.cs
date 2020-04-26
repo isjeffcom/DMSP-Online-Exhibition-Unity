@@ -47,11 +47,14 @@ public class Act1and2Controller : MonoBehaviour
     public void EnterAct1()
     {
         invesCont.SetActive(false);
+        MainController._ins.MapToDay();
 
         MissionController._ins.MissionText(1);
         MissionController._ins.MissionContent(1);
 
         NPCsController._ins.NPCswitch(1);
+
+        ColliderController._ins.SwitchCollider(1);
     }
 
     public void EnteringAct2()
@@ -68,6 +71,8 @@ public class Act1and2Controller : MonoBehaviour
 
         MissionController._ins.MissionText(2);
         MissionController._ins.MissionContent(2);
-        
+
+        ColliderController._ins.SwitchCollider(2);
+
     }
 }

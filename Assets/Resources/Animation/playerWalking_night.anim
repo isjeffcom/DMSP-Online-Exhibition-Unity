@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: playerWalking
+  m_Name: playerWalking_night
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,13 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -9200734941783450338, guid: fea6f66a0ab589f4ba8a6c9b8a199072,
+      value: {fileID: 3821044992416957587, guid: 791c8bfc526651f4fba932ed9daf90cb,
         type: 3}
     - time: 0.23333333
-      value: {fileID: 6603045182885331796, guid: fea6f66a0ab589f4ba8a6c9b8a199072,
+      value: {fileID: -4042359840120732481, guid: 791c8bfc526651f4fba932ed9daf90cb,
         type: 3}
     - time: 0.46666667
-      value: {fileID: -9200734941783450338, guid: fea6f66a0ab589f4ba8a6c9b8a199072,
+      value: {fileID: 3821044992416957587, guid: 791c8bfc526651f4fba932ed9daf90cb,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -47,9 +47,9 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -9200734941783450338, guid: fea6f66a0ab589f4ba8a6c9b8a199072, type: 3}
-    - {fileID: 6603045182885331796, guid: fea6f66a0ab589f4ba8a6c9b8a199072, type: 3}
-    - {fileID: -9200734941783450338, guid: fea6f66a0ab589f4ba8a6c9b8a199072, type: 3}
+    - {fileID: 3821044992416957587, guid: 791c8bfc526651f4fba932ed9daf90cb, type: 3}
+    - {fileID: -4042359840120732481, guid: 791c8bfc526651f4fba932ed9daf90cb, type: 3}
+    - {fileID: 3821044992416957587, guid: 791c8bfc526651f4fba932ed9daf90cb, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

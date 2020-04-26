@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: fea6f66a0ab589f4ba8a6c9b8a199072
+guid: 791c8bfc526651f4fba932ed9daf90cb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7808871401637628883
-    second: playerWalking_0
+      213: 3821044992416957587
+    second: playerWalking_night_0
   - first:
-      213: 6603045182885331796
-    second: playerWalking_1
+      213: 3188121617390381047
+    second: playerWalking_night_1
   - first:
-      213: -9200734941783450338
-    second: playerWalking_2
+      213: -4042359840120732481
+    second: playerWalking_night_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -120,49 +120,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: playerWalking_0
-      rect:
-        serializedVersion: 2
-        x: 741
-        y: 285
-        width: 520
-        height: 570
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3db4157aa2fae5c60800000000000000
-      internalID: 7808871401637628883
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: playerWalking_1
-      rect:
-        serializedVersion: 2
-        x: 1273
-        y: 285
-        width: 520
-        height: 570
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4530cb10c9ab2ab50800000000000000
-      internalID: 6603045182885331796
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: playerWalking_2
+      name: playerWalking_night_0
       rect:
         serializedVersion: 2
         x: 210
@@ -170,14 +128,56 @@ TextureImporter:
         width: 520
         height: 570
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1d197a615c605080800000000000000
-      internalID: -9200734941783450338
+      spriteID: 3944cc30d24170530800000000000000
+      internalID: 3821044992416957587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerWalking_night_1
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 285
+        width: 520
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f72c4938bb7e3c20800000000000000
+      internalID: 3188121617390381047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playerWalking_night_2
+      rect:
+        serializedVersion: 2
+        x: 1273
+        y: 285
+        width: 520
+        height: 570
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb48c4b8427a6e7c0800000000000000
+      internalID: -4042359840120732481
       vertices: []
       indices: 
       edges: []

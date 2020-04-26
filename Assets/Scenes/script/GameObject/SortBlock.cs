@@ -5,18 +5,6 @@ using UnityEngine.EventSystems;
 
 public class SortBlock : MonoBehaviour,IDropHandler
 {
-    public GameObject item
-    {
-        get
-        {
-            //Get the first child if there is
-            if (transform.childCount > 0)
-            {
-                return transform.GetChild(0).gameObject;
-            }
-            return null;
-        }
-    }
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -26,14 +14,36 @@ public class SortBlock : MonoBehaviour,IDropHandler
         if (childs==0)
         {
             SortName.itemBeingDragged.transform.SetParent(transform);
-            if (SortingController._ins.SortOut())
+
+            if (MainController._act==2)
             {
-                MissionController._ins.CompelteAvailable(true);
+                if (SortingController._ins.SortOut())
+                {
+                    MissionController._ins.CompelteAvailable(true);
+                }
+                else
+                {
+                    MissionController._ins.CompelteAvailable(false);
+                 
+                }
+                
             }
-            else
+
+            if(MainController._act==3)
             {
-                Debug.Log("jno");
+                if (DecisionController._ins.Decide())
+                {
+                    MissionController._ins.CompelteAvailable(true);
+                }
+                else
+                {
+                    MissionController._ins.CompelteAvailable(false);
+                }
             }
+            
+
+            Debug.Log(SortingController._ins.SortOut());
+            Debug.Log(MainController._act);
         }
     }
 }

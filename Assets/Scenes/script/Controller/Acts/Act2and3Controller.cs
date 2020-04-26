@@ -36,7 +36,8 @@ public class Act2and3Controller : MonoBehaviour
 
         MissionController._ins.MissionText(3);
         MissionController._ins.MissionContent(3);
-       
+
+        ColliderController._ins.SwitchCollider(3);
     }
 
 

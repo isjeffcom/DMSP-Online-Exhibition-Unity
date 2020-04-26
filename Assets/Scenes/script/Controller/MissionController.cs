@@ -10,13 +10,17 @@ public class MissionController : MonoBehaviour
     private Text  Mission_Text;
     private GameObject Mission_Content;
     private Button  Mission_Complete;
+    private Animator Complete_Ani;
 
     //Mission for Acts
     private GameObject Mission_Content_act1;
     private GameObject Mission_Content_act2;
     private GameObject Mission_Content_act3;
+    private GameObject Mission_Content_act4;
 
     private List<GameObject> AllMissions = new List<GameObject>();
+
+    private Text tip;
 
     private void Awake()
     {
@@ -25,10 +29,14 @@ public class MissionController : MonoBehaviour
         Mission_Text = GameObject.Find("Mission_Text").GetComponent<Text>();
         Mission_Content = GameObject.Find("Mission_Content");
         Mission_Complete = GameObject.Find("Mission_Complete_Button").GetComponent<Button>();
+        Complete_Ani = GameObject.Find("Mission_Complete_Button").GetComponent<Animator>();
 
         Mission_Content_act1 = GameObject.Find("UI_NPC_Names_Cont");
         Mission_Content_act2 = GameObject.Find("Mission_Content_Act2");
         Mission_Content_act3 = GameObject.Find("Mission_Content_Act3");
+        Mission_Content_act4 = GameObject.Find("Mission_Content_Act4");
+
+        tip = GameObject.Find("UI_Tip").GetComponent<Text>();
 
         GetAllContents();
 
@@ -49,6 +57,16 @@ public class MissionController : MonoBehaviour
     public void CompelteAvailable(bool available)
     {
         Mission_Complete.interactable = available;
+        Complete_Ani.SetBool("isAvailable", available);
+
+        if (available == true)
+        {
+            tip.text = "Click Compelete to Find More";
+        }
+        else
+        {
+            tip.text = "";
+        }
     }
 
     public void CompleteClick()
@@ -95,6 +113,9 @@ public class MissionController : MonoBehaviour
                 break;
             case 3:
                 Mission_Content_act3.SetActive(true);
+                break;
+            case 4:
+                Mission_Content_act4.SetActive(true);
                 break;
         }
     }

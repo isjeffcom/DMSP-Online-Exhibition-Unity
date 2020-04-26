@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController_Mouse : MonoBehaviour
 {
+    public static PlayerController_Mouse _ins;
+
     [SerializeField]
     [Range(2, 12)]          // Slider
     public float speed = 4; // Moving Speed
@@ -19,10 +21,13 @@ public class PlayerController_Mouse : MonoBehaviour
 
     //Walking simulation animation
     private Animator ani;
+    
 
     // Get VFX 
     private void Awake()
     {
+        _ins = this;
+
         clickVFX = GameObject.Find("Nav-VFX").GetComponent<Transform>();
         ani = GetComponent<Animator>();
     }
@@ -99,4 +104,19 @@ public class PlayerController_Mouse : MonoBehaviour
         // Destroy after 0.5s
         Destroy(tmp.gameObject);
     }
+
+    public void playerVisualDay()
+    {
+        
+        ani.SetBool("isDay", true);
+        ani.SetBool("isNight", false);
+    }
+
+    public void playerVisualNight()
+    {
+        
+        ani.SetBool("isDay", false);
+        ani.SetBool("isNight", true);
+    }
+
 }
