@@ -155,7 +155,11 @@ public class NPC : MonoBehaviour
 
     public void showNameOnScreen()
     {
-        UI_NNT.GetComponent<CanvasRenderer>().SetColor(new Color(0, 0, 0, 1));
+        if (UI_NNT)
+        {
+            UI_NNT.GetComponent<CanvasRenderer>().SetColor(new Color(0, 0, 0, 1));
+        }
+        
     }
 
     public void hideNameOnScreen()

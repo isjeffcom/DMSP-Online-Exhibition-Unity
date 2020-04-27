@@ -31,7 +31,7 @@ public class Act3and4Controller : MonoBehaviour
     public void EnterAct4()
     {
         MainController._ins.ToAct(4);
-        NPCsController._ins.NPCswitch(4);//npc need to be active before MaptoAct3()
+        //NPCsController._ins.NPCswitch(4);//npc need to be active before MaptoAct3()
         MainController._ins.MapToAct4();
 
         MissionController._ins.MissionText(4);

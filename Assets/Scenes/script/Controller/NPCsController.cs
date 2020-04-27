@@ -105,7 +105,6 @@ public class NPCsController : MonoBehaviour
 
     }
 
-
     public void NPCswitch(int act)
     {
         foreach (Transform child in GameObject.Find("NPCs").transform)
@@ -117,18 +116,33 @@ public class NPCsController : MonoBehaviour
         {
             case 1:
                 NPC_Act1.SetActive(true);
-                break;
+            break;
             case 2:
                 NPC_Act2.SetActive(true);
-                break;
+            break;
             case 3:
                 NPC_Act3.SetActive(true);
-                break;
+            break;
             case 4:
                 NPC_Act4.SetActive(true);
-                break;
+            break;
+
         }
 
+    }
+
+    public void DisplayAllNameOnScreen()
+    {
+        foreach(Transform child in NPCs.transform)
+        {
+            foreach(Transform c in child)
+            {
+                if (c.GetComponent<NPC>())
+                {
+                    c.GetComponent<NPC>().showNameOnScreen();
+                }
+            }
+        }
     }
 
 }

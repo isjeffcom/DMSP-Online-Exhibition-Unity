@@ -94,7 +94,7 @@ public class MainController : MonoBehaviour
         GameObject.Find("UI_Floor_Cont").GetComponent<Image>().sprite = Resources.Load<Sprite>("floorinfo_act3_day");
         //NPCsController._ins.NPCVisualDay();
         PlayerController_Mouse._ins.playerVisualDay();
-        inves.SetActive(false);
+        //inves.SetActive(false);
     }
 
     public void MapToAct4()

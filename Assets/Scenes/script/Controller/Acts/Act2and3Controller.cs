@@ -32,6 +32,7 @@ public class Act2and3Controller : MonoBehaviour
     {
         MainController._ins.ToAct(3);
         NPCsController._ins.NPCswitch(3);//npc need to be active before MaptoAct3()
+        NPCsController._ins.DisplayAllNameOnScreen();
         MainController._ins.MapToAct3();
 
         MissionController._ins.MissionText(3);
