@@ -1,0 +1,170 @@
+{
+    "audios": {
+		"playOnStart": true,
+        "start": -1,
+        "acts":[
+          {
+            "id": 0,
+            "objectName":"Tom",
+            "audioName": "B-10.wav",
+            "length": 4.0,
+            "to":1,
+            "alwaysPopTo": -1
+          },
+          {
+            "id": 1,
+            "objectName":"Blake",
+            "audioName": "C-11.wav",
+            "length": 3.0,
+            "to":2,
+            "alwaysPopTo": 0
+          },
+          {
+            "id": 2,
+            "objectName":"Blake",
+            "audioName": "C-12.wav",
+            "length": 6.0,
+            "to":3,
+            "alwaysPopTo": 0
+          },
+          {
+            "id": 3,
+            "objectName":"Tom",
+            "audioName": "B-13.wav",
+            "length": 5.0,
+            "to":4,
+            "alwaysPopTo": 0
+          },
+          {
+            "id": 4,
+            "objectName":"Shawn",
+            "audioName": "D-14.wav",
+            "length": 3.0,
+            "to":-1,
+            "alwaysPopTo": 0
+          },
+          {
+            "id": 5,
+            "objectName":"Joe",
+            "audioName": "A-15.wav",
+            "length": 6.0,
+            "to":6,
+            "alwaysPopTo": -1
+          },
+          {
+            "id": 6,
+            "objectName":"Blake",
+            "audioName": "C-16.wav",
+            "length": 7.0,
+            "to":7,
+            "alwaysPopTo": 5
+          },
+          {
+            "id": 7,
+            "objectName":"Blake",
+            "audioName": "C-17.wav",
+            "length": 3.0,
+            "to":-1,
+            "alwaysPopTo": 5
+          },
+          {
+            "id": 8,
+            "objectName":"Joe",
+            "audioName": "A-18.wav",
+            "length": 5.0,
+            "to":9,
+            "alwaysPopTo": -1
+          },
+          {
+            "id": 9,
+            "objectName":"Tom",
+            "audioName": "B-19.wav",
+            "length": 2.0,
+            "to":10,
+            "alwaysPopTo": 8
+          },
+          {
+            "id": 10,
+            "objectName":"Tom",
+            "audioName": "B-20.wav",
+            "length": 3.0,
+            "to":11,
+            "alwaysPopTo": 8
+          },
+          {
+            "id": 11,
+            "objectName":"Blake",
+            "audioName": "C-21.wav",
+            "length": 3.0,
+            "to":-1,
+            "alwaysPopTo": 8
+          },
+          {
+            "id": 12,
+            "objectName":"Shawn",
+            "audioName": "D-24.wav",
+            "length": 6.0,
+            "to":13,
+            "alwaysPopTo": -1
+          },
+          {
+            "id": 13,
+            "objectName":"Blake",
+            "audioName": "C-22.wav",
+            "length": 2.0,
+            "to":14,
+            "alwaysPopTo": 12
+          },
+          {
+            "id": 14,
+            "objectName":"Shawn",
+            "audioName": "D-25.wav",
+            "length": 4.0,
+            "to":15,
+            "alwaysPopTo": 12
+          },
+          {
+            "id": 15,
+            "objectName":"Blake",
+            "audioName": "C-23.wav",
+            "length": 2.0,
+            "to":-1,
+            "alwaysPopTo": 12
+          },
+          
+          {
+            "id": 16,
+            "objectName":"Joe",
+            "audioName": "A-26.wav",
+            "length": 4.0,
+            "to":17,
+            "alwaysPopTo": -1
+          },
+          {
+            "id": 17,
+            "objectName":"Joe",
+            "audioName": "A-27.wav",
+            "length": 2.0,
+            "to":18,
+            "alwaysPopTo": 16
+          },
+          {
+            "id": 18,
+            "objectName":"Tom",
+            "audioName": "B-28.wav",
+            "length": 6.0,
+            "to":19,
+            "alwaysPopTo": 16
+          },
+          {
+            "id": 19,
+            "objectName":"Tom",
+            "audioName": "B-29.wav",
+            "length": 3.0,
+            "to":-1,
+            "alwaysPopTo": 16
+          }
+          
+		  ]
+    }
+}

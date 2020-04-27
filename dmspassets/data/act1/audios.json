@@ -1,28 +1,31 @@
 {
     "audios": {
 		"playOnStart": true,
-        "start": 0,
+        "start": -1,
         "acts":[
 			{
 				"id": 0,
 				"objectName":"Joe",
 				"audioName": "A-01.wav",
 				"length": 5.564,
-				"to":1
+				"to":1,
+				"alwaysPopTo": -1
 			},
 			{
 				"id": 1,
 				"objectName":"Shawn",
 				"audioName": "D-01.wav",
 				"length": 2.821,
-				"to":2
+				"to":2,
+				"alwaysPopTo": 0
 			},
 			{
 				"id": 2,
 				"objectName":"Blake",
 				"audioName": "C.wav",
 				"length": 4.571,
-				"to":3
+				"to":3,
+				"alwaysPopTo": 0
 			},
 			
 			{
@@ -30,28 +33,32 @@
 				"objectName":"Joe",
 				"audioName": "A-02.wav",
 				"length": 4.571,
-				"to":4
+				"to":4,
+				"alwaysPopTo": 0
 			},
 			{
 				"id": 4,
 				"objectName":"Shawn",
 				"audioName": "D-02.wav",
 				"length": 5.564,
-				"to":5
+				"to":5,
+				"alwaysPopTo": 0
 			},
 			{
 				"id": 5,
 				"objectName":"Tom",
 				"audioName": "B.wav",
 				"length": 2.064,
-				"to":6
+				"to":6,
+				"alwaysPopTo": 0
 			},
 			{
 				"id": 6,
 				"objectName":"Joe",
 				"audioName": "A-03.wav",
 				"length": 4.075,
-				"to":-1
+				"to":-1,
+				"alwaysPopTo": 0
 			}
 		]
     }
