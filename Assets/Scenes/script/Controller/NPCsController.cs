@@ -97,23 +97,12 @@ public class NPCsController : MonoBehaviour
 
     public void NPCVisualDay()
     {
-        if (MainController._act == 3)
+        string npc_name = "NPC_Act" + MainController._act;
+        foreach (Transform child in GameObject.Find(npc_name).transform)
         {
-            string npc_name = "NPC_Act" + MainController._act;
-            foreach (Transform child in GameObject.Find(npc_name).transform)
-            {
-                child.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-            }
+            child.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
         }
-        else
-        {
-            string npc_name = "NPC_Act" + MainController._act;
-            foreach (Transform child in GameObject.Find(npc_name).transform)
-            {
-                child.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-            }
-        }
-        
+
     }
 
 

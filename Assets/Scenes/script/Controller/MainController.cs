@@ -27,7 +27,7 @@ public class MainController : MonoBehaviour
     private void Start()
     {
         GetAllObjsHasActTag();
-        Act2and3Controller._ins.EnterAct3();
+        Act1and2Controller._ins.EnterAct1();
     }
 
     public void GetAllObjsHasActTag()
@@ -76,7 +76,7 @@ public class MainController : MonoBehaviour
         GameObject.Find("bg").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bg_act1_day");
         GameObject.Find("UI_Tip").GetComponent<Text>().color = new Color(0, 0, 0, 1);
         GameObject.Find("UI_Floor_Cont").GetComponent<Image>().sprite = Resources.Load<Sprite>("floorinfo_act1_day");
-        NPCsController._ins.NPCVisualDay();
+        //NPCsController._ins.NPCVisualDay();
         PlayerController_Mouse._ins.playerVisualDay();
     }
 
@@ -86,7 +86,7 @@ public class MainController : MonoBehaviour
         GameObject.Find("bg").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bg_act3_day");
         GameObject.Find("UI_Tip").GetComponent<Text>().color = new Color(0, 0, 0, 1);
         GameObject.Find("UI_Floor_Cont").GetComponent<Image>().sprite = Resources.Load<Sprite>("floorinfo_act3_day");
-        NPCsController._ins.NPCVisualDay();
+        //NPCsController._ins.NPCVisualDay();
         PlayerController_Mouse._ins.playerVisualDay();
         inves.SetActive(false);
     }
@@ -97,7 +97,7 @@ public class MainController : MonoBehaviour
         GameObject.Find("bg").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bg_act4_day");
         GameObject.Find("UI_Tip").GetComponent<Text>().color = new Color(0, 0, 0, 1);
         GameObject.Find("UI_Floor_Cont").GetComponent<Image>().sprite = Resources.Load<Sprite>("floorinfo_act4_day");
-        NPCsController._ins.NPCVisualDay();
+        //NPCsController._ins.NPCVisualDay();
         PlayerController_Mouse._ins.playerVisualDay();
     }
 
