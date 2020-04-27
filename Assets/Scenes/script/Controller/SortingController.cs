@@ -8,6 +8,8 @@ public class SortingController : MonoBehaviour
 {
     public static SortingController _ins;
 
+    public SortName sortName;
+
     private GameObject NPC_Act2;
     private GameObject Mission_Content_Act2;
     private GameObject Mission_Sorting_Block;
@@ -16,6 +18,8 @@ public class SortingController : MonoBehaviour
     private List<string> allNPCName = new List<string>();
 
     private GameObject[] allSortingBlank;
+    private GameObject[] allInves;
+    private GameObject[] allNameBlocks;
 
     private void Awake()
     {
@@ -26,7 +30,8 @@ public class SortingController : MonoBehaviour
         Mission_Sorting_NameBlock = GameObject.Find("Mission_Sorting_NameBlock");
 
         NPC_Act2 = GameObject.Find("NPC_Act2");
-        
+
+        GetInves();
     }
 
     private void Start()
@@ -46,10 +51,52 @@ public class SortingController : MonoBehaviour
         DisplayAll();
     }
 
-    public void GetAllBlanks()
+    private void GetAllBlanks()
     {
+        allSortingBlank = GameObject.FindGameObjectsWithTag("OrderingBlank");
+    }
 
-        allSortingBlank = GameObject.FindGameObjectsWithTag("SortingBlank");
+    private void GetInves()
+    {
+        allInves = GameObject.FindGameObjectsWithTag("Inves");
+    }
+
+    private void GetNameBlocks()
+    {
+        allNameBlocks = GameObject.FindGameObjectsWithTag("NameBlock");
+    }
+
+    //Whether all the clues have been checked
+    public bool allChecked()
+    {
+        GetNameBlocks();
+
+        int j = 0;
+        for (int i = 0; i < allInves.Length; i++)
+        {
+            if (allInves[i].GetComponent<InvItem>().itemChecked)
+            {
+                j++;
+            }
+        }
+        if (j == allInves.Length)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void addDragScript()
+    {
+       foreach(GameObject nameBlock in allNameBlocks)
+        {
+            sortName = nameBlock.AddComponent<SortName>();
+            nameBlock.GetComponent<Image>().color = new Color(104, 104, 104, 255);
+        }
+            
     }
 
     public void DisplayAll()
@@ -99,8 +146,8 @@ public class SortingController : MonoBehaviour
     public bool SortOut()
     {
         GetAllBlanks();
-
-        int j = 0;
+        
+        int j = 1;
         for(int i = 0; i < allSortingBlank.Length; i++)
         {
             if (allSortingBlank[i].transform.childCount>0)
@@ -108,7 +155,7 @@ public class SortingController : MonoBehaviour
                 j++;
             }
         }
-        if (j==4)
+        if (j == allSortingBlank.Length)
         {
             return true;
         }
@@ -116,5 +163,6 @@ public class SortingController : MonoBehaviour
         {
             return false;
         }
+        
     }
 }

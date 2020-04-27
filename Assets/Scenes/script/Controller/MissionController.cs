@@ -61,7 +61,15 @@ public class MissionController : MonoBehaviour
 
         if (available == true)
         {
-            tip.text = "Click Compelete to Find More";
+            if (MainController._act == 1)
+            {
+                tip.text = "Click Compelete to Find More";
+            }
+            else
+            {
+                tip.text = "Click Compelete to Confirm Your Choice";
+
+            }
         }
         else
         {
@@ -83,7 +91,7 @@ public class MissionController : MonoBehaviour
                 Mission_Text.text = "Match Voices by Selecting the Person and Their Name";
                 break;
             case 2:
-                Mission_Text.text = "Sort the Suspects by Drag Their Name";
+                Mission_Text.text = "Order the Suspects by Drag Their Name";
                 break;
             case 3:
                 Mission_Text.text = "Make Your Final Desicion \n Who Is the One?";

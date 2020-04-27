@@ -14,12 +14,19 @@ public class SortName : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     //Original Parent
     Transform startParent;
 
+    private void Start()
+    {
+        gameObject.isStatic = true;
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         itemBeingDragged = gameObject;
         startPosition = transform.position;
         startParent = transform.parent;
         GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+        
     }
 
     public void OnDrag(PointerEventData eventData)

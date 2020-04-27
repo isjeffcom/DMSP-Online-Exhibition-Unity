@@ -41,9 +41,6 @@ public class SortBlock : MonoBehaviour,IDropHandler
                 }
             }
             
-
-            Debug.Log(SortingController._ins.SortOut());
-            Debug.Log(MainController._act);
         }
     }
 }

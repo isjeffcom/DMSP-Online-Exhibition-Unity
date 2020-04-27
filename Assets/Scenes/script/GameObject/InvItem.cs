@@ -8,6 +8,9 @@ public class InvItem : MonoBehaviour
     private Text tip;
 
     private bool itemDetailEnabled = false;
+
+    public bool itemChecked = false;
+
     private void Awake()
     {
         // Find tip
@@ -40,12 +43,17 @@ public class InvItem : MonoBehaviour
             {
                 //clear tip
                 tip.text = "";
-
-
+                
                 // Display dialog container
                 ItemController._ins.ShowItemDetail(gameObject.name);
-                //dialogAns.GetComponent<Text>().text = "Hello";
                 itemDetailEnabled = true;
+
+                itemChecked = true;
+
+                if (SortingController._ins.allChecked())
+                {
+                    SortingController._ins.addDragScript();
+                }
             }
         }
     }

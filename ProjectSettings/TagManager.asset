@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - UI_Page
-  - SortingBlank
   - Act_1
   - Act_2
   - Act_3
   - Act_4
+  - Inves
+  - OrderingBlank
+  - NameBlock
   layers:
   - Default
   - TransparentFX
