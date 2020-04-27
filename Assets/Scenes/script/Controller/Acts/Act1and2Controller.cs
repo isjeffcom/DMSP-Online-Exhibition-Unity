@@ -47,6 +47,7 @@ public class Act1and2Controller : MonoBehaviour
     public void EnterAct1()
     {
         invesCont.SetActive(false);
+        MainController._ins.ToAct(1);
         MainController._ins.MapToDay();
 
         MissionController._ins.MissionText(1);
@@ -64,7 +65,7 @@ public class Act1and2Controller : MonoBehaviour
 
     public void EnterAct2()
     {
-        MainController._act = 2;
+        MainController._ins.ToAct(2);
         NPCsController._ins.NPCswitch(2);
         MainController._ins.MapToNight();
         invesCont.SetActive(true);

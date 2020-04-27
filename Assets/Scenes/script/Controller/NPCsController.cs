@@ -16,6 +16,8 @@ public class NPCsController : MonoBehaviour
     // json API
     private string api = "/data/";
 
+    private GameObject NPCs;
+
     private GameObject NPC_Act1;
     private GameObject NPC_Act2;
     private GameObject NPC_Act3;
@@ -27,6 +29,8 @@ public class NPCsController : MonoBehaviour
 
         // Start to get data
         StartCoroutine(GetData());
+
+        NPCs = GameObject.Find("NPCs");
 
         NPC_Act1 = GameObject.Find("NPC_Act1");
         NPC_Act2 = GameObject.Find("NPC_Act2");
@@ -95,13 +99,10 @@ public class NPCsController : MonoBehaviour
     {
         if (MainController._act == 3)
         {
-            for (int i=1; i < 6; i++)
+            string npc_name = "NPC_Act" + MainController._act;
+            foreach (Transform child in GameObject.Find(npc_name).transform)
             {
-                string scene_name = "Scene" + i;
-                foreach (Transform child in GameObject.Find(scene_name).transform)
-                {
-                    child.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-                }
+                child.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
             }
         }
         else
@@ -114,6 +115,7 @@ public class NPCsController : MonoBehaviour
         }
         
     }
+
 
     public void NPCswitch(int act)
     {

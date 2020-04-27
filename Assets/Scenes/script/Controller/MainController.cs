@@ -11,6 +11,8 @@ public class MainController : MonoBehaviour
     public static int _act = 1; 
     public static string _selectedNPC;
 
+    public List<GameObject> allObjsWithActTag = new List<GameObject>();
+
     public static string _rootAPI = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets";
 
     private GameObject inves;
@@ -24,13 +26,34 @@ public class MainController : MonoBehaviour
 
     private void Start()
     {
+        GetAllObjsHasActTag();
         Act2and3Controller._ins.EnterAct3();
+    }
+
+    public void GetAllObjsHasActTag()
+    {
+        string toSearch = "Act";
+        string[] allTags = UnityEditorInternal.InternalEditorUtility.tags;
+        for (int i = 0; i < allTags.Length; i++)
+        {
+            if (UnityEditorInternal.InternalEditorUtility.tags[i].Contains(toSearch))
+            {
+                GameObject[] tmps = GameObject.FindGameObjectsWithTag(allTags[i]);
+                foreach(GameObject item in tmps)
+                {
+                    allObjsWithActTag.Add(item);
+                }
+                
+            }
+        }
+
     }
 
 
     public void ToAct(int toAct)
     {
         _act = toAct;
+        ActObjectsControl();
     }
 
     public void SelectNPC(string name)
@@ -78,7 +101,21 @@ public class MainController : MonoBehaviour
         PlayerController_Mouse._ins.playerVisualDay();
     }
 
-
+    public void ActObjectsControl()
+    {
+        foreach(GameObject item in allObjsWithActTag)
+        {
+            if (item.name == "Act_" + _act)
+            {
+                item.SetActive(true);
+            }
+            else
+            {
+                item.SetActive(false);
+            }
+        }
+        
+    }
 
     public void AudioPlayByAct(string name)
     {
