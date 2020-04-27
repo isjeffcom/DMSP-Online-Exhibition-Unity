@@ -20,7 +20,7 @@ public class Act1and2Controller : MonoBehaviour
 
     private void Start()
     {
-        EnterAct1();
+
     }
 
     public void ActCheck()

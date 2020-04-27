@@ -22,6 +22,11 @@ public class MainController : MonoBehaviour
         inves = GameObject.Find("Inves");
     }
 
+    private void Start()
+    {
+        Act2and3Controller._ins.EnterAct3();
+    }
+
 
     public void ToAct(int toAct)
     {
@@ -72,6 +77,8 @@ public class MainController : MonoBehaviour
         NPCsController._ins.NPCVisualDay();
         PlayerController_Mouse._ins.playerVisualDay();
     }
+
+
 
     public void AudioPlayByAct(string name)
     {

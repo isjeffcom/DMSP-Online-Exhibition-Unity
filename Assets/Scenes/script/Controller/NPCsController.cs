@@ -51,8 +51,6 @@ public class NPCsController : MonoBehaviour
         }
     }
 
-
-
     public NpcList GetAllNPCsList()
     {
         return npcs;

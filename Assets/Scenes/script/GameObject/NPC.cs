@@ -18,6 +18,10 @@ public class NPC : MonoBehaviour
     // Flag for if dialog window opened
     private bool dialogEnabled = false;
 
+    private GameObject UI_NPC_onscreen_name_cont;
+    private GameObject UI_NNT_Sample;
+    private GameObject UI_NNT;
+
     private void Awake()
     {
         // Find tips
@@ -27,6 +31,14 @@ public class NPC : MonoBehaviour
         // Find container
         dialogCont = GameObject.Find("UI_Dialog_Cont");
         dialogAns = GameObject.Find("UI_Dialog_Answer");
+
+        UI_NPC_onscreen_name_cont = GameObject.Find("UI_NNT_Cont");
+        UI_NNT_Sample = GameObject.Find("UI_NNT_Sample");
+    }
+
+    private void Start()
+    {
+        createUIName();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -46,6 +58,15 @@ public class NPC : MonoBehaviour
             
         }
         
+    }
+
+    private void Update()
+    {
+        // If you want to let the NPC moveable
+        /*if (UI_NNT)
+        {
+            UI_NNT.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+        }*/
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -96,5 +117,37 @@ public class NPC : MonoBehaviour
     private void OnMouseDown()
     {
         SelectController._ins.Select(this.name);
+    }
+
+    public void createUIName()
+    {
+
+        // Get Object Position
+        Vector3 posi = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+
+        // Create 
+        UI_NNT = Instantiate(UI_NNT_Sample);
+
+        // Set Parent
+        UI_NNT.transform.SetParent(UI_NPC_onscreen_name_cont.transform);
+
+        // Set Text
+        UI_NNT.GetComponent<Text>().text = this.name;
+
+        // Set Position
+        UI_NNT.transform.position = posi;
+
+        // Set Default Unseeable
+        UI_NNT.GetComponent<CanvasRenderer>().SetColor(new Color(0,0,0,0));
+    }
+
+    public void showNameOnScreen()
+    {
+        UI_NNT.GetComponent<CanvasRenderer>().SetColor(new Color(0, 0, 0, 1));
+    }
+
+    public void hideNameOnScreen()
+    {
+        UI_NNT.GetComponent<CanvasRenderer>().SetColor(new Color(0, 0, 0, 0));
     }
 }

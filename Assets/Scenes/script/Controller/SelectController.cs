@@ -20,6 +20,7 @@ public class SelectController : MonoBehaviour
     private GameObject UI_NPCName_Sample;
 
     private List<string> allNPCName = new List<string>();
+    private List<GameObject> allNPC = new List<GameObject>();
 
     private void Awake()
     {
@@ -42,6 +43,7 @@ public class SelectController : MonoBehaviour
         foreach (Transform child in NPC_Act1.transform)
         {
             allNPCName.Add(child.gameObject.name);
+            allNPC.Add(child.gameObject);
         }
 
         _allNPCsLength = allNPCName.Count;
@@ -56,13 +58,10 @@ public class SelectController : MonoBehaviour
         foreach(string item in allNPCName)
         {
             // re positioning
-            Vector3 posi = new Vector3(Screen.width - 220, (Screen.height - 120) - (80 * i)-190, 0);
-
-            Debug.Log(Screen.height);
-            Debug.Log(Screen.width);
+            Vector2 posi = new Vector3(Screen.width - 130, Screen.height - 180 - (50*i));
 
             // Instantiate
-            GameObject single = Instantiate(UI_NPCName_Sample, posi, Quaternion.identity);
+            GameObject single = Instantiate(UI_NPCName_Sample);
 
             // Set Text
             single.GetComponentInChildren<Text>().text = item;
@@ -70,8 +69,21 @@ public class SelectController : MonoBehaviour
             // Set button parent
             single.transform.SetParent(UI_NPCName_Cont.transform);
 
+            single.transform.position = posi;
+
             // Counter
             i++;
+        }
+    }
+
+    public void DisplayNPCNameOnScreen(string name)
+    {
+        foreach(GameObject item in allNPC)
+        {
+            if(item.name == name)
+            {
+                item.GetComponent<NPC>().showNameOnScreen();
+            }
         }
     }
 
@@ -82,6 +94,7 @@ public class SelectController : MonoBehaviour
             if(name == MainController._selectedNPC)
             {
                 _matchedCount++;
+                DisplayNPCNameOnScreen(name);
                 MainController._ins.CheckActStatus();
                 return true;
             } else
