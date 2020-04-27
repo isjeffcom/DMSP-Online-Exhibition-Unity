@@ -1,9 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.IO;
-using UnityEngine.UI;
 
 public class ItemController : MonoBehaviour
 {
@@ -14,12 +12,17 @@ public class ItemController : MonoBehaviour
 
 
     private ItemsList itemsList = new ItemsList();
-    private string itemsJson;
 
     private void Awake()
     {
         _ins = this;
 
+        // Start to get data
+        StartCoroutine(GetData());
+    }
+
+    public void UpdateAct()
+    {
         // Start to get data
         StartCoroutine(GetData());
     }
@@ -32,8 +35,7 @@ public class ItemController : MonoBehaviour
 
         if (request.isNetworkError || request.isHttpError)
         {
-            Debug.Log(request.error);
-            itemsJson = File.ReadAllText(Application.dataPath + "/Items.json");
+            // Do nothing..
         }
         else
         {
@@ -57,7 +59,7 @@ public class ItemController : MonoBehaviour
 
                 if(item.type == "sound")
                 {
-                    AudioController._ins.InvItemAudioPlay(item.src, itemName, -1, 0, false);
+                    AudioController._ins.InvItemAudioPlay(item.src, itemName, -1, -1, 0, false);
                 }
                 
             }

@@ -80,7 +80,20 @@ public class audioPeer : MonoBehaviour
         
         if (audioVFX)
         {
-            audioVFX.localScale = new Vector3(_freqBand[0] * 30 * scale, _freqBand[0] * 30 * scale, _freqBand[0] * 30 * scale);
+            float s = _freqBand[0] * 30 * scale;
+
+            // Min size
+            if(s < 0.1)
+            {
+                s = 0.1f;
+            }
+
+            // Max size
+            if(s > 3)
+            {
+                s = 3;
+            }
+            audioVFX.localScale = new Vector3(s, s, s);
         }
 
     }

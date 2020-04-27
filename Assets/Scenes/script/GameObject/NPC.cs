@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class NPC : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public class NPC : MonoBehaviour
     // Get Dialog container
     private GameObject dialogCont;
     private GameObject dialogAns;
+
+    public List<int> PlayIDs;
 
     // Flag for if dialog window opened
     private bool dialogEnabled = false;
@@ -86,7 +90,15 @@ public class NPC : MonoBehaviour
             // Check if dialog has already enabled
             if (Input.GetKey(KeyCode.A) && !AudioController._isPlaying)
             {
-                MainController._ins.AudioPlayByAct(this.name);
+                // Play by name or ID, if want to play by name, set playid to -1
+    
+                if (PlayIDs.Count == 0) {
+                    MainController._ins.AudioPlayByActName(this.name);
+                } else
+                {
+                    MainController._ins.AudioPlayByActId(PlayIDs[0]);
+                }
+                
                 //AudioController._ins.PlayNPCAudio(this.name);
                 clearTip();
             }

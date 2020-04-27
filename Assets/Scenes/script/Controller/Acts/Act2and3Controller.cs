@@ -30,7 +30,7 @@ public class Act2and3Controller : MonoBehaviour
 
     public void EnterAct3()
     {
-        MainController._act = 3;
+        MainController._ins.ToAct(3);
         NPCsController._ins.NPCswitch(3);//npc need to be active before MaptoAct3()
         MainController._ins.MapToAct3();
 

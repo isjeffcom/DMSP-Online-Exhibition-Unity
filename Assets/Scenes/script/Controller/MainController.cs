@@ -28,6 +28,7 @@ public class MainController : MonoBehaviour
     {
         GetAllObjsHasActTag();
         Act1and2Controller._ins.EnterAct1();
+        //Act2and3Controller._ins.EnterAct3();
     }
 
     public void GetAllObjsHasActTag()
@@ -54,6 +55,11 @@ public class MainController : MonoBehaviour
     {
         _act = toAct;
         ActObjectsControl();
+
+        // Update all act data
+        AudioController._ins.UpdateAct();
+        ItemController._ins.UpdateAct();
+        DialogController._ins.UpdateAct();
     }
 
     public void SelectNPC(string name)
@@ -117,9 +123,9 @@ public class MainController : MonoBehaviour
         
     }
 
-    public void AudioPlayByAct(string name)
+    public void AudioPlayByActName(string name)
     {
-        switch (_act)
+        /*switch (_act)
         {
             case 1:
                 AudioController._ins.PlayAllNPCsAudio();
@@ -127,7 +133,14 @@ public class MainController : MonoBehaviour
             case 2:
                 AudioController._ins.PlayNPCAudio(name);
                 break;
-        }
+        }*/
+
+        AudioController._ins.PlayNPCAudio(name);
+    }
+
+    public void AudioPlayByActId(int id)
+    {
+        AudioController._ins.PlayAudioById(id);
     }
 
 

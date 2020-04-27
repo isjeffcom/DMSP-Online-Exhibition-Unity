@@ -45,18 +45,22 @@ public class AudioController : MonoBehaviour
         StartCoroutine(GetData());
     }
 
+    public void UpdateAct()
+    {
+        StartCoroutine(GetData());
+    }
+
     // Get audios data file (.json format)
     IEnumerator GetData()
     {
-        UnityWebRequest request = UnityWebRequest.Get(MainController._rootAPI + api + "act" + MainController._act + "/audios.json");
+        UnityWebRequest request = UnityWebRequest.Get(MainController._rootAPI + api + "act" + MainController._act + "/audios.json?d=" + (Random.value * 10).ToString());
 
         yield return request.SendWebRequest();
 
         if (request.isNetworkError || request.isHttpError)
         {
             Debug.Log(request.error);
-            audiosJson = File.ReadAllText(Application.dataPath + "/audios.json");
-            AudiosList = JsonUtility.FromJson<AudiosList>(audiosJson);
+            // Do nothing...
         }
         else
         {
@@ -64,28 +68,32 @@ public class AudioController : MonoBehaviour
 
             if (autoStart)
             {
-                LoadAudio("", -1, true, true);
+                LoadAudio("", -1, true, true, false);
             }
-            
+
+            Debug.Log(request.downloadHandler.text);
+
         }
 
     }
 
     public void PlayNPCAudio(string name)
     {
-        LoadAudio(name, -1, false, false);
+        LoadAudio(name, -1, false, false, false);
     }
 
-    public void PlayAllNPCsAudio()
+    public void PlayAudioById(int id)
     {
-        LoadAudio("", 0, true, true);
+        
+        LoadAudio("", id, false, true, false);
     }
 
 
     //Load and play audio clips
     //Differ audios by acts number
-    public void LoadAudio(string objectName, int toId, bool init, bool hasNext)
+    public void LoadAudio(string objectName, int toId, bool init, bool hasNext, bool hasAlways)
     {
+        
         // End
         if (objectName == "" && toId == -1 && !init)
         {
@@ -105,22 +113,43 @@ public class AudioController : MonoBehaviour
         // Get audio name
         foreach (AudiosActs acts in AudiosList.audios.acts)
         {
-
             
+            // Search by name
             if (toId == -1)
             {
-                if(objectName == acts.objectName)
+                if (objectName == acts.objectName)
                 {
-                    StartCoroutine(DownloadAudio(MainController._rootAPI + api_audio + "act" + MainController._act + "/" + acts.audioName, acts.objectName, acts.to, acts.length, hasNext));
+                    
+                    // Check if overwrited by alwaysPopTo
+                    if (hasAlways == false && acts.alwaysPopTo != -1)
+                    {
+                        LoadAudio("", acts.alwaysPopTo, false, true, true);
+                        return;
+                    } else
+                    {
+                        
+                        StartCoroutine(DownloadAudio(MainController._rootAPI + api_audio + "act" + MainController._act + "/" + acts.audioName, acts.objectName, acts.id, acts.to, acts.length, hasNext));
+                    }
+                    
                 }
             } 
+            // Search by id
             else
             {
                 
                 if (toId == acts.id)
                 {
-                    
-                    StartCoroutine(DownloadAudio(MainController._rootAPI + api_audio + "act" + MainController._act + "/" + acts.audioName, acts.objectName, acts.to, acts.length, hasNext));
+                    // Check if overwrited by alwaysPopTo
+                    if (hasAlways == false && acts.alwaysPopTo != -1)
+                    {
+                        Debug.Log("aaa");
+                        LoadAudio("", acts.alwaysPopTo, false, true, true);
+                        return;
+                    }
+                    else
+                    {
+                        StartCoroutine(DownloadAudio(MainController._rootAPI + api_audio + "act" + MainController._act + "/" + acts.audioName, acts.objectName, acts.id, acts.to, acts.length, hasNext));
+                    }
                 }
             }
 
@@ -148,9 +177,8 @@ public class AudioController : MonoBehaviour
         return res;
     }
 
-    IEnumerator DownloadAudio(string url, string npc, int next, float nextLength, bool hasNext)
+    IEnumerator DownloadAudio(string url, string npc, int id, int next, float nextLength, bool hasNext)
     {
-        
 
         UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.WAV);
 
@@ -167,15 +195,37 @@ public class AudioController : MonoBehaviour
             AudioClip audioClip = DownloadHandlerAudioClip.GetContent(www);
 
             // Send to play
-            PlayAudio(audioClip, npc, next, nextLength, hasNext);
+            PlayAudio(audioClip, npc, id, next, nextLength, hasNext);
+
+            
         }
 
     }
 
-    public void PlayAudio(AudioClip audio, string npc, int nextId, float nextLength, bool hasNext)
+    public void PlayAudio(AudioClip audio, string npc, int id, int nextId, float nextLength, bool hasNext)
     {
+        
+
+        List<GameObject> targets = FindMultipleObjectByName(npc);
+        
+
+        GameObject target = new GameObject();
+        target.name = null;
+
+        if (targets.Count > 1)
+        {
+            target = FindMultipleObjectByPlayId(id);
+        }
+
+        if(target.name == null || target.name == "")
+        {
+            target = targets[0];
+        }
+
         // Get Audio Player
-        audioPlayer = GameObject.Find(npc).GetComponent<AudioSource>();
+        audioPlayer = target.GetComponent<AudioSource>();
+
+        
 
         // If audio player found, and is not playing
         if (audioPlayer && !_isPlaying)
@@ -250,15 +300,56 @@ public class AudioController : MonoBehaviour
 
         yield return new WaitForSeconds(delay + 0.5f);
 
+        audioPlayer.clip = null;
+        audioPlayer.Stop();
+
         // Could be a problem if delay is 0
-        LoadAudio("", next, false, true);
+        LoadAudio("", next, false, true, true);
         _isPlaying = false;
 
     }
 
-    public void InvItemAudioPlay(string url, string npc, int next, float nextLength, bool hasNext)
+    public void InvItemAudioPlay(string url, string npc, int id, int next, float nextLength, bool hasNext)
     {
-        StartCoroutine(DownloadAudio(url, npc, next, nextLength, hasNext));
+        StartCoroutine(DownloadAudio(url, npc, id, next, nextLength, hasNext));
+    }
+
+    private List<GameObject> FindMultipleObjectByName(string name)
+    {
+        List<GameObject> list = new List<GameObject>();
+
+        foreach (GameObject gameObj in GameObject.FindObjectsOfType<GameObject>())
+        {
+            if (gameObj.name == name)
+            {
+                list.Add(gameObj);
+                //Do what you want...
+            }
+        }
+
+        return list;
+    }
+
+    private GameObject FindMultipleObjectByPlayId(int id)
+    {
+
+        GameObject res = new GameObject();
+        res.name = null;
+
+        foreach (GameObject gameObj in GameObject.FindObjectsOfType<GameObject>())
+        {
+            if (gameObj.GetComponent<NPC>())
+            {
+                if (gameObj.GetComponent<NPC>().PlayIDs.Contains(id))
+                {
+                    res = gameObj;
+                }
+            }
+            
+        }
+
+        return res;
+
     }
 
 

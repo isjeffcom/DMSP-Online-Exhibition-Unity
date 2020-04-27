@@ -8,4 +8,5 @@ public class AudiosActs
     public string audioName;
     public float length;
     public int to;
+    public int alwaysPopTo;
 }

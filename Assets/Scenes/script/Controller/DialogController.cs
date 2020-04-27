@@ -57,6 +57,12 @@ public class DialogController : MonoBehaviour
 
     }
 
+    public void UpdateAct()
+    {
+        // Start to get data
+        StartCoroutine(GetData());
+    }
+
     // Get dialogs data file (.json format)
     IEnumerator GetData()
     {
@@ -66,9 +72,7 @@ public class DialogController : MonoBehaviour
 
         if (request.isNetworkError || request.isHttpError)
         {
-            Debug.Log(request.error);
-            dialogsJson = File.ReadAllText(Application.dataPath + "/dialogs.json");
-            DialogList = JsonUtility.FromJson<DialogList>(dialogsJson);
+            // DO NOTHNIG...
         }
         else
         {
