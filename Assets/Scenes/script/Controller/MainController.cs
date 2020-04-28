@@ -28,10 +28,10 @@ public class MainController : MonoBehaviour
     private void Start()
     {
         GetAllObjsHasActTag();
-        //Act1and2Controller._ins.EnterAct1();
+        Act1and2Controller._ins.EnterAct1();
         //Act1and2Controller._ins.EnterAct2();
         //Act2and3Controller._ins.EnterAct3();
-        Act3and4Controller._ins.EnterAct4();
+        //Act3and4Controller._ins.EnterAct4();
     }
 
     public void GetAllObjsHasActTag()
