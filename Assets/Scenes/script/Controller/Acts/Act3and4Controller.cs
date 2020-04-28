@@ -9,22 +9,22 @@ public class Act3and4Controller : MonoBehaviour
 
     private GameObject toNext;
     private Text tip;
-    private GameObject shadowCont;
-    private Animator shadow;
+    //private GameObject shadowCont;
+    //private Animator shadow;
 
     private void Awake()
     {
         _ins = this;
         toNext = GameObject.Find("toNext3");
         tip = GameObject.Find("UI_Tip").GetComponent<Text>();
-        shadowCont = GameObject.Find("UI_Shade_Cont");
-        shadow =shadowCont.GetComponent<Animator>();
+        //shadowCont = GameObject.Find("UI_Shade_Cont");
+        //shadow =shadowCont.GetComponent<Animator>();
     }
 
     private void Start()
     {
         toNext.SetActive(false);
-        shadowCont.SetActive(false);
+        //shadowCont.SetActive(false);
     }
 
     public void ActCheck()
@@ -55,8 +55,8 @@ public class Act3and4Controller : MonoBehaviour
         MissionController._ins.MissionText(4);
         MissionController._ins.MissionContent(4);
 
-        shadowCont.SetActive(true);
-        shadow.SetBool("isAct4", true);
+        //shadowCont.SetActive(true);
+        //shadow.SetBool("isAct4", true);
     }
 
 

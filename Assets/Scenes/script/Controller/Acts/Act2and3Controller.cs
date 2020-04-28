@@ -40,6 +40,7 @@ public class Act2and3Controller : MonoBehaviour
 
     public void EnterAct3()
     {
+        NPCsController._ins.ClearAllNPCName();
         ColliderController._ins.SwitchCollider(3);
         toNext.SetActive(false);
         MainController._ins.ToAct(3);

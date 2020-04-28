@@ -13,18 +13,48 @@ public class MainController : MonoBehaviour
     public static string _selectedNPC;
     public static bool playerMovable = true;
 
+    private GameObject shadowCont;
+    private Animator shadow;
+
     public List<GameObject> allObjsWithActTag = new List<GameObject>();
 
     public static string _rootAPI = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets";
 
+    public bool toAct2 = false;
+    public bool toAct3 = false;
+    public bool toAct4 = false;
+
     private void Awake()
     {
         _ins = this;
+
+        shadowCont = GameObject.Find("UI_Shade_Cont");
+        shadow = shadowCont.GetComponent<Animator>();
     }
 
     private void Start()
     {
         GetAllObjsHasActTag();
+        shadowCont.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (toAct2)
+        {
+            _act = 2;
+            Act1and2Controller._ins.EnterAct2();
+        }
+        if (toAct3)
+        {
+            _act = 3;
+            Act2and3Controller._ins.EnterAct3();
+        }
+        if (toAct4)
+        {
+            _act = 4;
+            Act3and4Controller._ins.EnterAct4();
+        }
     }
 
     public void GetAllObjsHasActTag()
@@ -70,6 +100,9 @@ public class MainController : MonoBehaviour
         GameObject.Find("UI_Tip").GetComponent<Text>().color = new Color(1, 1, 1, 1);
         GameObject.Find("UI_Floor_Cont").GetComponent<Image>().sprite = Resources.Load<Sprite>("floorinfo_act2_night");
         PlayerController_Mouse._ins.playerVisualNight();
+        playerMovable = true;
+        shadowCont.SetActive(false);
+        shadow.SetBool("isAct4", false);
     }
 
     public void MapToDay()
@@ -80,6 +113,9 @@ public class MainController : MonoBehaviour
         GameObject.Find("UI_Floor_Cont").GetComponent<Image>().sprite = Resources.Load<Sprite>("floorinfo_act1_day");
         //NPCsController._ins.NPCVisualDay();
         PlayerController_Mouse._ins.playerVisualDay();
+        playerMovable = true;
+        shadowCont.SetActive(false);
+        shadow.SetBool("isAct4", false);
     }
 
     public void MapToAct3()
@@ -90,7 +126,9 @@ public class MainController : MonoBehaviour
         GameObject.Find("UI_Floor_Cont").GetComponent<Image>().sprite = Resources.Load<Sprite>("floorinfo_act3_day");
         //NPCsController._ins.NPCVisualDay();
         PlayerController_Mouse._ins.playerVisualDay();
-        //inves.SetActive(false);
+        playerMovable = true;
+        shadowCont.SetActive(false);
+        shadow.SetBool("isAct4", false);
     }
 
     public void MapToAct4()
@@ -101,6 +139,9 @@ public class MainController : MonoBehaviour
         GameObject.Find("UI_Floor_Cont").GetComponent<Image>().sprite = Resources.Load<Sprite>("floorinfo_act4_day");
         PlayerController_Mouse._ins.playerVisualDay();
         playerMovable = false;
+        //enterAct4
+        shadowCont.SetActive(true);
+        shadow.SetBool("isAct4", true);
     }
 
     public void ActObjectsControl()
