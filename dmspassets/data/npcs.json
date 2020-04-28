@@ -3,22 +3,22 @@
         {
             "id": 0,
             "name":"Joe",
-            "intro": "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/imgs/joe.png"
+            "intro": "/imgs/joe.png"
         },
         {
             "id": 0,
             "name":"Blake",
-            "intro": "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/imgs/blake.png"
+            "intro": "/imgs/blake.png"
         },
         {
             "id": 0,
             "name":"Shawn",
-            "intro": "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/imgs/shawn.png"
+            "intro": "/imgs/shawn.png"
         },
         {
             "id": 0,
             "name":"Tom",
-            "intro": "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/imgs/tom.png"
+            "intro": "/imgs/tom.png"
         }
         
     ]

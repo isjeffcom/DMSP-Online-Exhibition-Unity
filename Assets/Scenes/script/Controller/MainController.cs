@@ -8,7 +8,8 @@ public class MainController : MonoBehaviour
     public static MainController _ins;
     
     // Global Vars
-    public static int _act = 1; 
+    public static int _act = 1;
+    public static int _actCount = 4;
     public static string _selectedNPC;
 
     public List<GameObject> allObjsWithActTag = new List<GameObject>();
@@ -27,19 +28,20 @@ public class MainController : MonoBehaviour
     private void Start()
     {
         GetAllObjsHasActTag();
-        Act1and2Controller._ins.EnterAct1();
+        //Act1and2Controller._ins.EnterAct1();
+        //Act1and2Controller._ins.EnterAct2();
         //Act2and3Controller._ins.EnterAct3();
+        Act3and4Controller._ins.EnterAct4();
     }
 
     public void GetAllObjsHasActTag()
     {
-        string toSearch = "Act";
-        string[] allTags = UnityEditorInternal.InternalEditorUtility.tags;
-        for (int i = 0; i < allTags.Length; i++)
+
+        for (int i = 1; i <= _actCount; i++)
         {
-            if (UnityEditorInternal.InternalEditorUtility.tags[i].Contains(toSearch))
+            GameObject[] tmps = GameObject.FindGameObjectsWithTag("Act_" + i);
+            if (tmps != null)
             {
-                GameObject[] tmps = GameObject.FindGameObjectsWithTag(allTags[i]);
                 foreach(GameObject item in tmps)
                 {
                     allObjsWithActTag.Add(item);
@@ -60,6 +62,7 @@ public class MainController : MonoBehaviour
         AudioController._ins.UpdateAct();
         ItemController._ins.UpdateAct();
         DialogController._ins.UpdateAct();
+        
     }
 
     public void SelectNPC(string name)
@@ -165,4 +168,6 @@ public class MainController : MonoBehaviour
         }
         
     }
+
+
 }

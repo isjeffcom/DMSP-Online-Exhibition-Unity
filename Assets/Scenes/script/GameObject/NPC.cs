@@ -26,6 +26,9 @@ public class NPC : MonoBehaviour
     private GameObject UI_NNT_Sample;
     private GameObject UI_NNT;
 
+    private GameObject Player;
+    private SpriteRenderer Rend;
+
     private void Awake()
     {
         // Find tips
@@ -38,6 +41,9 @@ public class NPC : MonoBehaviour
 
         UI_NPC_onscreen_name_cont = GameObject.Find("UI_NNT_Cont");
         UI_NNT_Sample = GameObject.Find("UI_NNT_Sample");
+
+        Player = GameObject.Find("player");
+        Rend = gameObject.GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -63,7 +69,6 @@ public class NPC : MonoBehaviour
         }
         
     }
-
     private void Update()
     {
         // If you want to let the NPC moveable
@@ -71,6 +76,25 @@ public class NPC : MonoBehaviour
         {
             UI_NNT.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position);
         }*/
+
+        // Change opacity when close
+
+        float dis = Vector3.Distance(Player.transform.position, gameObject.transform.position);
+        dis = dis * 1.5f;
+        float alpha = 10 - dis;
+        alpha = alpha / 10;
+
+        if(alpha > 0.9)
+        {
+            alpha = 1;
+        }
+
+        if(alpha < 0.2f)
+        {
+            alpha = 0.2f;
+        }
+
+        Rend.color = new Color(Rend.color.r, Rend.color.g, Rend.color.b, alpha);
     }
 
     private void OnTriggerStay2D(Collider2D collision)

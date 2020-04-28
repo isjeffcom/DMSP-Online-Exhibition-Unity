@@ -47,6 +47,8 @@ public class ImageViewerController : MonoBehaviour
 
     public void MultipleImage(List<string> srcs)
     {
+        ClearImgContainer();
+
         int i = 0;
 
         foreach (string src in srcs)
@@ -94,6 +96,7 @@ public class ImageViewerController : MonoBehaviour
         {
 
             Texture2D texture = ((DownloadHandlerTexture)www.downloadHandler).texture as Texture2D;
+
             if (!multiple)
             {
                 DisplayImage(texture);
@@ -111,6 +114,7 @@ public class ImageViewerController : MonoBehaviour
 
     }
 
+
     void DisplayImage(Texture2D texture)
     {
         Rect rec = new Rect(0, 0, texture.width, texture.height);
@@ -127,6 +131,13 @@ public class ImageViewerController : MonoBehaviour
                 DisplayImages(allTextures, _currentImgIndex + 1);
             }
         }
+    }
+
+    // Clean image displaying container
+    private void ClearImgContainer()
+    {
+        allTextures = new List<Texture2D>();
+        itemImg.GetComponent<Image>().sprite = Sprite.Create(new Texture2D(100, 100), new Rect(0, 0, 100, 100), new Vector2(0.5f, 0.5f), 100);
     }
 
     public void LastImage()
@@ -157,6 +168,11 @@ public class ImageViewerController : MonoBehaviour
     // Set Button Available
     void SetButtonsStyle()
     {
+        if (_currentImgsLength == 1)
+        {
+            DisableBothBtns();
+            return;
+        }
 
         if (_currentImgIndex == 0)
         {
@@ -175,6 +191,8 @@ public class ImageViewerController : MonoBehaviour
             imgNext.SetActive(true);
             imgLast.SetActive(true);
         }
+
+        
     }
 
     void DisableBothBtns()

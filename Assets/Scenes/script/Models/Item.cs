@@ -6,5 +6,5 @@ public class Item
     public string name;
     public string type;
     public string fileType;
-    public string src;
+    public List<string> src;
 }

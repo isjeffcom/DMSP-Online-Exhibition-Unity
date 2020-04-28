@@ -58,7 +58,7 @@ public class SelectController : MonoBehaviour
         foreach(string item in allNPCName)
         {
             // re positioning
-            Vector2 posi = new Vector3(Screen.width - 130, Screen.height - 180 - (50*i));
+            Vector2 posi = new Vector2(Screen.width - 130, Screen.height - 180 - (50*i));
 
             // Instantiate
             GameObject single = Instantiate(UI_NPCName_Sample);

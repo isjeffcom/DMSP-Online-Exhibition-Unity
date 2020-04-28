@@ -27,7 +27,6 @@ public class Act1and2Controller : MonoBehaviour
     {
         if(SelectController._matchedCount == SelectController._allNPCsLength)
         {
-            Debug.Log(realAll);
             if (!realAll)
             {
                 AudioController._ins.StopAudio();

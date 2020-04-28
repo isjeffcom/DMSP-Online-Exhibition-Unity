@@ -1,22 +1,68 @@
 {
     "Items": [
         {
-            "name": "notebook",
+            "name": "Notebook",
             "type": "image",
             "fileType": "png",
-            "src": "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/notebook.png"
+            "src": [
+                "/imgs/a1.png"
+            ]
         },
         {
-            "name": "computer",
+            "name": "Computer",
             "type": "image",
             "fileType": "png",
-            "src": "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/computer.png"
+            "src": [
+                "/imgs/a2.png"
+            ]
         },
         {
-            "name": "phone",
+            "name": "Diary",
+            "type": "image",
+            "fileType": "png",
+            "src": [
+                "/imgs/b2.png"
+            ]
+        },
+        {
+            "name": "Dissertation",
+            "type": "image",
+            "fileType": "png",
+            "src": [
+                "/imgs/c1.png"
+            ]
+        },
+        {
+            "name": "Plane-Ticket",
+            "type": "image",
+            "fileType": "png",
+            "src": [
+                "/imgs/c2.png"
+            ]
+        },
+        {
+            "name": "Watch-List",
+            "type": "image",
+            "fileType": "png",
+            "src": [
+                "/imgs/d1.png"
+            ]
+        },
+        {
+            "name": "Search-Record",
+            "type": "image",
+            "fileType": "png",
+            "src": [
+                "/imgs/d2.png"
+            ]
+        },
+        {
+            "name": "Voice-Message",
             "type": "sound",
             "fileType": "wav",
-            "src": "https://playground.eca.ed.ac.uk/~s1888009/dmspassets/audios/act1/voicemessage.wav"
+            "src": [
+                "/audios/act1/voicemessage.wav"
+            ]
         }
     ]
 }

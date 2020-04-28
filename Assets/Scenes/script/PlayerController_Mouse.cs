@@ -30,12 +30,18 @@ public class PlayerController_Mouse : MonoBehaviour
 
         clickVFX = GameObject.Find("Nav-VFX").GetComponent<Transform>();
         ani = GetComponent<Animator>();
+
+        //ani.SetBool("isWalking", true);
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        // Look at pointing position
+        // Get mouse target position
+
+
         if (Input.GetMouseButtonDown(1))
         {
             SetTargetPosition();
@@ -53,15 +59,17 @@ public class PlayerController_Mouse : MonoBehaviour
         targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         targetPosition.z = transform.position.z;
 
+        //Define animator bool
+        ani.SetBool("isWalking", true);
 
-        // Visual Effect for Click, pass in position
-        StartCoroutine(PlayClickedAni(targetPosition));
-        
         // Define is Moving
         isMoving = true;
 
-        //Define animator bool
-        ani.SetBool("isWalking", true);
+        // Visual Effect for Click, pass in position
+        StartCoroutine(PlayClickedAni(targetPosition));
+
+
+
     }
 
     void Move()
@@ -70,7 +78,13 @@ public class PlayerController_Mouse : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(Vector3.forward, targetPosition);
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
-        if(transform.position == targetPosition)
+
+        //ani.bodyRotation = transform.rotation;
+
+        Vector2 dir = new Vector2(targetPosition.x - transform.position.x, targetPosition.y - transform.position.y);
+        transform.up = dir;
+
+        if (transform.position == targetPosition)
         {
             EndMoving();
         }

@@ -68,7 +68,6 @@ public class MissionController : MonoBehaviour
             else
             {
                 tip.text = "Click Compelete to Confirm Your Choice";
-
             }
         }
         else

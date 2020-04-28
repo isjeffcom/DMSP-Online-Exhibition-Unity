@@ -2528,7 +2528,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.26, y: 2.88}
+  m_Size: {x: 5.2, y: 5.7}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -3069,7 +3069,7 @@ GameObject:
   - component: {fileID: 353534467}
   - component: {fileID: 353534466}
   m_Layer: 0
-  m_Name: document record
+  m_Name: Search-Record
   m_TagString: Inves
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3682,7 +3682,7 @@ GameObject:
   - component: {fileID: 431524026}
   - component: {fileID: 431524025}
   m_Layer: 0
-  m_Name: dissertation
+  m_Name: Dissertation
   m_TagString: Inves
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9997,7 +9997,7 @@ GameObject:
   - component: {fileID: 1044593378}
   - component: {fileID: 1044593380}
   m_Layer: 0
-  m_Name: notebook
+  m_Name: Notebook
   m_TagString: Inves
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10474,7 +10474,7 @@ GameObject:
   - component: {fileID: 1096649940}
   - component: {fileID: 1096649939}
   m_Layer: 0
-  m_Name: diary
+  m_Name: Diary
   m_TagString: Inves
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11507,7 +11507,7 @@ GameObject:
   - component: {fileID: 1267336861}
   - component: {fileID: 1267336860}
   m_Layer: 0
-  m_Name: computer
+  m_Name: Computer
   m_TagString: Inves
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13378,7 +13378,7 @@ GameObject:
   - component: {fileID: 1491404659}
   - component: {fileID: 1491404658}
   m_Layer: 0
-  m_Name: phone
+  m_Name: Voice-Message
   m_TagString: Inves
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14898,7 +14898,7 @@ GameObject:
   - component: {fileID: 1648372930}
   - component: {fileID: 1648372929}
   m_Layer: 0
-  m_Name: watching list
+  m_Name: Watch-List
   m_TagString: Inves
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18909,7 +18909,7 @@ GameObject:
   - component: {fileID: 2124455489}
   - component: {fileID: 2124455488}
   m_Layer: 0
-  m_Name: plan ticket
+  m_Name: Plane-Ticket
   m_TagString: Inves
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

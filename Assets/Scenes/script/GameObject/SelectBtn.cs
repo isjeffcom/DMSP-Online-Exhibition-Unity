@@ -13,7 +13,7 @@ public class SelectBtn : MonoBehaviour
 
         if (done)
         {
-            Debug.Log("Done");
+            //Debug.Log("Done");
             return;
         }
 
@@ -28,7 +28,7 @@ public class SelectBtn : MonoBehaviour
         else 
         {
             StartCoroutine(WrongAni());
-            Debug.Log("Wrong or not selected");
+            //Debug.Log("Wrong or not selected");
         }
     }
 

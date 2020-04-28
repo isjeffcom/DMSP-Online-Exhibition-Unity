@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.IO;
@@ -54,12 +55,21 @@ public class ItemController : MonoBehaviour
                 
                 if(item.type == "image")
                 {
-                    ImageViewerController._ins.SingleImage(item.src);
+                    // Add root api address
+                    List<string> srcs = new List<string>();
+                    foreach(string s in item.src)
+                    {
+                        srcs.Add(MainController._rootAPI + s);
+                    }
+
+                    Debug.Log(srcs[0]);
+
+                    ImageViewerController._ins.MultipleImage(srcs);
                 }
 
                 if(item.type == "sound")
                 {
-                    AudioController._ins.InvItemAudioPlay(item.src, itemName, -1, -1, 0, false);
+                    AudioController._ins.InvItemAudioPlay(MainController._rootAPI + item.src[0], itemName, -1, -1, 0, false);
                 }
                 
             }

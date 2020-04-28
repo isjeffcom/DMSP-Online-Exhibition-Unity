@@ -66,7 +66,7 @@ public class NPCsController : MonoBehaviour
 
         foreach (Npc el in npcs.npcs)
         {
-            res.Add(el.intro);
+            res.Add(MainController._rootAPI + el.intro);
         }
 
         return res;
@@ -102,7 +102,6 @@ public class NPCsController : MonoBehaviour
         {
             child.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
         }
-
     }
 
     public void NPCswitch(int act)
@@ -117,12 +116,15 @@ public class NPCsController : MonoBehaviour
             case 1:
                 NPC_Act1.SetActive(true);
             break;
+
             case 2:
                 NPC_Act2.SetActive(true);
             break;
+
             case 3:
                 NPC_Act3.SetActive(true);
             break;
+
             case 4:
                 NPC_Act4.SetActive(true);
             break;
@@ -135,13 +137,29 @@ public class NPCsController : MonoBehaviour
     {
         foreach(Transform child in NPCs.transform)
         {
-            foreach(Transform c in child)
+            if (child.gameObject.activeInHierarchy)
             {
-                if (c.GetComponent<NPC>())
+                foreach (Transform c in child)
                 {
-                    c.GetComponent<NPC>().showNameOnScreen();
+                    if (c.gameObject.activeInHierarchy)
+                    {
+                        if (c.GetComponent<NPC>())
+                        {
+                            c.GetComponent<NPC>().showNameOnScreen();
+                        }
+                    }
                 }
             }
+            
+        }
+    }
+
+    public void ClearAllNPCName()
+    {
+        GameObject cont = GameObject.Find("UI_NNT_Cont");
+        foreach(Transform c in cont.transform)
+        {
+            Destroy(c);
         }
     }
 

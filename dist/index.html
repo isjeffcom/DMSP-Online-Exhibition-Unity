@@ -12,9 +12,14 @@
       var unityInstance = UnityLoader.instantiate("unityContainer", "Build/dist.json", {onProgress: UnityProgress});
     </script>
   </head>
-  <body style="background:rgba(0,0,0,1);">
+  <body>
     <div class="webgl-content">
       <div id="unityContainer" style="width: 1200px; height: 800px"></div>
+      <div class="footer">
+        <div class="webgl-logo"></div>
+        <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+        <div class="title">DMSP</div>
+      </div>
     </div>
   </body>
 </html>
