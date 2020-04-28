@@ -11,27 +11,20 @@ public class MainController : MonoBehaviour
     public static int _act = 1;
     public static int _actCount = 4;
     public static string _selectedNPC;
+    public static bool playerMovable = true;
 
     public List<GameObject> allObjsWithActTag = new List<GameObject>();
 
     public static string _rootAPI = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets";
 
-    private GameObject inves;
-
     private void Awake()
     {
         _ins = this;
-
-        inves = GameObject.Find("Inves");
     }
 
     private void Start()
     {
         GetAllObjsHasActTag();
-        Act1and2Controller._ins.EnterAct1();
-        //Act1and2Controller._ins.EnterAct2();
-        //Act2and3Controller._ins.EnterAct3();
-        //Act3and4Controller._ins.EnterAct4();
     }
 
     public void GetAllObjsHasActTag()
@@ -106,8 +99,8 @@ public class MainController : MonoBehaviour
         GameObject.Find("bg").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("bg_act4_day");
         GameObject.Find("UI_Tip").GetComponent<Text>().color = new Color(0, 0, 0, 1);
         GameObject.Find("UI_Floor_Cont").GetComponent<Image>().sprite = Resources.Load<Sprite>("floorinfo_act4_day");
-        //NPCsController._ins.NPCVisualDay();
         PlayerController_Mouse._ins.playerVisualDay();
+        playerMovable = false;
     }
 
     public void ActObjectsControl()

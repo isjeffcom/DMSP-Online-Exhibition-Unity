@@ -8,6 +8,7 @@ public class SortingController : MonoBehaviour
 {
     public static SortingController _ins;
 
+    //For add script
     public SortName sortName;
 
     private GameObject NPC_Act2;
@@ -66,7 +67,7 @@ public class SortingController : MonoBehaviour
         allNameBlocks = GameObject.FindGameObjectsWithTag("NameBlock");
     }
 
-    //Whether all the clues have been checked
+    //Whether all the evidence have been checked
     public bool allChecked()
     {
         GetNameBlocks();

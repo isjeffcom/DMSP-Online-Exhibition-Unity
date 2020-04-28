@@ -9,17 +9,22 @@ public class Act3and4Controller : MonoBehaviour
 
     private GameObject toNext;
     private Text tip;
+    private GameObject shadowCont;
+    private Animator shadow;
 
     private void Awake()
     {
         _ins = this;
         toNext = GameObject.Find("toNext3");
         tip = GameObject.Find("UI_Tip").GetComponent<Text>();
+        shadowCont = GameObject.Find("UI_Shade_Cont");
+        shadow =shadowCont.GetComponent<Animator>();
     }
 
     private void Start()
     {
         toNext.SetActive(false);
+        shadowCont.SetActive(false);
     }
 
     public void ActCheck()
@@ -40,15 +45,18 @@ public class Act3and4Controller : MonoBehaviour
 
     public void EnterAct4()
     {
+        NPCsController._ins.ClearAllNPCName();
         ColliderController._ins.SwitchCollider(4);
-
         MainController._ins.ToAct(4);
-        //NPCsController._ins.NPCswitch(4);//npc need to be active before MaptoAct3()
+        NPCsController._ins.NPCswitch(4);
+        NPCsController._ins.DisplayAllNameOnScreen(4);
         MainController._ins.MapToAct4();
 
         MissionController._ins.MissionText(4);
         MissionController._ins.MissionContent(4);
-        
+
+        shadowCont.SetActive(true);
+        shadow.SetBool("isAct4", true);
     }
 
 

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.IO;
 using System.Collections;
@@ -133,7 +133,7 @@ public class NPCsController : MonoBehaviour
 
     }
 
-    public void DisplayAllNameOnScreen()
+    public void DisplayAllNameOnScreen(int act)
     {
         foreach(Transform child in NPCs.transform)
         {
@@ -143,23 +143,47 @@ public class NPCsController : MonoBehaviour
                 {
                     if (c.gameObject.activeInHierarchy)
                     {
-                        if (c.GetComponent<NPC>())
+                        if (act == 3)
                         {
-                            c.GetComponent<NPC>().showNameOnScreen();
+                            foreach (Transform d in c)
+                            {
+                                if (d.gameObject.activeInHierarchy)
+                                {
+                                    if (d.GetComponent<NPC>())
+                                    {
+                                        d.GetComponent<NPC>().showNameOnScreen();
+                                    }
+                                }
+                            }
+                        }
+
+                        else
+                        {
+                            if (c.GetComponent<NPC>())
+                            {
+                                c.GetComponent<NPC>().showNameOnScreen();
+                            }
                         }
                     }
+                   
+                    
+
                 }
+
+               
+               
             }
             
         }
     }
-
+    
     public void ClearAllNPCName()
     {
         GameObject cont = GameObject.Find("UI_NNT_Cont");
         foreach(Transform c in cont.transform)
         {
-            Destroy(c);
+            c.GetComponent<Text>().color = new Color(0, 0, 0, 0);
+            
         }
     }
 

@@ -11,16 +11,40 @@ public class Act1and2Controller : MonoBehaviour
 
     private bool realAll = false;
 
+    private GameObject NPC_Act1;
+    private List<GameObject> allNPC = new List<GameObject>();
+
     private void Awake()
     {
         _ins = this;
 
         invesCont = GameObject.Find("Inves");
+        NPC_Act1 = GameObject.Find("NPC_Act1");
     }
 
     private void Start()
     {
+        GetAllNPCs();
+    }
 
+
+    private void GetAllNPCs()
+    {
+
+        foreach (Transform child in NPC_Act1.transform)
+        {
+            allNPC.Add(child.gameObject);
+        }
+        
+    }
+
+    public void HideNPCNameOnScreen()
+    {
+        foreach (GameObject item in allNPC)
+        {
+            item.GetComponent<NPC>().hideNameOnScreen();
+           
+        }
     }
 
     public void ActCheck()
@@ -65,6 +89,7 @@ public class Act1and2Controller : MonoBehaviour
     public void EnterAct2()
     {
         MainController._ins.ToAct(2);
+        HideNPCNameOnScreen();
         NPCsController._ins.NPCswitch(2);
         MainController._ins.MapToNight();
         invesCont.SetActive(true);
@@ -73,6 +98,6 @@ public class Act1and2Controller : MonoBehaviour
         MissionController._ins.MissionContent(2);
 
         ColliderController._ins.SwitchCollider(2);
-
+        
     }
 }

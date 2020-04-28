@@ -44,6 +44,8 @@ public class NPC : MonoBehaviour
 
         Player = GameObject.Find("player");
         Rend = gameObject.GetComponent<SpriteRenderer>();
+
+        
     }
 
     private void Start()
@@ -164,30 +166,31 @@ public class NPC : MonoBehaviour
         // Create 
         UI_NNT = Instantiate(UI_NNT_Sample);
 
+        // Set Position
+        UI_NNT.transform.position = posi;
+
         // Set Parent
         UI_NNT.transform.SetParent(UI_NPC_onscreen_name_cont.transform);
 
         // Set Text
         UI_NNT.GetComponent<Text>().text = this.name;
 
-        // Set Position
-        UI_NNT.transform.position = posi;
 
         // Set Default Unseeable
-        UI_NNT.GetComponent<CanvasRenderer>().SetColor(new Color(0,0,0,0));
+        UI_NNT.GetComponent<Text>().color = new Color(0, 0, 0, 0);
     }
 
     public void showNameOnScreen()
     {
         if (UI_NNT)
         {
-            UI_NNT.GetComponent<CanvasRenderer>().SetColor(new Color(0, 0, 0, 1));
+            UI_NNT.GetComponent<Text>().color = new Color(0, 0, 0, 1);
         }
         
     }
 
     public void hideNameOnScreen()
     {
-        UI_NNT.GetComponent<CanvasRenderer>().SetColor(new Color(0, 0, 0, 0));
+        UI_NNT.GetComponent<Text>().color = new Color(0, 0, 0, 0);
     }
 }

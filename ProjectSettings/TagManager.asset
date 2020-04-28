@@ -12,6 +12,7 @@ TagManager:
   - Inves
   - OrderingBlank
   - NameBlock
+  - Scenes
   layers:
   - Default
   - TransparentFX

@@ -6,6 +6,7 @@ public class Buttons : MonoBehaviour
     public void ToNextUI(string name)
     {
         UIController._ins.switchUIView(name, true);
+        Act1and2Controller._ins.EnterAct1();
     }
 
     public void CloseItemWindow()

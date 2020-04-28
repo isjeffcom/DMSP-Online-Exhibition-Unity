@@ -30,8 +30,7 @@ public class PlayerController_Mouse : MonoBehaviour
 
         clickVFX = GameObject.Find("Nav-VFX").GetComponent<Transform>();
         ani = GetComponent<Animator>();
-
-        //ani.SetBool("isWalking", true);
+        
     }
 
 
@@ -41,16 +40,24 @@ public class PlayerController_Mouse : MonoBehaviour
         // Look at pointing position
         // Get mouse target position
 
-
-        if (Input.GetMouseButtonDown(1))
+        if (MainController.playerMovable)
         {
-            SetTargetPosition();
+            if (Input.GetMouseButtonDown(1))
+            {
+                SetTargetPosition();
+            }
+
+            if (isMoving)
+            {
+                Move();
+            }
+        }
+        else
+        {
+            ani.SetBool("isWalking", false);
         }
 
-        if (isMoving)
-        {
-            Move();
-        }
+        
     }
 
     void SetTargetPosition()
