@@ -106,16 +106,18 @@ public class SortingController : MonoBehaviour
         for(int i = 1; i < 5; i++)
         {
             // re positioning
-            Vector3 posi = new Vector3(Screen.width - 440, Screen.height - (80 * i) -340, 0);
+            Vector3 posi = new Vector3(-340, -260 - (i * 50), 0);
 
             // Instantiate
-            GameObject block = Instantiate(Mission_Sorting_Block, posi, Quaternion.identity);
+            GameObject block = Instantiate(Mission_Sorting_Block);
 
             // Set Text
             block.GetComponentInChildren<Text>().text = i.ToString();
 
             // Set button parent
             block.transform.SetParent(Mission_Content_Act2.transform);
+
+            block.transform.localPosition = posi;
 
             block.transform.localScale = new Vector3(1, 1, 1);
         }
@@ -125,16 +127,18 @@ public class SortingController : MonoBehaviour
         foreach (string item in allNPCName)
         {
             // re positioning
-            Vector3 posi = new Vector3(Screen.width - 220, Screen.height - (80 * j) - 340, 0);
+            Vector3 posi = new Vector3(-210, -260 - (j*50), 0);
 
             // Instantiate
-            GameObject name = Instantiate(Mission_Sorting_NameBlock, posi, Quaternion.identity);
+            GameObject name = Instantiate(Mission_Sorting_NameBlock);
 
             // Set Text
             name.GetComponentInChildren<Text>().text = item;
 
             // Set button parent
             name.transform.SetParent(Mission_Content_Act2.transform);
+
+            name.transform.localPosition = posi;
 
             name.transform.localScale = new Vector3(1, 1, 1);
 

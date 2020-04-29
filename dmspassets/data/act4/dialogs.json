@@ -1,9 +1,144 @@
 {
     "Dialogs": [
         {
-            "name": "Joe",
+            "name": "Blake",
 			"time": [],
             "convs":[
+                {
+					"id": 0,
+					"question": "Blake: What are you, a detective? Don’t jump to conclusions, you’ve only seen one side of the story and let’s face it no one here is innocent. It’ll be better if we cooperate.",
+					"options": [
+						{"txt": "I just want to know the truth", "to": 1},
+						{"txt": "What are you talking about?", "to": 2}
+					],
+					"to":-1
+                },
+                {
+					"id": 1,
+					"question": "Blake: Ahaha, you want the truth?",
+					"options": [],
+					"to":3
+                },
+                {
+					"id": 2,
+					"question": "Blake: Don’t act the fool.",
+					"options": [],
+					"to":3
+                },
+                {
+					"id": 3,
+					"question": "Joe: Well it seems everyone here knows he’s a detective. Look, there’s no point beating round the bush, Blake is the one who created and spread the virus.",
+					"options": [],
+					"to":4
+                },
+                {
+					"id": 4,
+					"question": "Blake: Is this really all my fault?",
+					"options": [],
+					"to":5
+                },
+                {
+					"id": 5,
+					"question": "Shawn: Then why did you need the SARS-CoV and MERS-CoV reports? Why did you take the incubator out of the lab?",
+					"options": [],
+					"to":6
+                },
+                {
+					"id": 6,
+					"question": "Tom: Detective, I think you should have gathered more evidence.",
+					"options": [],
+					"to":7
+                },
+                {
+					"id": 7,
+					"question": "Blake: They’re all in collusion, do you really believe them?",
+					"options": [],
+					"to":8
+                },
+                {
+					"id": 8,
+					"question": "Blake: They’re all in collusion, do you really believe them?",
+					"options": [
+                        {"txt": "I'll deal with it fairly", "to": 9},
+						{"txt": "Please tell me the reason for talking the incubator", "to": 14}
+                    ],
+					"to":-1
+                },
+                {
+					"id": 9,
+					"question": "Joe: It’s no use denying that Blake is the one at the center of the virus, the evidence is conclusive.",
+					"options": [],
+					"to":10
+                },
+                {
+					"id": 10,
+					"question": "Shawn: The incubator and the reports.",
+					"options": [],
+					"to":11
+                },
+                {
+					"id": 11,
+					"question": "Tom: And he also went to ITALY a few weeks ago.",
+					"options": [
+                        {"txt": "I think it's Blake", "to": 12},
+                        {"txt": "Blake, can you explain?", "to": 14}
+                    ],
+					"to":-1
+                },
+                {
+					"id": 12,
+					"question": "Blake: Nobody cares who actually is to blame as long as there’s a scapegoat. I will give you guys my research findings, then why not let this outsider — the so called detective, be the scapegoat?",
+					"options": [],
+					"to":13
+                },
+                {
+					"id": 13,
+					"question": "Joe: Emmm, okay.",
+					"options": [],
+					"to":900
+                },
+                {
+					"id": 14,
+					"question": "Blake: (takes a breath) I did. But everyone is responsible for this.",
+					"options": [],
+					"to":15
+                },
+                {
+					"id": 15,
+					"question": "Blake: Tom was the first to study the virus, and Joe helped him. Shawn helped them keep up the good guy facade and avoid offending anyone.",
+					"options": [
+                        {"txt": "I think it's Blake", "to": 999},
+                        {"txt": "I'ill continue to investigate everyone", "to": 16}
+                    ],
+					"to":-1
+                },
+                {
+					"id": 16,
+					"question": "Joe: Do you really believe they want the truth? The people who sent you here just want a scapegoat!",
+					"options": [],
+					"to":17
+                },
+                {
+					"id": 17,
+					"question": "Shawn: Detective, they could even pin it on you.",
+					"options": [],
+					"to":18
+                },
+                {
+					"id": 18,
+					"question": "Shawn: One person on their own cannot convince the whole public.",
+					"options": [],
+					"to":19
+                },
+                {
+					"id": 19,
+					"question": "Shawn: Detective, make your decision carefully",
+					"options": [
+                        {"txt": "I think it's Blake", "to": 999},
+                        {"txt": "Maintain an qeuitable", "to": 900}
+                    ],
+					"to":-1
+                }
 			]
         }
     ]

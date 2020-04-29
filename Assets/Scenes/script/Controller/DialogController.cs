@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.IO;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DialogController : MonoBehaviour
 {
@@ -114,18 +115,21 @@ public class DialogController : MonoBehaviour
         // Find answer by question from NPC name
         foreach (Dialogs dialog in DialogList.Dialogs)
         {
+            
+            
             if (character == dialog.name)
             {
                 // Get answer
                 foreach (DialogsConvs convs in dialog.convs)
                 {
+
                     
                     if (toId == convs.id)
                     {
+                        
                         question = convs.question;
-
                         // If have options than save options, if no than ready to go next.
-                        if(convs.options.Count == 0)
+                        if (convs.options.Count == 0)
                         {
                             to = convs.to;
                             _DialogNext = to;
@@ -161,6 +165,8 @@ public class DialogController : MonoBehaviour
     // React by options
     void DialogReactByOptions(int to)
     {
+        DetectEnd(to);
+
         if (_DialogState == 1)
         {
             ShowDialog(_DialogNPC, to);
@@ -170,6 +176,8 @@ public class DialogController : MonoBehaviour
     // React by Click Container
     void DialogReactByClick(int to)
     {
+        DetectEnd(to);
+
         if (_DialogState == 2)
         {
             ShowDialog(_DialogNPC, to);
@@ -188,8 +196,8 @@ public class DialogController : MonoBehaviour
         foreach(DialogsOptions opt in options)
         {
             // Calculate x and y
-            int x = Screen.width - 100;
-            int y = 5 + (i*40);
+            int x = -200;
+            int y = -10 + (i*40);
 
             // Create Buttons
             CreateButton(dialogOptionsCont, new Vector3(x, y, -1), opt.txt, opt.to);
@@ -250,11 +258,25 @@ public class DialogController : MonoBehaviour
     private void CreateButton(GameObject parent, Vector3 posi, string txt, int to)
     {
         // Create buttons
-        GameObject button = Instantiate(UI_Opt_Button, posi, Quaternion.identity); // Instantiate
+        GameObject button = Instantiate(UI_Opt_Button); // Instantiate
         
         button.transform.SetParent(parent.transform); //Setting button parent
+        button.transform.localPosition = posi;
         button.GetComponent<Button>().onClick.AddListener(delegate { DialogReactByOptions(to); }); //Setting actions
         button.transform.GetChild(0).GetComponent<Text>().text = txt; //Setting text
+    }
+
+    private void DetectEnd(int to)
+    {
+        if(MainController._act == MainController._actCount)
+        {
+            if (to >= 900)
+            {
+                string endingTxt = to == 999 ? "Blake is the SCAPRGOAT" : "Detective is the SCAPRGOAT";
+                Debug.Log("Game Ended: " + endingTxt);
+                SceneManager.LoadScene(0);
+            }
+        }
     }
 }
 

@@ -207,7 +207,6 @@ public class AudioController : MonoBehaviour
         
 
         List<GameObject> targets = FindMultipleObjectByName(npc);
-        
 
         GameObject target = new GameObject();
         target.name = null;
@@ -224,8 +223,6 @@ public class AudioController : MonoBehaviour
 
         // Get Audio Player
         audioPlayer = target.GetComponent<AudioSource>();
-
-        
 
         // If audio player found, and is not playing
         if (audioPlayer && !_isPlaying)
@@ -335,6 +332,8 @@ public class AudioController : MonoBehaviour
 
         GameObject res = new GameObject();
         res.name = null;
+
+        
 
         foreach (GameObject gameObj in GameObject.FindObjectsOfType<GameObject>())
         {

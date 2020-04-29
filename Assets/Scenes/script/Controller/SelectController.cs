@@ -58,7 +58,7 @@ public class SelectController : MonoBehaviour
         foreach(string item in allNPCName)
         {
             // re positioning
-            Vector2 posi = new Vector2(Screen.width - 130, Screen.height - 180 - (50*i));
+            Vector2 posi = new Vector2(-30, -50 - (i*50));
 
             // Instantiate
             GameObject single = Instantiate(UI_NPCName_Sample);
@@ -69,7 +69,7 @@ public class SelectController : MonoBehaviour
             // Set button parent
             single.transform.SetParent(UI_NPCName_Cont.transform);
 
-            single.transform.position = posi;
+            single.transform.localPosition = posi;
 
             // Counter
             i++;

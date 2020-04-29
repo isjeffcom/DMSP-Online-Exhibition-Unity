@@ -167,6 +167,7 @@ public class NPC : MonoBehaviour
         UI_NNT = Instantiate(UI_NNT_Sample);
 
         // Set Position
+        posi.y = posi.y + 14;
         UI_NNT.transform.position = posi;
 
         // Set Parent

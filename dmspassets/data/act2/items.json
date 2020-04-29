@@ -4,6 +4,7 @@
             "name": "Notebook",
             "type": "image",
             "fileType": "png",
+            "length": 0,
             "src": [
                 "/imgs/a1.png"
             ]
@@ -12,6 +13,7 @@
             "name": "Computer",
             "type": "image",
             "fileType": "png",
+            "length": 0,
             "src": [
                 "/imgs/a2.png"
             ]
@@ -20,6 +22,7 @@
             "name": "Diary",
             "type": "image",
             "fileType": "png",
+            "length": 0,
             "src": [
                 "/imgs/b2.png"
             ]
@@ -28,6 +31,7 @@
             "name": "Dissertation",
             "type": "image",
             "fileType": "png",
+            "length": 0,
             "src": [
                 "/imgs/c1.png"
             ]
@@ -36,6 +40,7 @@
             "name": "Plane-Ticket",
             "type": "image",
             "fileType": "png",
+            "length": 0,
             "src": [
                 "/imgs/c2.png"
             ]
@@ -44,6 +49,7 @@
             "name": "Watch-List",
             "type": "image",
             "fileType": "png",
+            "length": 0,
             "src": [
                 "/imgs/d1.png"
             ]
@@ -52,6 +58,7 @@
             "name": "Search-Record",
             "type": "image",
             "fileType": "png",
+            "length": 0,
             "src": [
                 "/imgs/d2.png"
             ]
@@ -60,8 +67,9 @@
             "name": "Voice-Message",
             "type": "sound",
             "fileType": "wav",
+            "length": 8.0,
             "src": [
-                "/audios/act1/voicemessage.wav"
+                "/audios/act2/voicemessage.wav"
             ]
         }
     ]

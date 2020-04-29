@@ -69,7 +69,7 @@ public class ItemController : MonoBehaviour
 
                 if(item.type == "sound")
                 {
-                    AudioController._ins.InvItemAudioPlay(MainController._rootAPI + item.src[0], itemName, -1, -1, 0, false);
+                    AudioController._ins.InvItemAudioPlay(MainController._rootAPI + item.src[0], itemName, -1, -1, item.length, false);
                 }
                 
             }

@@ -20,14 +20,9 @@ public class MainController : MonoBehaviour
 
     public static string _rootAPI = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets";
 
-    public bool toAct2 = false;
-    public bool toAct3 = false;
-    public bool toAct4 = false;
-
     private void Awake()
     {
         _ins = this;
-
         shadowCont = GameObject.Find("UI_Shade_Cont");
         shadow = shadowCont.GetComponent<Animator>();
     }
@@ -36,25 +31,11 @@ public class MainController : MonoBehaviour
     {
         GetAllObjsHasActTag();
         shadowCont.SetActive(false);
-    }
 
-    private void Update()
-    {
-        if (toAct2)
-        {
-            _act = 2;
-            Act1and2Controller._ins.EnterAct2();
-        }
-        if (toAct3)
-        {
-            _act = 3;
-            Act2and3Controller._ins.EnterAct3();
-        }
-        if (toAct4)
-        {
-            _act = 4;
-            Act3and4Controller._ins.EnterAct4();
-        }
+
+        Act1and2Controller._ins.EnterAct1();
+        //Act1and2Controller._ins.EnterAct2();
+        //Act3and4Controller._ins.EnterAct4();
     }
 
     public void GetAllObjsHasActTag()
@@ -72,7 +53,6 @@ public class MainController : MonoBehaviour
                 
             }
         }
-
     }
 
 

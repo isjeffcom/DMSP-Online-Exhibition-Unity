@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+
 public class Act3and4Controller : MonoBehaviour
 {
     public static Act3and4Controller _ins;
@@ -26,6 +27,7 @@ public class Act3and4Controller : MonoBehaviour
         toNext.SetActive(false);
         //shadowCont.SetActive(false);
     }
+
 
     public void ActCheck()
     {
@@ -55,8 +57,19 @@ public class Act3and4Controller : MonoBehaviour
         MissionController._ins.MissionText(4);
         MissionController._ins.MissionContent(4);
 
+        // Show dialog
+        StartCoroutine(PlayAct4Dialog());
+
         //shadowCont.SetActive(true);
         //shadow.SetBool("isAct4", true);
+    }
+
+    IEnumerator PlayAct4Dialog()
+    {
+
+        yield return new WaitForSeconds(3);
+
+        DialogController._ins.ShowDialog("Blake", 0);
     }
 
 

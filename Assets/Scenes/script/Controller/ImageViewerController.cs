@@ -118,8 +118,10 @@ public class ImageViewerController : MonoBehaviour
     void DisplayImage(Texture2D texture)
     {
         Rect rec = new Rect(0, 0, texture.width, texture.height);
-        Sprite spriteToUse = Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), 100);
+        Sprite spriteToUse = Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), 72);
         itemImg.GetComponent<Image>().sprite = spriteToUse;
+
+        SetButtonsStyle();
     }
 
     public void NextImage()
@@ -157,9 +159,15 @@ public class ImageViewerController : MonoBehaviour
         _currentImgIndex = idx;
 
         Texture2D texture = textures[idx];
-        Rect rec = new Rect(0, 0, texture.width, texture.height);
+
+        int width = texture.width;
+        int height = texture.height;
+
+        Rect rec = new Rect(0, 0, width, height);
         Sprite spriteToUse = Sprite.Create(texture, rec, new Vector2(0.5f, 0.5f), 100);
+
         itemImg.GetComponent<Image>().sprite = spriteToUse;
+        itemImg.GetComponent<Image>().SetNativeSize();
 
         SetButtonsStyle();
 
