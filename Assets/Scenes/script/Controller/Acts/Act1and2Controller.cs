@@ -61,7 +61,6 @@ public class Act1and2Controller : MonoBehaviour
             else
             {
                 EnterAct2();
-                MissionController._ins.CompelteAvailable(false);
             }
             
         }
@@ -89,6 +88,9 @@ public class Act1and2Controller : MonoBehaviour
 
     public void EnterAct2()
     {
+
+        MissionController._ins.CompelteAvailable(false);
+
         MainController._ins.ToAct(2);
         HideNPCNameOnScreen();
         NPCsController._ins.NPCswitch(2);

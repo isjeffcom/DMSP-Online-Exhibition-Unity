@@ -19,6 +19,7 @@ public class MainController : MonoBehaviour
     public List<GameObject> allObjsWithActTag = new List<GameObject>();
 
     public static string _rootAPI = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets";
+    
 
     private void Awake()
     {
@@ -34,8 +35,6 @@ public class MainController : MonoBehaviour
 
 
         Act1and2Controller._ins.EnterAct1();
-        //Act1and2Controller._ins.EnterAct2();
-        //Act3and4Controller._ins.EnterAct4();
     }
 
     public void GetAllObjsHasActTag()
@@ -158,8 +157,11 @@ public class MainController : MonoBehaviour
     public void AudioPlayByActId(int id)
     {
         AudioController._ins.PlayAudioById(id);
+
+        
     }
 
+  
 
     public void CheckActStatus()
     {

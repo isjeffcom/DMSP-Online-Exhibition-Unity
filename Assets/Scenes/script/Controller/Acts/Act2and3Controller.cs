@@ -28,7 +28,6 @@ public class Act2and3Controller : MonoBehaviour
         AudioController._ins.StopAudio();
 
         toNext.SetActive(true);
-        MissionController._ins.CompelteAvailable(false);
 
         tip.text = "Now You Can Go Upstairs";
     }
@@ -40,6 +39,9 @@ public class Act2and3Controller : MonoBehaviour
 
     public void EnterAct3()
     {
+
+        MissionController._ins.CompelteAvailable(false);
+
         NPCsController._ins.ClearAllNPCName();
         ColliderController._ins.SwitchCollider(3);
         toNext.SetActive(false);

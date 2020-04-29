@@ -29,4 +29,20 @@ public class Buttons : MonoBehaviour
     {
         MissionController._ins.CompleteClick();
     }
+
+    public void toActs(int act)
+    {
+        if (act == 2)
+        {
+            Act1and2Controller._ins.EnterAct2();
+        }
+        if (act == 3)
+        {
+            Act2and3Controller._ins.EnterAct3();
+        }
+        if (act == 4)
+        {
+            Act3and4Controller._ins.EnterAct4();
+        }
+    }
 }

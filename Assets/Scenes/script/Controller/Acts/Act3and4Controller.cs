@@ -10,32 +10,60 @@ public class Act3and4Controller : MonoBehaviour
 
     private GameObject toNext;
     private Text tip;
-    //private GameObject shadowCont;
-    //private Animator shadow;
+    private GameObject completeButton;
+
+    private List<int> audioCheck = new List<int>();
+    private List<int> audioPlayed = new List<int>();
+
 
     private void Awake()
     {
         _ins = this;
         toNext = GameObject.Find("toNext3");
         tip = GameObject.Find("UI_Tip").GetComponent<Text>();
-        //shadowCont = GameObject.Find("UI_Shade_Cont");
-        //shadow =shadowCont.GetComponent<Animator>();
+        completeButton = GameObject.Find("Mission_Complete_Button");
     }
 
     private void Start()
     {
         toNext.SetActive(false);
-        //shadowCont.SetActive(false);
+        addAudioID();
     }
 
+    private void addAudioID()
+    {
+        for(int i = 0; i< 20; i++)
+        {
+            audioCheck.Add(i);
+        }
+    }
+
+    //To check whether each scene has been played
+    public void audioPlayedCheck(int id)
+    {
+        audioPlayed.Add(id);
+
+        int j=0;
+        foreach (int existedID in audioCheck)
+        {
+            if (audioPlayed.Contains(existedID))
+            {
+                j++;
+
+                if (j == audioCheck.Count)
+                {
+                    DecisionController._ins.addDragScript();
+                }
+            }
+            
+        }
+    }
 
     public void ActCheck()
     {
-        
         AudioController._ins.StopAudio();
 
         toNext.SetActive(true);
-        MissionController._ins.CompelteAvailable(false);
 
         tip.text = "Now You Can Go Upstairs";
     }
@@ -47,6 +75,8 @@ public class Act3and4Controller : MonoBehaviour
 
     public void EnterAct4()
     {
+        completeButton.SetActive(false);
+
         NPCsController._ins.ClearAllNPCName();
         ColliderController._ins.SwitchCollider(4);
         MainController._ins.ToAct(4);
@@ -59,9 +89,6 @@ public class Act3and4Controller : MonoBehaviour
 
         // Show dialog
         StartCoroutine(PlayAct4Dialog());
-
-        //shadowCont.SetActive(true);
-        //shadow.SetBool("isAct4", true);
     }
 
     IEnumerator PlayAct4Dialog()

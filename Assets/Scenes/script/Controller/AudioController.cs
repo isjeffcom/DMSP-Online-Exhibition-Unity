@@ -243,7 +243,13 @@ public class AudioController : MonoBehaviour
             }
             
         }
-        
+
+        //For checking whether all the audios have been played in act3
+        if (MainController._act == 3)
+        {
+            Act3and4Controller._ins.audioPlayedCheck(id);
+        }
+
     }
 
     public void PauseAudio()

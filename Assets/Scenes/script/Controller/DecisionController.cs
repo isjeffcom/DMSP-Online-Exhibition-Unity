@@ -21,7 +21,7 @@ public class DecisionController : MonoBehaviour
     private List<string> allNPCName = new List<string>();
 
     private GameObject[] allSortingBlank;
-    private GameObject[] allScenes;
+    //private GameObject[] allScenes;
     private GameObject[] allNameBlocks;
 
     private void Awake()
@@ -32,13 +32,13 @@ public class DecisionController : MonoBehaviour
         Mission_Desicion_Blank = GameObject.Find("Mission_Decision_Blank");
         Mission_Sorting_NameBlock = GameObject.Find("Mission_Sorting_NameBlock");
 
-        GetScenes();
+        //GetScenes();
     }
 
-    private void GetScenes()
-    {
-        allScenes = GameObject.FindGameObjectsWithTag("Scenes");
-    }
+    //private void GetScenes()
+    //{
+    //    allScenes = GameObject.FindGameObjectsWithTag("Scenes");
+    //}
 
     private void GetNameBlocks()
     {
@@ -46,30 +46,32 @@ public class DecisionController : MonoBehaviour
     }
 
     //Whether all the evidence have been checked
-    public bool allChecked()
-    {
-        GetNameBlocks();
+    //public bool allChecked()
+    //{
+    //    GetNameBlocks();
 
-        int j = 0;
-        for (int i = 0; i < allScenes.Length; i++)
-        {
-            if (allScenes[i].GetComponent<Scenes_Act3>().audioChecked)
-            {
-                j++;
-            }
-        }
-        if (j == allScenes.Length)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    //    int j = 0;
+    //    for (int i = 0; i < allScenes.Length; i++)
+    //    {
+    //        if (allScenes[i].GetComponent<Scenes_Act3>().audioChecked)
+    //        {
+    //            j++;
+    //        }
+    //    }
+    //    if (j == allScenes.Length)
+    //    {
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
+    //}
 
     public void addDragScript()
     {
+        GetNameBlocks();
+
         foreach (GameObject nameBlock in allNameBlocks)
         {
             sortName = nameBlock.AddComponent<SortName>();
