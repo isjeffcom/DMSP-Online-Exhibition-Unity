@@ -50,8 +50,10 @@ public class Act3and4Controller : MonoBehaviour
             {
                 j++;
 
+                Debug.Log(j);
                 if (j == audioCheck.Count)
                 {
+                   
                     DecisionController._ins.addDragScript();
                 }
             }

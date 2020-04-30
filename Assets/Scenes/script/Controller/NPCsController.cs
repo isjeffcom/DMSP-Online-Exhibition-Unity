@@ -135,7 +135,15 @@ public class NPCsController : MonoBehaviour
 
     public void DisplayAllNameOnScreen(int act)
     {
-        foreach(Transform child in NPCs.transform)
+        StartCoroutine(DisplayAllNameOnScreenMain(act));
+    }
+
+    // Needs delay to work
+    IEnumerator DisplayAllNameOnScreenMain(int act)
+    {
+        yield return new WaitForSeconds(3);
+
+        foreach (Transform child in NPCs.transform)
         {
             if (child.gameObject.activeInHierarchy)
             {
@@ -165,18 +173,18 @@ public class NPCsController : MonoBehaviour
                             }
                         }
                     }
-                   
-                    
+
+
 
                 }
 
-               
-               
             }
-            
+
         }
+
     }
-    
+
+
     public void ClearAllNPCName()
     {
         GameObject cont = GameObject.Find("UI_NNT_Cont");

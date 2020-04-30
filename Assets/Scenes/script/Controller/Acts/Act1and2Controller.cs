@@ -68,7 +68,6 @@ public class Act1and2Controller : MonoBehaviour
 
     public void EnterAct1()
     {
-        Debug.Log("aaaaaaa");
         invesCont.SetActive(false);
         MainController._ins.ToAct(1);
         MainController._ins.MapToDay();
@@ -90,7 +89,7 @@ public class Act1and2Controller : MonoBehaviour
     {
 
         MissionController._ins.CompelteAvailable(false);
-
+        NPCsController._ins.ClearAllNPCName();
         MainController._ins.ToAct(2);
         HideNPCNameOnScreen();
         NPCsController._ins.NPCswitch(2);

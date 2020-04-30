@@ -90,10 +90,10 @@ public class MissionController : MonoBehaviour
                 Mission_Text.text = "Match Voices by Selecting the Person and Their Name";
                 break;
             case 2:
-                Mission_Text.text = "Order the Suspects by Drag Their Name";
+                Mission_Text.text = "Check all evidences \n Sort by suspicion";
                 break;
             case 3:
-                Mission_Text.text = "Make Your Final Desicion \n Who Is the One?";
+                Mission_Text.text = "Listen all audio records \n Who Is the One?";
                 break;
             case 4:
                 Mission_Text.text = "Remember Your Mission \n Find the Truth";

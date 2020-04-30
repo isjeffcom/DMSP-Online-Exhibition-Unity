@@ -1,5 +1,24 @@
 {
     "Items": [
-
+        {
+            "name": "Blake",
+            "type": "image",
+            "fileType": "png",
+            "length": 0,
+            "src": [
+                "/imgs/end-blake01.png",
+                "/imgs/end-blake02.png"
+            ]
+        },
+        {
+            "name": "Detective",
+            "type": "image",
+            "fileType": "png",
+            "length": 0,
+            "src": [
+                "/imgs/end-det01.png",
+                "/imgs/end-det02.png"
+            ]
+        }
     ]
 }

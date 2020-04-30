@@ -7,4 +7,5 @@ public class DialogsConvs
     public string question;
     public List<DialogsOptions> options = new List<DialogsOptions>();
     public int to;
+    public int audioId;
 }

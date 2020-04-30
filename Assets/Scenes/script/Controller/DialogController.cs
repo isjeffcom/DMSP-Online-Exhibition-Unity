@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.IO;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class DialogController : MonoBehaviour
 {
@@ -128,6 +127,13 @@ public class DialogController : MonoBehaviour
                     {
                         
                         question = convs.question;
+                        
+                        // If has audio play audio
+                        if (convs.audioId != -1)
+                        {
+                            AudioController._ins.PlayAudioById(convs.audioId);
+                        }
+
                         // If have options than save options, if no than ready to go next.
                         if (convs.options.Count == 0)
                         {
@@ -165,7 +171,7 @@ public class DialogController : MonoBehaviour
     // React by options
     void DialogReactByOptions(int to)
     {
-        DetectEnd(to);
+        MainController._ins.DetectEnding(to);
 
         if (_DialogState == 1)
         {
@@ -176,7 +182,7 @@ public class DialogController : MonoBehaviour
     // React by Click Container
     void DialogReactByClick(int to)
     {
-        DetectEnd(to);
+        MainController._ins.DetectEnding(to);
 
         if (_DialogState == 2)
         {
@@ -266,17 +272,6 @@ public class DialogController : MonoBehaviour
         button.transform.GetChild(0).GetComponent<Text>().text = txt; //Setting text
     }
 
-    private void DetectEnd(int to)
-    {
-        if(MainController._act == MainController._actCount)
-        {
-            if (to >= 900)
-            {
-                string endingTxt = to == 999 ? "Blake is the SCAPRGOAT" : "Detective is the SCAPRGOAT";
-                Debug.Log("Game Ended: " + endingTxt);
-                SceneManager.LoadScene(0);
-            }
-        }
-    }
+    
 }
 

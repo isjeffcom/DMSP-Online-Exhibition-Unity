@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainController : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class MainController : MonoBehaviour
         for (int i = 1; i <= _actCount; i++)
         {
             GameObject[] tmps = GameObject.FindGameObjectsWithTag("Act_" + i);
+            
             if (tmps != null)
             {
                 foreach(GameObject item in tmps)
@@ -58,6 +60,7 @@ public class MainController : MonoBehaviour
     public void ToAct(int toAct)
     {
         _act = toAct;
+
         ActObjectsControl();
 
         // Update all act data
@@ -125,14 +128,24 @@ public class MainController : MonoBehaviour
 
     public void ActObjectsControl()
     {
-        foreach(GameObject item in allObjsWithActTag)
+
+        foreach (GameObject item in allObjsWithActTag)
         {
-            if (item.name == "Act_" + _act)
+            if (item.tag == "Act_" + _act)
             {
+                
+                if (item.GetComponent<AudioSource>())
+                {
+                    item.GetComponent<AudioSource>().Play();
+                }
                 item.SetActive(true);
             }
             else
             {
+                if (item.GetComponent<AudioSource>())
+                {
+                    item.GetComponent<AudioSource>().Stop();
+                }
                 item.SetActive(false);
             }
         }
@@ -157,8 +170,6 @@ public class MainController : MonoBehaviour
     public void AudioPlayByActId(int id)
     {
         AudioController._ins.PlayAudioById(id);
-
-        
     }
 
   
@@ -183,6 +194,26 @@ public class MainController : MonoBehaviour
                 break;
         }
         
+    }
+
+    public void DetectEnding(int to)
+    {
+        if (_act == _actCount)
+        {
+            if (to >= 900)
+            {
+                if(to == 999)
+                {
+                    ItemController._ins.ShowItemDetail("Blake");
+                } 
+                else if(to == 900)
+                {
+                    ItemController._ins.ShowItemDetail("Detective");
+                }
+
+                //SceneManager.LoadScene(0);
+            }
+        }
     }
 
 

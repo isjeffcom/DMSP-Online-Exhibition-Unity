@@ -31,6 +31,7 @@ public class NPC : MonoBehaviour
 
     private void Awake()
     {
+
         // Find tips
         tip = GameObject.Find("UI_Tip").GetComponent<Text>();
         audioTip = GameObject.Find("UI_Tip_Audio").GetComponent<Text>();
@@ -45,13 +46,13 @@ public class NPC : MonoBehaviour
         Player = GameObject.Find("player");
         Rend = gameObject.GetComponent<SpriteRenderer>();
 
-        
     }
 
     private void Start()
     {
         createUIName();
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -125,7 +126,6 @@ public class NPC : MonoBehaviour
                     MainController._ins.AudioPlayByActId(PlayIDs[0]);
                 }
                 
-                //AudioController._ins.PlayNPCAudio(this.name);
                 clearTip();
             }
         }
@@ -161,21 +161,22 @@ public class NPC : MonoBehaviour
     {
 
         // Get Object Position
-        Vector3 posi = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+        Vector2 posi = Camera.main.WorldToScreenPoint(gameObject.transform.position);
 
         // Create 
         UI_NNT = Instantiate(UI_NNT_Sample);
 
         // Set Position
         posi.y = posi.y + 14;
-        UI_NNT.transform.position = posi;
 
         // Set Parent
         UI_NNT.transform.SetParent(UI_NPC_onscreen_name_cont.transform);
 
-        // Set Text
-        UI_NNT.GetComponent<Text>().text = this.name;
+        UI_NNT.transform.localPosition = posi;
+        //UI_NNT.tag = "UI_NNT";
 
+        // Set Text
+        UI_NNT.GetComponent<Text>().text = name;
 
         // Set Default Unseeable
         UI_NNT.GetComponent<Text>().color = new Color(0, 0, 0, 0);

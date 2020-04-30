@@ -42,7 +42,7 @@ public class Act2and3Controller : MonoBehaviour
 
         MissionController._ins.CompelteAvailable(false);
 
-        NPCsController._ins.ClearAllNPCName();
+        //NPCsController._ins.ClearAllNPCName();
         ColliderController._ins.SwitchCollider(3);
         toNext.SetActive(false);
         MainController._ins.ToAct(3);

@@ -71,8 +71,6 @@ public class AudioController : MonoBehaviour
                 LoadAudio("", -1, true, true, false);
             }
 
-            Debug.Log(request.downloadHandler.text);
-
         }
 
     }
@@ -84,7 +82,9 @@ public class AudioController : MonoBehaviour
 
     public void PlayAudioById(int id)
     {
-        
+        Debug.Log("aaa");
+        StopAudio();
+
         LoadAudio("", id, false, true, false);
     }
 
@@ -142,7 +142,6 @@ public class AudioController : MonoBehaviour
                     // Check if overwrited by alwaysPopTo
                     if (hasAlways == false && acts.alwaysPopTo != -1)
                     {
-                        Debug.Log("aaa");
                         LoadAudio("", acts.alwaysPopTo, false, true, true);
                         return;
                     }
@@ -232,6 +231,9 @@ public class AudioController : MonoBehaviour
 
             _isPlaying = true;
 
+            // Play wave ani
+            PlayAni(true);
+
             if (hasNext)
             {
                 // Wait and play next
@@ -244,7 +246,8 @@ public class AudioController : MonoBehaviour
             
         }
 
-        //For checking whether all the audios have been played in act3
+        // For checking whether all the audios have been played in act3
+        // HARD FIX
         if (MainController._act == 3)
         {
             Act3and4Controller._ins.audioPlayedCheck(id);
@@ -271,8 +274,15 @@ public class AudioController : MonoBehaviour
     {
         if (audioPlayer != null)
         {
+            
             audioPlayer.Stop();
+
+            // Play wave ani
+            PlayAni(false);
+
             _isPlaying = false;
+
+            audioPlayer = null;
 
             if (currentNext != null)
             {
@@ -295,6 +305,16 @@ public class AudioController : MonoBehaviour
         
     }
 
+    public void PlayAni(bool state)
+    {
+        GameObject target = audioPlayer.gameObject.transform.Find("NPC_Sound_VFX").gameObject;
+        
+        if (target.GetComponent<Animator>())
+        {
+            target.GetComponent<Animator>().SetBool("open", state);
+        }
+    }
+
     IEnumerator NextAudio(float delay, int next)
     {
 
@@ -305,6 +325,8 @@ public class AudioController : MonoBehaviour
 
         audioPlayer.clip = null;
         audioPlayer.Stop();
+
+        PlayAni(false);
 
         // Could be a problem if delay is 0
         LoadAudio("", next, false, true, true);
