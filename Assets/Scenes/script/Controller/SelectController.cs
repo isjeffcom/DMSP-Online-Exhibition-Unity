@@ -96,15 +96,18 @@ public class SelectController : MonoBehaviour
                 _matchedCount++;
                 DisplayNPCNameOnScreen(name);
                 MainController._ins.CheckActStatus();
+                InteractiveAudio._ins.clipChange("name_mark");
                 return true;
             } else
             {
                 // Play Wrong Audio
+                InteractiveAudio._ins.clipChange("name_error");
                 return false;
             }
         } else
         {
             // Play Wrong Audio
+            InteractiveAudio._ins.clipChange("name_error");
             return false;
         }
     }

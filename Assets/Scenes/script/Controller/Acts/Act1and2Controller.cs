@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Act1and2Controller : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Act1and2Controller : MonoBehaviour
     public static Act1and2Controller _ins;
 
     private GameObject invesCont;
+    private Text tip;
 
     private bool realAll = false;
 
@@ -19,6 +21,7 @@ public class Act1and2Controller : MonoBehaviour
         _ins = this;
 
         invesCont = GameObject.Find("Inves");
+        tip = GameObject.Find("UI_Tip").GetComponent<Text>();
         NPC_Act1 = GameObject.Find("NPC_Act1");
     }
 
@@ -78,6 +81,8 @@ public class Act1and2Controller : MonoBehaviour
         NPCsController._ins.NPCswitch(1);
 
         ColliderController._ins.SwitchCollider(1);
+
+        tip.text = "Right Click to Move";
     }
 
     public void EnteringAct2()

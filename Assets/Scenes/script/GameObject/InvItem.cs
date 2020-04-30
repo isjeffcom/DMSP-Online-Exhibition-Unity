@@ -48,6 +48,9 @@ public class InvItem : MonoBehaviour
                 ItemController._ins.ShowItemDetail(gameObject.name);
                 itemDetailEnabled = true;
 
+                //Play check audio
+                InteractiveAudio._ins.clipChange("clue_get");
+
                 itemChecked = true;
 
                 if (SortingController._ins.allChecked())
