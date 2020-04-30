@@ -79,6 +79,7 @@ public class MissionController : MonoBehaviour
     public void CompleteClick()
     {
         MainController._ins.CheckActStatus();
+        CompelteAvailable(false);
     }
 
     //Switch mission name for acts

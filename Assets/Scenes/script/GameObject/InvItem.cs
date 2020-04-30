@@ -49,7 +49,7 @@ public class InvItem : MonoBehaviour
                 itemDetailEnabled = true;
 
                 //Play check audio
-                InteractiveAudio._ins.clipChange("clue_get");
+                InteractiveAudio._ins.clipChange("clue_click");
 
                 itemChecked = true;
 

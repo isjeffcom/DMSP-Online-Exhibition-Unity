@@ -13,6 +13,7 @@ public class SortBlock : MonoBehaviour,IDropHandler
         //If there is no child, then receive the dropped one
         if (childs==0)
         {
+            InteractiveAudio._ins.clipChange("normalClick");
             SortName.itemBeingDragged.transform.SetParent(transform);
 
             if (MainController._act==2)

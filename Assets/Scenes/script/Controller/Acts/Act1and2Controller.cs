@@ -71,6 +71,7 @@ public class Act1and2Controller : MonoBehaviour
 
     public void EnterAct1()
     {
+        MissionController._ins.CompelteAvailable(false);
         invesCont.SetActive(false);
         MainController._ins.ToAct(1);
         MainController._ins.MapToDay();
