@@ -82,7 +82,6 @@ public class AudioController : MonoBehaviour
 
     public void PlayAudioById(int id)
     {
-        Debug.Log("aaa");
         StopAudio();
 
         LoadAudio("", id, false, true, false);
@@ -321,7 +320,7 @@ public class AudioController : MonoBehaviour
         _pausedNext = next;
         _pausedRestTime = delay;
 
-        yield return new WaitForSeconds(delay + 0.5f);
+        yield return new WaitForSeconds(delay);
 
         audioPlayer.clip = null;
         audioPlayer.Stop();

@@ -127,6 +127,12 @@ public class NPC : MonoBehaviour
                 }
                 
                 clearTip();
+
+                // Check instruction
+                if (MainController._first == 3)
+                {
+                    MainController._ins.DisplayInstructions();
+                }
             }
         }
         
@@ -173,6 +179,7 @@ public class NPC : MonoBehaviour
         UI_NNT.transform.SetParent(UI_NPC_onscreen_name_cont.transform);
 
         UI_NNT.transform.localPosition = posi;
+        UI_NNT.transform.localScale = new Vector3(1, 1, 1);
         //UI_NNT.tag = "UI_NNT";
 
         // Set Text
@@ -180,6 +187,8 @@ public class NPC : MonoBehaviour
 
         // Set Default Unseeable
         UI_NNT.GetComponent<Text>().color = new Color(0, 0, 0, 0);
+
+        //Debug.Log(this.name + " - " + UI_NNT.transform.localPosition + " - " + UI_NNT.transform.localScale);
     }
 
     public void showNameOnScreen()
@@ -188,7 +197,6 @@ public class NPC : MonoBehaviour
         {
             UI_NNT.GetComponent<Text>().color = new Color(0, 0, 0, 1);
         }
-        
     }
 
     public void hideNameOnScreen()

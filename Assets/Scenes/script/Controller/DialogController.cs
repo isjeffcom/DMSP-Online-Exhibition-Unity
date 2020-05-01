@@ -24,6 +24,7 @@ public class DialogController : MonoBehaviour
     private GameObject dialogCont;
     private GameObject dialogAns;
     private GameObject dialogOptionsCont;
+    private GameObject dialogHint;
 
     // Get Tip Text
     private Text tip;
@@ -45,6 +46,7 @@ public class DialogController : MonoBehaviour
         dialogCont =  GameObject.Find("UI_Dialog_Cont");
         dialogOptionsCont = GameObject.Find("UI_Dialog_Options");
         dialogAns = GameObject.Find("UI_Dialog_Answer");
+        dialogHint = GameObject.Find("UI_Hit_Hint");
 
         // Example button, create button by this example
         UI_Opt_Button = GameObject.Find("UI_Opt_Button");
@@ -61,6 +63,11 @@ public class DialogController : MonoBehaviour
     {
         // Start to get data
         StartCoroutine(GetData());
+    }
+
+    private void ShowHintAni(bool bol)
+    {
+        dialogHint.GetComponent<Animator>().SetBool("open", bol);
     }
 
     // Get dialogs data file (.json format)
@@ -101,6 +108,9 @@ public class DialogController : MonoBehaviour
         }
 
         dialogCont.SetActive(true);
+
+        // Show hit hint animation
+        ShowHintAni(true);
 
         // Display line
         string question = "";
@@ -203,7 +213,7 @@ public class DialogController : MonoBehaviour
         {
             // Calculate x and y
             int x = -200;
-            int y = -10 + (i*40);
+            int y = -10 + (i*55);
 
             // Create Buttons
             CreateButton(dialogOptionsCont, new Vector3(x, y, -1), opt.txt, opt.to);
@@ -249,6 +259,10 @@ public class DialogController : MonoBehaviour
         if (dialogCont.activeSelf)
         {
             dialogCont.SetActive(false);
+
+            // Show hit hint animation
+            ShowHintAni(true);
+
             dialogAns.GetComponent<Text>().text = "";
         }
 

@@ -7,8 +7,10 @@ using UnityEngine.SceneManagement;
 public class MainController : MonoBehaviour
 {
     public static MainController _ins;
-    
+
     // Global Vars
+    public static int _first = 1;
+    public static int _introLength = 3;
     public static int _act = 1;
     public static int _actCount = 4;
     public static string _selectedNPC;
@@ -19,6 +21,8 @@ public class MainController : MonoBehaviour
 
     public List<GameObject> allObjsWithActTag = new List<GameObject>();
 
+    private GameObject UI_Instructions;
+
     public static string _rootAPI = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets";
     
 
@@ -27,6 +31,8 @@ public class MainController : MonoBehaviour
         _ins = this;
         shadowCont = GameObject.Find("UI_Shade_Cont");
         shadow = shadowCont.GetComponent<Animator>();
+
+        UI_Instructions = GameObject.Find("UI_Instructions");
     }
 
     private void Start()
@@ -34,8 +40,23 @@ public class MainController : MonoBehaviour
         GetAllObjsHasActTag();
         shadowCont.SetActive(false);
 
+        // UX Instructions
+        DisplayInstructions();
 
         Act1and2Controller._ins.EnterAct1();
+    }
+
+    // Inserted into PlayerController_Mouse under SetTargetPosition(), NPC under OnTriggerStay2D
+    public void DisplayInstructions()
+    {
+        if(_first > _introLength)
+        {
+            UI_Instructions.SetActive(false);
+            return;
+        }
+
+        UI_Instructions.GetComponent<Image>().sprite = Resources.Load<Sprite>("intro_" + _first);
+        _first = _first + 1;
     }
 
     public void GetAllObjsHasActTag()

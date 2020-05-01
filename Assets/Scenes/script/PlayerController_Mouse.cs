@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 public class PlayerController_Mouse : MonoBehaviour
@@ -12,6 +13,8 @@ public class PlayerController_Mouse : MonoBehaviour
 
     // Clicked Position
     private Vector3 targetPosition;
+    private float enteringAngle;
+    private float leavingAngle;
 
     // Define if is moving
     private bool isMoving = false;
@@ -42,7 +45,7 @@ public class PlayerController_Mouse : MonoBehaviour
 
         if (MainController.playerMovable)
         {
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
             {
                 SetTargetPosition();
             }
@@ -62,21 +65,33 @@ public class PlayerController_Mouse : MonoBehaviour
 
     void SetTargetPosition()
     {
-        // Get mouse target position
-        targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        targetPosition.z = transform.position.z;
+        if (EventSystem.current.currentSelectedGameObject)
+        {
+            //Debug.Log("UI HIT");
+            // Do nothing for now...
+        } else
+        {
+            // Get mouse target position
+            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            targetPosition.z = transform.position.z;
 
-        //Define animator bool
-        ani.SetBool("isWalking", true);
+            //Define animator bool
+            ani.SetBool("isWalking", true);
 
-        // Define is Moving
-        isMoving = true;
+            // Define is Moving
+            isMoving = true;
 
-        // Visual Effect for Click, pass in position
-        StartCoroutine(PlayClickedAni(targetPosition));
+            // Visual Effect for Click, pass in position
+            StartCoroutine(PlayClickedAni(targetPosition));
 
+            // Check instruction
+            if (MainController._first == 2 || MainController._first > 3)
+            {
+                MainController._ins.DisplayInstructions();
+            }
+        }
 
-
+        
     }
 
     void Move()
@@ -85,9 +100,9 @@ public class PlayerController_Mouse : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(Vector3.forward, targetPosition);
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
-
         //ani.bodyRotation = transform.rotation;
 
+        // Rotation in ani
         Vector2 dir = new Vector2(targetPosition.x - transform.position.x, targetPosition.y - transform.position.y);
         transform.up = dir;
 
@@ -100,19 +115,31 @@ public class PlayerController_Mouse : MonoBehaviour
     // Fire to stop moving
     void EndMoving()
     {
+        // Hard rotate
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, targetPosition);
+
         isMoving = false;
         ani.SetBool("isWalking", false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        enteringAngle = Vector3.Angle(targetPosition, transform.forward);
         EndMoving();
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        EndMoving();
+        //EndMoving();
+        float angel = Vector3.Angle(targetPosition, transform.forward);
+        if(angel - enteringAngle < 3)
+        {
+            EndMoving();
+        }
     }
+
+    
+
 
     IEnumerator PlayClickedAni(Vector3 posi)
     {

@@ -23,12 +23,16 @@ public class Act1and2Controller : MonoBehaviour
         invesCont = GameObject.Find("Inves");
         tip = GameObject.Find("UI_Tip").GetComponent<Text>();
         NPC_Act1 = GameObject.Find("NPC_Act1");
+
     }
 
     private void Start()
     {
+        
         GetAllNPCs();
     }
+
+
 
 
     private void GetAllNPCs()
