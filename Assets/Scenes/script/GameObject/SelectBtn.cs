@@ -1,12 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SelectBtn : MonoBehaviour
+public class SelectBtn : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
 {
     private bool done = false;
 
+    private Texture2D cursorTexture;
+    private CursorMode cursorMode = CursorMode.Auto;
+    private Vector2 hotSpot;
+
+    private void Awake()
+    {
+        cursorTexture = Resources.Load<Texture2D>("cursor");
+        hotSpot = new Vector2(20, 0);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (gameObject.GetComponent<Button>().interactable)
+        {
+            Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        }
+
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
+    }
 
     public void GetSelect()
     {
@@ -45,5 +69,6 @@ public class SelectBtn : MonoBehaviour
     {
         gameObject.transform.Find("UI_NPC_Name_Right").GetComponent<Animator>().SetBool("right", true);
     }
+
 
 }

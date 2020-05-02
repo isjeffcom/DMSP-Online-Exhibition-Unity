@@ -11,6 +11,7 @@ public class Act3and4Controller : MonoBehaviour
     private GameObject toNext;
     private Text tip;
     private GameObject completeButton;
+    private GameObject[] npcAct4;
 
     private List<int> audioCheck = new List<int>();
     private List<int> audioPlayed = new List<int>();
@@ -78,12 +79,19 @@ public class Act3and4Controller : MonoBehaviour
     public void EnterAct4()
     {
         completeButton.SetActive(false);
-
+        
         NPCsController._ins.ClearAllNPCName();
         ColliderController._ins.SwitchCollider(4);
         MainController._ins.ToAct(4);
         NPCsController._ins.NPCswitch(4);
         NPCsController._ins.DisplayAllNameOnScreen(4);
+
+        //Set Shawn,Tom and Joe to be active false
+        //npcAct4 = GameObject.FindGameObjectsWithTag("NPC_Act4");
+        //for (int i = 0; i < npcAct4.Length; i++)
+        //{
+        //    npcAct4[i].SetActive(false);
+        //}
         MainController._ins.MapToAct4();
 
         MissionController._ins.MissionText(4);

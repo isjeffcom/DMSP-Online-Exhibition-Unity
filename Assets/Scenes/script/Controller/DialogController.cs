@@ -29,6 +29,9 @@ public class DialogController : MonoBehaviour
     // Get Tip Text
     private Text tip;
 
+    //Get NPC Animator in Act4
+    private Animator aniAct4;
+
     // Define Dialog Status
     public static int _DialogState = 0; //0: nothing, 1: waiting for react by options, 2: waiting for react by click
     public static string _DialogNPC = ""; // Save current NPC in conversation
@@ -53,6 +56,9 @@ public class DialogController : MonoBehaviour
 
         // Find tip
         tip = GameObject.Find("UI_Tip").GetComponent<Text>();
+
+        //Find NPC
+        aniAct4 = GameObject.Find("NPC_Act4").GetComponent<Animator>();
 
         // Start to get data
         StartCoroutine(GetData());
@@ -187,6 +193,14 @@ public class DialogController : MonoBehaviour
         {
             ShowDialog(_DialogNPC, to);
         }
+
+        //Walk to player after the first choice
+        if (to == 1 || to == 2)
+        {
+            aniAct4.SetBool("isTo3", true);
+            NPCsController._ins.DisplayAllNameOnScreen(4);
+        }
+        
     }
 
     // React by Click Container

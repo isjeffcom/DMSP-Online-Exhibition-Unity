@@ -12,6 +12,7 @@ public class PlayerController_Mouse : MonoBehaviour
     public float speed = 4; // Moving Speed
 
     // Clicked Position
+    private Vector3 startPos;
     private Vector3 targetPosition;
     private float enteringAngle;
     private float leavingAngle;
@@ -82,6 +83,9 @@ public class PlayerController_Mouse : MonoBehaviour
             return;
         } else
         {
+            //Get start position
+            startPos = gameObject.transform.position;
+
             // Get mouse target position
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             targetPosition.z = transform.position.z;
@@ -116,7 +120,7 @@ public class PlayerController_Mouse : MonoBehaviour
         //ani.bodyRotation = transform.rotation;
 
         // Rotation in ani
-        Vector2 dir = new Vector2(targetPosition.x - transform.position.x, targetPosition.y - transform.position.y);
+        Vector2 dir = targetPosition - startPos;
         transform.up = dir;
 
         if (transform.position == targetPosition)
@@ -129,7 +133,9 @@ public class PlayerController_Mouse : MonoBehaviour
     void EndMoving()
     {
         // Hard rotate
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, targetPosition);
+        //transform.rotation = Quaternion.LookRotation(Vector3.forward, targetPosition);
+        Vector2 relativePos = targetPosition - startPos;
+        transform.up = relativePos;
 
         isMoving = false;
         ani.SetBool("isWalking", false);

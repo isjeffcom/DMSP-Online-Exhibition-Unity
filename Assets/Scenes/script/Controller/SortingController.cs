@@ -95,7 +95,7 @@ public class SortingController : MonoBehaviour
        foreach(GameObject nameBlock in allNameBlocks)
         {
             sortName = nameBlock.AddComponent<SortName>();
-            nameBlock.GetComponent<Image>().color = new Color(104, 104, 104, 255);
+            nameBlock.GetComponent<Button>().interactable = true;
         }
             
     }
