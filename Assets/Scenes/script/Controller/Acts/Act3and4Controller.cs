@@ -50,7 +50,6 @@ public class Act3and4Controller : MonoBehaviour
             {
                 j++;
 
-                Debug.Log(j);
                 if (j == audioCheck.Count)
                 {
                    
@@ -74,6 +73,7 @@ public class Act3and4Controller : MonoBehaviour
     {
         EnterAct4();
     }
+
 
     public void EnterAct4()
     {

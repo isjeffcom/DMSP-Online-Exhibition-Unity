@@ -22,8 +22,8 @@
           {
             "id": 2,
             "objectName":"Blake",
-            "audioName": "1-02-Blake.wav",
-            "length": 6.0,
+            "audioName": "1-02-Blake_L.wav",
+            "length": 8.0,
             "to":3,
             "alwaysPopTo": 0
           },
@@ -136,7 +136,7 @@
             "id": 16,
             "objectName":"Tom",
             "audioName": "5-16-Tom.wav",
-            "length": 5.0,
+            "length": 6.0,
             "to":17,
             "alwaysPopTo": -1
           },
@@ -144,7 +144,7 @@
             "id": 17,
             "objectName":"Joe",
             "audioName": "5-17-Joe.wav",
-            "length": 3.0,
+            "length": 4.0,
             "to":18,
             "alwaysPopTo": 16
           },

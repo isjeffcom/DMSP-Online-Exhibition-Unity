@@ -13,6 +13,7 @@ TagManager:
   - OrderingBlank
   - NameBlock
   - Scenes
+  - NPC
   layers:
   - Default
   - TransparentFX

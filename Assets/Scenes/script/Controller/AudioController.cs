@@ -118,6 +118,8 @@ public class AudioController : MonoBehaviour
             {
                 if (objectName == acts.objectName)
                 {
+
+
                     
                     // Check if overwrited by alwaysPopTo
                     if (hasAlways == false && acts.alwaysPopTo != -1)
@@ -195,7 +197,6 @@ public class AudioController : MonoBehaviour
             // Send to play
             PlayAudio(audioClip, npc, id, next, nextLength, hasNext);
 
-            
         }
 
     }
@@ -217,6 +218,12 @@ public class AudioController : MonoBehaviour
         if(target.name == null || target.name == "")
         {
             target = targets[0];
+        }
+
+        // HARD FIX
+        if (MainController._act == 3 && nextId == 3)
+        {
+            StartCoroutine(BlakeLeave(target));
         }
 
         // Get Audio Player
@@ -317,6 +324,8 @@ public class AudioController : MonoBehaviour
     IEnumerator NextAudio(float delay, int next)
     {
 
+        
+
         _pausedNext = next;
         _pausedRestTime = delay;
 
@@ -378,5 +387,15 @@ public class AudioController : MonoBehaviour
 
     }
 
+    // HARD FIX, SHOULDNT BE HERE
+    IEnumerator BlakeLeave(GameObject target)
+    {
+        yield return new WaitForSeconds(7);
 
+        target.GetComponent<Animator>().SetBool("open", true);
+
+        yield return new WaitForSeconds(12);
+
+        target.GetComponent<Animator>().SetBool("open", false);
+    }
 }

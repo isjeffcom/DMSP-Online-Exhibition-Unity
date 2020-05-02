@@ -78,6 +78,9 @@ public class ImageViewerController : MonoBehaviour
         _currentImgsLength = 0;
         _currentImgIndex = 0;
 
+        // For detect ending 
+        MainController._ins.EndingOut();
+
         //MainController._ins.CheckActStatus();
     }
 

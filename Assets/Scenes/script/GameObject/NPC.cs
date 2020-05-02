@@ -160,33 +160,51 @@ public class NPC : MonoBehaviour
 
     private void OnMouseDown()
     {
-        SelectController._ins.Select(this.name);
+        if(MainController._act == 1)
+        {
+            SelectController._ins.Select(this.name);
+        }
+        
     }
 
     public void createUIName()
     {
 
         // Get Object Position
-        Vector2 posi = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+        //Vector3 posi = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+        //Vector3 posi = gameObject.transform.position;
+
+        GameObject gg = new GameObject();
+        Sprite s = Resources.Load<Sprite>("UI_Text_" + this.name);
+        SpriteRenderer r = gg.AddComponent<SpriteRenderer>();
+        r.sprite = s;
+        gg.name = "NPC_Name_" + this.name;
 
         // Create 
-        UI_NNT = Instantiate(UI_NNT_Sample);
+        UI_NNT = Instantiate(gg);
 
         // Set Position
-        posi.y = posi.y + 14;
+        //posi.y = (posi.y + 14);
+
+        //Debug.Log(Screen.dpi);
+        UI_NNT.transform.position = new Vector3(0,0,0);
+        
 
         // Set Parent
-        UI_NNT.transform.SetParent(UI_NPC_onscreen_name_cont.transform);
+        UI_NNT.transform.SetParent(gameObject.transform);
+        //UI_NNT.transform.position = posi;
 
-        UI_NNT.transform.localPosition = posi;
-        UI_NNT.transform.localScale = new Vector3(1, 1, 1);
+        UI_NNT.transform.localPosition = new Vector3(0, 0.25f, 0);
+        UI_NNT.transform.localScale = new Vector3(.45f, .45f, .45f);
+        UI_NNT.GetComponent<SpriteRenderer>().sortingLayerName = "NPC";
+
         //UI_NNT.tag = "UI_NNT";
 
         // Set Text
-        UI_NNT.GetComponent<Text>().text = name;
+        //UI_NNT.GetComponent<Text>().text = name;
 
         // Set Default Unseeable
-        UI_NNT.GetComponent<Text>().color = new Color(0, 0, 0, 0);
+        UI_NNT.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
 
         //Debug.Log(this.name + " - " + UI_NNT.transform.localPosition + " - " + UI_NNT.transform.localScale);
     }
@@ -195,12 +213,12 @@ public class NPC : MonoBehaviour
     {
         if (UI_NNT)
         {
-            UI_NNT.GetComponent<Text>().color = new Color(0, 0, 0, 1);
+            UI_NNT.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
         }
     }
 
     public void hideNameOnScreen()
     {
-        UI_NNT.GetComponent<Text>().color = new Color(0, 0, 0, 0);
+        UI_NNT.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
     }
 }

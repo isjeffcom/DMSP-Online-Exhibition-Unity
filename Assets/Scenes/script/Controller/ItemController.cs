@@ -62,8 +62,6 @@ public class ItemController : MonoBehaviour
                         srcs.Add(MainController._rootAPI + s);
                     }
 
-                    Debug.Log(srcs[0]);
-
                     ImageViewerController._ins.MultipleImage(srcs);
                 }
 

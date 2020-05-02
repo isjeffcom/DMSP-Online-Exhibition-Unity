@@ -65,10 +65,21 @@ public class PlayerController_Mouse : MonoBehaviour
 
     void SetTargetPosition()
     {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+        if (hit.collider != null && hit.collider.gameObject.tag == "NPC")
+        {
+            //Debug.Log("Target Position: " + hit.collider.gameObject);
+            return;
+            
+        }
+
         if (EventSystem.current.currentSelectedGameObject)
         {
+            
             //Debug.Log("UI HIT");
             // Do nothing for now...
+            return;
         } else
         {
             // Get mouse target position
@@ -89,6 +100,8 @@ public class PlayerController_Mouse : MonoBehaviour
             {
                 MainController._ins.DisplayInstructions();
             }
+
+            return;
         }
 
         

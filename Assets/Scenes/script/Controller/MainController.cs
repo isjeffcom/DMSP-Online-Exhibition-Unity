@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿//using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using System.Runtime.InteropServices;
+//using UnityEngine.SceneManagement;
 
 public class MainController : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class MainController : MonoBehaviour
     public static string _selectedNPC;
     public static bool playerMovable = true;
 
+    public static int _endingReady = 0;
+
     private GameObject shadowCont;
     private Animator shadow;
 
@@ -24,7 +27,10 @@ public class MainController : MonoBehaviour
     private GameObject UI_Instructions;
 
     public static string _rootAPI = "https://playground.eca.ed.ac.uk/~s1888009/dmspassets";
-    
+
+    [DllImport("__Internal")]
+    private static extern void ToEnd();
+
 
     private void Awake()
     {
@@ -232,8 +238,19 @@ public class MainController : MonoBehaviour
                     ItemController._ins.ShowItemDetail("Detective");
                 }
 
+                _endingReady = 1;
+
                 //SceneManager.LoadScene(0);
             }
+        }
+    }
+
+    // Inserted into ImageViewerController
+    public void EndingOut()
+    {
+        if(_endingReady == 1)
+        {
+            ToEnd();
         }
     }
 
