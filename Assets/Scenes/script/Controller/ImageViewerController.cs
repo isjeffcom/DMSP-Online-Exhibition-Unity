@@ -172,6 +172,8 @@ public class ImageViewerController : MonoBehaviour
         itemImg.GetComponent<Image>().sprite = spriteToUse;
         itemImg.GetComponent<Image>().SetNativeSize();
 
+        itemImg.transform.localScale = new Vector3(.6f, .6f, .6f);
+
         SetButtonsStyle();
 
     }
