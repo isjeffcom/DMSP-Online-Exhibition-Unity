@@ -18,7 +18,7 @@ public class Buttons : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IP
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        /*if (gameObject.GetComponent<Button>().interactable)
+        if (gameObject.GetComponent<Button>().interactable)
         {
             if (MainController._act == 2 && gameObject.tag == "NameBlock")
             {
@@ -28,7 +28,7 @@ public class Buttons : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IP
             {
                 Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
             }
-        }*/
+        }
         
     }
     

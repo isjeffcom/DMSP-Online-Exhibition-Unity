@@ -106,7 +106,7 @@ public class SortingController : MonoBehaviour
         for(int i = 1; i < 5; i++)
         {
             // re positioning
-            Vector3 posi = new Vector3(-340, -260 - (i * 50), 0);
+            Vector3 posi = new Vector3(-330, -290 - (i * 50), 0);
 
             // Instantiate
             GameObject block = Instantiate(Mission_Sorting_Block);
@@ -127,7 +127,7 @@ public class SortingController : MonoBehaviour
         foreach (string item in allNPCName)
         {
             // re positioning
-            Vector3 posi = new Vector3(-210, -260 - (j*50), 0);
+            Vector3 posi = new Vector3(-210, -290 - (j*50), 0);
 
             // Instantiate
             GameObject name = Instantiate(Mission_Sorting_NameBlock);

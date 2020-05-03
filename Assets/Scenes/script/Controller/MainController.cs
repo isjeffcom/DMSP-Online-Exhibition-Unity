@@ -1,4 +1,4 @@
-﻿//using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -231,16 +231,16 @@ public class MainController : MonoBehaviour
             {
                 if(to == 999)
                 {
-                    ItemController._ins.ShowItemDetail("Blake");
+                    StartCoroutine(showEndDetail("Blake"));
                 } 
                 else if(to == 900)
                 {
-                    ItemController._ins.ShowItemDetail("Detective");
+                    StartCoroutine(showEndDetail("Detective"));
                 }
 
                 _endingReady = 1;
 
-                //SceneManager.LoadScene(0);
+                
             }
         }
     }
@@ -254,5 +254,10 @@ public class MainController : MonoBehaviour
         }
     }
 
-
+    IEnumerator showEndDetail(string name)
+    {
+        yield return new WaitForSeconds(2);
+        InteractiveAudio._ins.clipChange("stick");
+        ItemController._ins.ShowItemDetail(name);
+    }
 }

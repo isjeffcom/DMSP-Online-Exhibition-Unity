@@ -187,18 +187,21 @@ public class DialogController : MonoBehaviour
     // React by options
     void DialogReactByOptions(int to)
     {
+        //Walk with different ends
+        if (to == 900)
+        {
+            aniAct4.SetBool("isTo900", true);
+        }
+        if (to == 999)
+        {
+            aniAct4.SetBool("isTo999", true);
+        }
+
         MainController._ins.DetectEnding(to);
 
         if (_DialogState == 1)
         {
             ShowDialog(_DialogNPC, to);
-        }
-
-        //Walk to player after the first choice
-        if (to == 1 || to == 2)
-        {
-            aniAct4.SetBool("isTo3", true);
-            NPCsController._ins.DisplayAllNameOnScreen(4);
         }
         
     }
@@ -206,12 +209,26 @@ public class DialogController : MonoBehaviour
     // React by Click Container
     void DialogReactByClick(int to)
     {
+        //Walk with different ends
+        if (to == 900)
+        {
+            aniAct4.SetBool("isTo900", true);
+        }
+
         MainController._ins.DetectEnding(to);
 
         if (_DialogState == 2)
         {
             ShowDialog(_DialogNPC, to);
+        } 
+        
+        //Walk to player after the first choice
+        if (to == 3)
+        {
+            aniAct4.SetBool("isTo3", true);
+            NPCsController._ins.DisplayAllNameOnScreen(4);
         }
+
     }
 
     // Render all options into the interface
@@ -227,7 +244,7 @@ public class DialogController : MonoBehaviour
         {
             // Calculate x and y
             int x = -200;
-            int y = -10 + (i*55);
+            int y = -15 + (i*55);
 
             // Create Buttons
             CreateButton(dialogOptionsCont, new Vector3(x, y, -1), opt.txt, opt.to);
