@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class SortName : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class SortName : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler,IPointerEnterHandler, IPointerExitHandler
 {
     //Store the item being dragged
     public static GameObject itemBeingDragged;
@@ -15,6 +16,7 @@ public class SortName : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     Transform startParent;
 
     //Cursor
+    private Texture2D cursorTexture;
     private Texture2D cursorDragging;
     private CursorMode cursorMode = CursorMode.Auto;
     private Vector2 hotSpot;
@@ -22,7 +24,7 @@ public class SortName : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private void Start()
     {
         gameObject.isStatic = true;
-
+        cursorTexture = Resources.Load<Texture2D>("cursor");
         cursorDragging = Resources.Load<Texture2D>("cursor_dragging");
         hotSpot = new Vector2(20, 0);
     }
@@ -54,6 +56,20 @@ public class SortName : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             transform.position = startPosition;
         }
 
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (gameObject.GetComponent<Button>().interactable)
+        {
+            Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        }
+
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
         Cursor.SetCursor(null, Vector2.zero, cursorMode);
     }
 }

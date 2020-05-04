@@ -31,42 +31,15 @@ public class DecisionController : MonoBehaviour
         Mission_Content_Act3 = GameObject.Find("Mission_Content_Act3");
         Mission_Desicion_Blank = GameObject.Find("Mission_Decision_Blank");
         Mission_Sorting_NameBlock = GameObject.Find("Mission_Sorting_NameBlock");
-
-        //GetScenes();
+        
     }
 
-    //private void GetScenes()
-    //{
-    //    allScenes = GameObject.FindGameObjectsWithTag("Scenes");
-    //}
-
+    
     private void GetNameBlocks()
     {
         allNameBlocks = GameObject.FindGameObjectsWithTag("NameBlock");
     }
-
-    //Whether all the evidence have been checked
-    //public bool allChecked()
-    //{
-    //    GetNameBlocks();
-
-    //    int j = 0;
-    //    for (int i = 0; i < allScenes.Length; i++)
-    //    {
-    //        if (allScenes[i].GetComponent<Scenes_Act3>().audioChecked)
-    //        {
-    //            j++;
-    //        }
-    //    }
-    //    if (j == allScenes.Length)
-    //    {
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        return false;
-    //    }
-    //}
+    
 
     public void addDragScript()
     {

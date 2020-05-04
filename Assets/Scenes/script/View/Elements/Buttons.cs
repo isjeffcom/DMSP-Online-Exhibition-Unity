@@ -20,14 +20,7 @@ public class Buttons : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IP
     {
         if (gameObject.GetComponent<Button>().interactable)
         {
-            if (MainController._act == 2 && gameObject.tag == "NameBlock")
-            {
-                Cursor.SetCursor(cursorDragable, hotSpot, cursorMode);
-            }
-            else
-            {
-                Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
-            }
+            Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
         }
         
     }

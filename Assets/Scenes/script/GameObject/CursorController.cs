@@ -11,7 +11,7 @@ public class CursorController : MonoBehaviour
     private void Awake()
     {
         cursorTexture = Resources.Load<Texture2D>("cursor");
-        hotSpot = new Vector2(20, 0);
+        hotSpot = new Vector2(10, 0);
     }
 
     void OnMouseEnter()
