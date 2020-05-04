@@ -5013,9 +5013,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.003440261, y: 0}
+  m_Offset: {x: -0.061314605, y: 0}
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 0.28524515
 --- !u!212 &476095082
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17157,7 +17157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 42, y: -8}
+  m_AnchoredPosition: {x: 42, y: 488}
   m_SizeDelta: {x: 0, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1688049409
