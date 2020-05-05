@@ -43,7 +43,6 @@ public class Act3and4Controller : MonoBehaviour
     public void audioPlayedCheck(int id)
     {
         audioPlayed.Add(id);
-        Debug.Log(id);
         int j=0;
         foreach (int existedID in audioCheck)
         {

@@ -1,22 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Office : MonoBehaviour
 {
-    private Text tip;
 
     private void Awake()
     {
-        tip = GameObject.Find("UI_Tip").GetComponent<Text>();
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.name == "player")
         {
-            tip.text = gameObject.name;
+            gameObject.GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 
@@ -24,7 +22,7 @@ public class Office : MonoBehaviour
     {
         if (collision.gameObject.name == "player")
         {
-            tip.text = "";
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 }

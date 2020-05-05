@@ -187,6 +187,12 @@ public class DialogController : MonoBehaviour
     // React by options
     void DialogReactByOptions(int to)
     {
+        //Tip for click box to continue
+        if (to == 1 || to == 2)
+        {
+            tip.text = "Click the box to Continue";
+        }
+
         //Walk with different ends
         if (to == 900)
         {
@@ -227,6 +233,9 @@ public class DialogController : MonoBehaviour
         {
             aniAct4.SetBool("isTo3", true);
             NPCsController._ins.DisplayAllNameOnScreen(4);
+
+            //Clear tip
+            tip.text = "";
         }
 
     }

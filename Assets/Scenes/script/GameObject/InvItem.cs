@@ -21,13 +21,6 @@ public class InvItem : MonoBehaviour
     {
         if(collision.name == "player")
         {
-            if (!AudioController._isPlaying)
-            {
-                tip.text = "E to check " + gameObject.name;
-            } else
-            {
-                tip.text = "Wait for audio to finished...";
-            }
             
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
         }
@@ -38,6 +31,15 @@ public class InvItem : MonoBehaviour
     {
         if(collision.name == "player")
         {
+            if (!AudioController._isPlaying && !itemDetailEnabled)
+            {
+                tip.text = "E to check " + gameObject.name;
+            }
+            else if (AudioController._isPlaying)
+            {
+                tip.text = "Wait for audio to finished...";
+            }
+
             // Check if dialog has already enabled
             if (Input.GetKey(KeyCode.E) && !itemDetailEnabled)
             {
