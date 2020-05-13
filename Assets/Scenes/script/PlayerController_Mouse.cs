@@ -44,7 +44,7 @@ public class PlayerController_Mouse : MonoBehaviour
         // Look at pointing position
         // Get mouse target position
 
-        if (MainController.playerMovable)
+        if (MainController.playerMovable && MainController._started == 1)
         {
             if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
             {

@@ -40,6 +40,7 @@ public class Buttons : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IP
 
     public void ToNextUI(string name)
     {
+        MainController._started = 1;
         UIController._ins.switchUIView(name, true);
     }
 

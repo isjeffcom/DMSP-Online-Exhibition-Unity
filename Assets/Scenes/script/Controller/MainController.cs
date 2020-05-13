@@ -15,6 +15,7 @@ public class MainController : MonoBehaviour
     public static int _act = 1;
     public static int _actCount = 4;
     public static string _selectedNPC;
+    public static int _started = 0;
     public static bool playerMovable = true;
 
     public static int _endingReady = 0;
